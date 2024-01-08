@@ -51,7 +51,7 @@ class LoginController extends Controlador{
             if(empty($error)){
                 if($user->read()){
                     $error['log'] = "OK, you are currently online";
-                    LoggedView::show();
+                    header("Location: index.php/?logged/connected");
                  }else{
                     $error['log'] = "the email or the password is not correct";
                 }

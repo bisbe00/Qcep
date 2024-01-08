@@ -13,15 +13,4 @@
         <br>
     </form>
    <p style="display:flex;justify-content:center;">No account?<a href="#" style="color:blue;margin-left:5px;">Sign In</a></p>
-    
-        <!-- // if (session_status() == PHP_SESSION_NONE) {
-        //     session_start();
-        // }
-
-        // $context = [];
-        // $context = $_SESSION['table'];
-        // echo '<pre>';
-        // var_dump($context);
-        // echo '</pre>'; -->
-
 </main>
