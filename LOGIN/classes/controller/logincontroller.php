@@ -28,7 +28,6 @@ class LoginController extends Controlador{
         
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])){
             $email =  $this->sanitize($_POST['email']);
-            $password = $this->sanitize($_POST['password']);
 
             if(empty($email)){
                 $error["email"] = "fill the section";
@@ -40,18 +39,11 @@ class LoginController extends Controlador{
                 $data["email"] = $email;
             }
 
-            if(empty($password)){
-                $error['password'] = "fill this section";
-                unset($password);
-            }else{
-                $data["password"] = $password;
-            }
-
-            $user = new User($email,$password);
+            $user = new User($email);
             if(empty($error)){
                 if($user->read()){
                     $error['log'] = "OK, you are currently online";
-                    header("Location: index.php/?logged/connected");
+                    header("Location: ?logged/connected");
                  }else{
                     $error['log'] = "the email or the password is not correct";
                 }

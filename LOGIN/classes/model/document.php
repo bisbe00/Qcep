@@ -11,24 +11,7 @@ class Document{
         $this->tipus = $tipus;
         $this->link = $link;
         $this->proces_nom = $proces_nom;
-    }
-
-    public function create(){
-
-    }
-
-    public function read(){
-
-    }
-
-    public function update(){
-
-    }
-
-    public function delete(){
-
-    }
-    
+    }  
 }
 
 ?>

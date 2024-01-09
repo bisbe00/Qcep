@@ -61,7 +61,7 @@ a{
 }
 
 a:hover{
-    color: white;
+    color: red;
 }
 
 main{
@@ -110,11 +110,28 @@ span{
 }
 
 .cards{
-    border: 5px solid green;
-    margin: 10px;
+    border: 2px solid green;
+    background-color: #fff;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-gap: 5px;
 }
 
 .card{
+    border: 5px solid red;
     text-align: center;
     color: darkorange;
+    margin: 5px;
+}
+
+table {
+    border-collapse: collapse;
+    border: 3px solid black;
+}
+
+th,td{
+    border: 1px solid black;
+    padding: 5px;
+    margin: 3px;
 }
