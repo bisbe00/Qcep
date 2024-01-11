@@ -9,6 +9,7 @@ if (session_status() == PHP_SESSION_NONE) {
 class User{
     const DBHOST = "localhost";
     const DBUSER = "joseph";
+    const DBPASSWORD = "joseph";
     const DBNAME = "qcep";
 
     public $email;
@@ -18,7 +19,7 @@ class User{
     }
 
     public function read() {
-        $conn = new mysqli(self::DBHOST, self::DBUSER, self::DBNAME);
+        $conn = new mysqli(self::DBHOST, self::DBPASSWORD, self::DBUSER, self::DBNAME);
     
         $mail = $this->email;
     

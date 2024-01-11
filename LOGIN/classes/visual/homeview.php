@@ -10,6 +10,7 @@ class HomeView {
         echo "<body>";
 	    include "template/header.php";
 	    include "template/main.php";
+        include "template/footer.php";
 		echo "</body></html>";
     }
 }

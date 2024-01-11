@@ -1,5 +1,5 @@
 <header>
-    <h1><?= $translate["PHP Introduction"] ?></h1>
+    <h1>Qcep</h1>
 
     <?php
     if (session_status() == PHP_SESSION_NONE) {

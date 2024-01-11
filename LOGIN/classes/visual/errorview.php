@@ -18,6 +18,7 @@ class ErrorView {
         echo "<body>";
         include "template/header.php";
         include "template/mainerror.php";
+        include "template/footer.php";
         echo "</body></html>";
     }
 }

@@ -7,6 +7,7 @@ class LoggedView{
         echo "<body>";
 	    include "template/headerlogged.php";
 	    include "template/mainproces.php";
+        include "template/footer.php";
 		echo "</body></html>";
     }
 }

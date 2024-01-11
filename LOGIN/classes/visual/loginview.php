@@ -8,6 +8,7 @@ class LoginView{
         echo "<body>";
         include "template/header.php";
         include "template/mainlogin.php";
+        include "template/footer.php";
         echo "</body></html>";
     }
 }
