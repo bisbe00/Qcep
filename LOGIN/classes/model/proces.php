@@ -12,23 +12,6 @@ class Proces{
         $this->objectiu = $objectiu;
         $this->usuari_email = $usuari_email;
     }
-
-    public function create(){
-
-    }
-
-    public function read(){
-        
-    }
-
-    public function update(){
-
-    }
-
-    public function delete(){
-        
-    }
-    
 }
 
 ?>

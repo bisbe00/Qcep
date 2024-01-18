@@ -56,11 +56,11 @@ class User{
         return false;
     }
 
-    public function create($mail){
+    public function create(){
         $conn = new mysqli(self::DBHOST, self::DBUSER, self::DBNAME);
-        if(count($this->read()) === 0){
-            $part = explode($mail,'@');
-            $query = "INSERT INTO usuari values ('$mail','$part[0]',0)";
+        if(!$this->read()){
+            $part = explode($this->email,'@');
+            $query = "INSERT INTO usuari values ('$this->email','$part[0]',0)";
             $statement = $conn->prepare($query);
             if($statement->execute()){
                 $statement->close();
@@ -71,7 +71,6 @@ class User{
         return false;
     }
     
-
 }
 
 ?>
