@@ -1,7 +1,7 @@
 <?php
 
 class LoggedView{
-    public static function show() {
+    public static function show($apartats) {
         echo "<!DOCTYPE html><html lang=\"en\">";
         include "template/head.php";
         echo "<body>";

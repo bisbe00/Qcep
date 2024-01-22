@@ -1,16 +1,19 @@
 <?php
 
-class HomeController {
+class HomeController
+{
 
-    public function __construct() {
-        
+    public function __construct()
+    {
+
     }
-    
-    public function show() {
-        
-        if ($_SERVER["REQUEST_METHOD"]=="GET" && isset($_GET["lang"])) {
+
+    public function show()
+    {
+
+        if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["lang"])) {
             $lang = $_GET["lang"];
-            setcookie("lang",$lang,time()+3600);
+            setcookie("lang", $lang, time() + 3600);
         } else {
             if (isset($_COOKIE["lang"])) {
                 $lang = $_COOKIE["lang"];
@@ -18,12 +21,12 @@ class HomeController {
                 $lang = "en";
             }
         }
-        
+
         $translator = "languages/{$lang}_translate.php";
-        
-        
-        HomeView::show($lang, $translator);      
-        
+
+
+        HomeView::show($lang, $translator);
+
     }
 }
 

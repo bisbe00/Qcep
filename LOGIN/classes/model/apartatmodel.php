@@ -16,7 +16,7 @@ class ApartatModel
         return $conn;
     }
 
-    public function read($obj)
+    public function read()
     {
         $query = "SELECT * FROM apartat";
         $conn = $this->connect();

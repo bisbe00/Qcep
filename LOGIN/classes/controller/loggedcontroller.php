@@ -1,9 +1,14 @@
 <?php
 
-class LoggedController {
+class LoggedController
+{
 
-    public function connected(){
-        LoggedView::show();
+    public function connected()
+    {
+        $apartats = [];
+        $apartatM = new ApartatModel();
+        $apartats = $apartatM->read();
+        LoggedView::show($apartats);
     }
 }
 

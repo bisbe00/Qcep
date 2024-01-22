@@ -1,4 +1,4 @@
-<main>
+<main class="login">
     <span style="display:flex;justify-content:center;color:red;"><?php if (isset($error["log"])) { echo $error["log"]; } ?></span>
     <form action="" method="post">
         <input type="email" placeholder="name@example.com" id="email" name="email" value="<?php if(isset($data['email'])) { echo $data['email'];} ?>" >
