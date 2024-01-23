@@ -1,9 +1,8 @@
 <?php
 
 class HomeView {
-    public static function show($lang,$translator) {
+    public static function show($lang,$translator,$footer) {
         require_once $translator;        
-        $html_opacityLang[$lang]="style=\"opacity:1;\"";
         
         echo "<!DOCTYPE html><html lang=\"en\">";
         include "template/head.php";

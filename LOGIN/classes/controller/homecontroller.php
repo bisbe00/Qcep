@@ -24,9 +24,16 @@ class HomeController
 
         $translator = "languages/{$lang}_translate.php";
 
+        $footer = $this->generateFooter();
 
-        HomeView::show($lang, $translator);
+        HomeView::show($lang, $translator,$footer);
 
+    }
+
+    public function generateFooter()
+    {
+        $html = "<p>2023-2024</p>";
+        return $html;
     }
 }
 

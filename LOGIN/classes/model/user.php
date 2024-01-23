@@ -19,13 +19,13 @@ class User{
     }
 
     public function read() {
-        $conn = new mysqli(self::DBHOST, self::DBPASSWORD, self::DBUSER, self::DBNAME);
+        $conn = new mysqli(self::DBHOST, self::DBUSER, self::DBPASSWORD, self::DBNAME);
     
         $mail = $this->email;
     
         $sql = "SELECT email FROM usuari WHERE email = ?";
+
         $stmt = $conn->prepare($sql);
-    
         $stmt->bind_param('s', $mail);
         $stmt->execute();
         $stmt->store_result();
@@ -34,15 +34,15 @@ class User{
             $stmt->close();
             $query = "SELECT * FROM proces";
             $statement = $conn->prepare($query);
-            if($statement->execute()){
+    
+            if ($statement->execute()) {
                 $res = $statement->get_result();
-                $data =  [];
-
+                $data = [];
+    
                 while ($row = $res->fetch_assoc()) {
-                    $data[] = $row; // Add the current row to the array
+                    $data[] = new Proces($row["nom"], $row["tipus"], $row["objectiu"], $row["usuari_email"]);
                 }
     
-                // Store specific data needed for the session
                 $_SESSION['table'] = $data;
     
                 $statement->close();

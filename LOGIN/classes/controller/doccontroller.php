@@ -10,6 +10,7 @@ class DocController
         $data = [];
         $resultProces = [];
         $apartats = [];
+
         if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["proces"])) {
             $proces_nom = $_GET["proces"];
             $document = new Document(null, null, null, $proces_nom);
@@ -24,9 +25,43 @@ class DocController
             $resultProces = $procesM->read($proces);
         }
 
+        $organitzacio = new Organitzacio('Thos i Codina',null,null,null);
+        $organitzacioM = new OrganitzacioModel();
+        $org = $organitzacioM->read($organitzacio);
+        $header = $this->generateHeader($org);
+
         $apartatM = new ApartatModel();
         $apartats = $apartatM->read();
-        DocumentView::show($data, $resultProces, $apartats);
+        $footer = $this->generateFooter($apartats);
+
+        DocumentView::show($data, $resultProces, $header, $footer);
+    }
+
+    public function generateHeader($org){
+        $html = "";
+        foreach($org as $inc){
+            $html = $html . "
+            <div class=\"inc\">
+                <a href=\"".$inc->web."\"><img class=\"logo\" src=\"".$inc->logo."\" alt=\"".$inc->nom."\"/></a>
+                <h2>".$inc->nom."</h2>
+            </div>
+            <button class=\"logOut\"><a href=\"?home/show\">Log Out</a></button>";
+        }
+        return $html;
+    }
+
+    public function generateFooter($apartats)
+    {
+        $html = '';
+        foreach ($apartats as $apartat) {
+            $html = $html . "
+            <div>
+                <a href=\"" . $apartat->link . "\" target=\"_blank\"><img src=\"" . $apartat->icona . "\" alt=\"" . $apartat->nom . "\" /></a>
+                <p>" . $apartat->nom . "</p>
+            </div>";
+        }
+
+        return $html;
     }
 }
 

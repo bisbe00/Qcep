@@ -12,9 +12,16 @@ class LangController extends Controlador
         $lang = $params[0];
         $translator = "languages/{$lang}_translate.php";
 
+        $footer = $this->generateFooter();
 
         $vHome = new HomeView();
-        $vHome->show($lang, $translator);
+        $vHome->show($lang, $translator,$footer);
+    }
+
+    public function generateFooter()
+    {
+        $html = "<p>2023-2024</p>";
+        return $html;
     }
 }
 

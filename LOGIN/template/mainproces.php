@@ -14,7 +14,7 @@
         $context = $_SESSION['table'];
         foreach ($context as $card) {
             echo "<div class=\"card\">
-                     <h2><a href='?doc/documents&proces={$card["nom"]}'>{$card["nom"]}</a></h2>
+                     <h2><a href='?doc/documents&proces=".$card->nom."'>{".$card->nom."}</a>: ".$card->objectiu."</h2>
                  </div>";
         }
         

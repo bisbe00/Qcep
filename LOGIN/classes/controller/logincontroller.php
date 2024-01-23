@@ -52,15 +52,23 @@ class LoginController extends Controlador
                 }
             }
         }
+        
+        $footer = $this->generateFooter();
+
         $login = new LoginView();
-        $login->show($lang, $translator, $error, $data);
+        $login->show($lang, $translator, $error, $data, $footer);
     }
 
     public function logOut()
     {
         unset($_SESSION['user']);
-        $index = new HomeView();
         header("Location: index.php");
+    }
+
+    public function generateFooter()
+    {
+        $html = "<p>2023-2024</p>";
+        return $html;
     }
 }
 
