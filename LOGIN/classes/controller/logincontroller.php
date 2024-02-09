@@ -1,6 +1,6 @@
 <?php
-// error_reporting(E_ALL);
-// ini_set("display_errors", 1);
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 
 // By using session_status() to check if a session is already active, 
 // you can avoid calling session_start() redundantly.
@@ -42,13 +42,13 @@ class LoginController extends Controlador
                 $data["email"] = $email;
             }
 
-            $user = new User($email);
             if (empty($error)) {
+                $user = new User($email);
                 if ($user->read()) {
                     $error['log'] = "OK, you are currently online";
                     header("Location: ?logged/connected");
                 } else {
-                    $error['log'] = "the email or the password is not correct";
+                    $error['log'] = "the email does not exist or is wrong written";
                 }
             }
         }
