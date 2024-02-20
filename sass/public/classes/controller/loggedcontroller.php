@@ -14,8 +14,8 @@ class LoggedController
         $header = $this->generateHeader($org);
        
         $apartats = [];
-        $apartatM = new ApartatModel();
-        $apartats = $apartatM->read();
+        $apartatModel = new ApartatModel();
+        $apartats = $apartatModel->getTable();
         $footer = $this->generateFooter($apartats);
 
         LoggedView::show($header,$footer);
@@ -40,8 +40,8 @@ class LoggedController
         foreach ($apartats as $apartat) {
             $html = $html . "
             <div>
-                <a href=\"" . $apartat->link . "\" target=\"_blank\"><img src=\"" . $apartat->icona . "\" alt=\"" . $apartat->nom . "\" /></a>
-                <p>" . $apartat->nom . "</p>
+                <a href=\"" . $apartat->__get('link') . "\" target=\"_blank\"><img src=\"" . $apartat->__get('icona') . "\" alt=\"" . $apartat->__get('nom') . "\" /></a>
+                <p>" . $apartat->__get('nom') . "</p>
             </div>";
         }
 

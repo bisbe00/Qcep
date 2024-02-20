@@ -1,7 +1,7 @@
 <?php
 
-// error_reporting(E_ALL);
-// ini_set("display_errors", 1);
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 
 class DocController
 {
@@ -13,7 +13,7 @@ class DocController
 
         if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["proces"])) {
             $proces_nom = $_GET["proces"];
-            $document = new Document(null, null, null, $proces_nom);
+            $document = new Document(null,null, null, null, $proces_nom);
             $documentModel = new DocumentModel();
             $result = $documentModel->read($document);
             if (count($result) !== 0) {
@@ -31,7 +31,7 @@ class DocController
         $header = $this->generateHeader($org);
 
         $apartatM = new ApartatModel();
-        $apartats = $apartatM->read();
+        $apartats = $apartatM->getTable();
         $footer = $this->generateFooter($apartats);
 
         DocumentView::show($data, $resultProces, $header, $footer);
@@ -56,8 +56,8 @@ class DocController
         foreach ($apartats as $apartat) {
             $html = $html . "
             <div>
-                <a href=\"" . $apartat->link . "\" target=\"_blank\"><img src=\"" . $apartat->icona . "\" alt=\"" . $apartat->nom . "\" /></a>
-                <p>" . $apartat->nom . "</p>
+                <a href=\"" . $apartat->__get('link') . "\" target=\"_blank\"><img src=\"" . $apartat->__get('icona') . "\" alt=\"" . $apartat->__get('nom') . "\" /></a>
+                <p>" . $apartat->__get('nom') . "</p>
             </div>";
         }
 

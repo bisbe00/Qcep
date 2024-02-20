@@ -98,7 +98,7 @@ nav a:hover {
   background: linear-gradient(60deg, rgb(84, 58, 183) 0%, rgb(0, 172, 193) 100%);
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 10px;
   border-radius: 5px;
   text-decoration: none;
   cursor: pointer;
