@@ -1,0 +1,292 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        'h'
+        'm'
+        'f';
+    min-height: 100vh;
+}
+
+/* HEADER**************************************************************************************************************** */
+
+header {
+    grid-area: h;
+    background: linear-gradient(60deg, rgba(84, 58, 183, 1) 0%, rgba(0, 172, 193, 1) 100%);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav li {
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #ffd700; 
+}
+
+.idioma ul {
+    display: none;
+    position: absolute;
+    background: linear-gradient(60deg, rgba(84, 58, 183, 1) 0%, rgba(0, 172, 193, 1) 100%);
+    list-style: none;
+    margin: 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.idioma li {
+    margin: 5px 0;
+}
+
+.idioma:hover ul {
+    display: block;
+}
+
+.inc{
+    display: inline-flex;
+}
+
+.logo {
+    width: 60px; 
+    height: 60px; 
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-color: transparent; 
+}
+
+/* .inc h2{
+    padding: 5px;
+} */
+
+/**log Out button******************/
+.logOut {
+    background: linear-gradient(60deg, rgba(84, 58, 183, 1) 0%, rgba(0, 172, 193, 1) 100%);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logOut:hover {
+    background: linear-gradient(60deg, rgba(0, 172, 193, 1) 0%, rgba(84, 58, 183, 1) 100%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}
+
+/* HEADER**************************************************************************************************************** */
+
+/* MAIN***************************************************************************************************************** */
+ main {
+    grid-area: m;
+    padding: 20px;
+    margin: 5px;
+}
+
+/* main proces */
+main.login {
+    background-color: #f5f5f5; 
+    padding: 20px; 
+    border-radius: 8px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    max-width: 300px; 
+    margin: auto; 
+}
+
+span {
+    display: block; 
+    text-align: center;
+    color: red;
+    margin-bottom: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    margin-bottom: 10px; 
+    padding: 10px; 
+    border: 1px solid #ddd; 
+    border-radius: 5px; 
+}
+
+input[type="submit"] {
+    background-color: #007bff; 
+    color: white; 
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+p {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px; 
+}
+
+a {
+    color: blue;
+    text-decoration: none;
+    margin-left: 5px; /* Add space to the left of the "Sign In" link */
+}
+
+a:hover {
+    text-decoration: underline; /* Add underline on hover for the link */
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px; 
+}
+
+.card {
+    background-color: #f5f5f5; 
+    border: 10px solid #007bff; 
+    border-left: 0px;
+    border-top: 0px;
+    border-radius: 10px; 
+    box-shadow: 0 8px 16px rgba(1, 95, 218, 0.7); 
+    padding: 70px; 
+}
+
+.card h2 {
+    margin: 0;
+}
+
+.card a {
+    text-decoration: none; 
+    color: #333; 
+}
+
+.card a:hover {
+    color: #007bff; 
+}
+
+
+/* Main proces *****************************************/
+main.proces {
+    padding: 20px; 
+}
+
+.proces1 {
+    border: 1px solid #ddd; 
+    border-radius: 8px;
+    padding: 20px; 
+    margin-bottom: 20px; 
+}
+
+.proces1 a {
+    color: #007bff; 
+}
+
+.proces1 a:hover {
+    text-decoration: underline;
+}
+
+.proces1 h2 {
+    margin-top: 0; 
+}
+
+.text {
+    margin-bottom: 10px; 
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse; 
+}
+
+table, th, td {
+    border: 1px solid #ddd; 
+}
+
+th, td {
+    padding: 10px;
+    text-align: left; 
+}
+
+table a {
+    text-decoration: none; 
+    color: #333; 
+}
+
+table a:hover {
+    text-decoration: underline;
+}
+
+/* MAIN***************************************************************************************************************** */
+
+/* FOOTER*************************************************************************************************************** */
+
+footer {
+    grid-area: f;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    flex-direction: row;
+    background: linear-gradient(60deg, rgba(84, 58, 183, 1) 0%, rgba(0, 172, 193, 1) 100%);
+    color: white;
+    padding: 20px; 
+    text-align: center;
+}
+
+footer div {
+    margin-top: 20px; 
+}
+
+footer div a {
+    text-decoration: none; 
+    color: white; 
+    display: block; 
+}
+
+footer div img {
+    border-radius: 50%;
+    width: 80px;
+    margin: 5px;
+}
+
+footer div p {
+    margin: 5px 0; 
+}
+
+footer p {
+    margin-top: 20px; 
+}
+
+/* FOOTER*************************************************************************************************************** */
