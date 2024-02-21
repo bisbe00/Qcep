@@ -24,6 +24,7 @@ class ApartatModel
             $results = [];
             while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
                 $results[] = new Apartat(
+                    $row["id"],
                     $row["nom"], 
                     $row["icona"], 
                     $row["descripcio"], 
@@ -46,6 +47,7 @@ class ApartatModel
             $results = [];
             while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
                 $results[] = new Apartat(
+                    $row["id"],
                     $row["nom"], 
                     $row["icona"], 
                     $row["descripcio"], 
@@ -74,18 +76,20 @@ class ApartatModel
     public function update(Apartat $obj)
     {
         if (count($this->read($obj)) !== 0) {
-            $query = "UPDATE apartat SET icona = :icona, descripcio = :descripcio, link = :link WHERE nom = :nom";
+            $query = "UPDATE apartat SET nom = :nom, icona = :icona, descripcio = :descripcio, link = :link WHERE id = :id";
             $statement = $this->pdo->prepare($query);
 
+            $nom = $obj->__get('nom');
             $icona = $obj->__get('icona');
             $descripcio = $obj->__get('descripcio');
             $link = $obj->__get('link');
-            $nom = $obj->__get('nom');
+            $id = $obj->__get('id');
 
+            $statement->bindParam(':nom', $nom, PDO::PARAM_STR);
             $statement->bindParam(':icona', $icona, PDO::PARAM_STR);
             $statement->bindParam(':descripcio', $descripcio, PDO::PARAM_STR);
             $statement->bindParam(':link', $link, PDO::PARAM_STR);
-            $statement->bindParam(':nom', $nom, PDO::PARAM_STR);
+            $statement->bindParam(':id', $id, PDO::PARAM_INT);
 
             $state = $statement->execute();
             if ($state) {
@@ -99,9 +103,9 @@ class ApartatModel
     public function delete(Apartat $obj)
     {
         if (count($this->read($obj)) !== 0) {
-            $query = "DELETE FROM apartat WHERE nom = ?";
+            $query = "DELETE FROM apartat WHERE id = ?";
             $statement = $this->pdo->prepare($query);
-            $state = $statement->execute([$obj->__get('nom')]);
+            $state = $statement->execute([$obj->__get('id')]);
             if ($state) {
                 $statement->closeCursor();
                 return true;
@@ -109,6 +113,5 @@ class ApartatModel
         }
         return false;
     }
-
 
 }

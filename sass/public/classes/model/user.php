@@ -18,6 +18,14 @@ class User{
         $this->email = $email;
     }
 
+    public function __set($name, $value){
+        if(property_exists($this, $name)){
+            return $this->$name = $value;
+        }else{
+            throw new Exception("Attribute ".$name." does not exist");
+        }
+    }
+
     public function read() {
         $conn = new mysqli(self::DBHOST, self::DBUSER, self::DBPASSWORD, self::DBNAME);
     
@@ -70,7 +78,5 @@ class User{
         }
         return false;
     }
-    
+  
 }
-
-?>

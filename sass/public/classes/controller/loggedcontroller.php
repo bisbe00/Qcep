@@ -8,10 +8,10 @@ class LoggedController
     public function connected()
     {
 
-        $organitzacio = new Organitzacio('Thos i Codina',null,null,null);
-        $organitzacioM = new OrganitzacioModel();
-        $org = $organitzacioM->read($organitzacio);
-        $header = $this->generateHeader($org);
+        $organitzacio = new Organitzacio(2,'Thos i Codina',null,null,null);
+        $organitzacioModel = new OrganitzacioModel();
+        $organitzacions = $organitzacioModel->read($organitzacio);
+        $header = $this->generateHeader($organitzacions);
        
         $apartats = [];
         $apartatModel = new ApartatModel();
@@ -21,13 +21,13 @@ class LoggedController
         LoggedView::show($header,$footer);
     }
 
-    public function generateHeader($org){
+    public function generateHeader($organitzacions){
         $html = "";
-        foreach($org as $inc){
-            $html = $html . "
+        foreach($organitzacions as $organitzacio){
+            $html .= "
             <div class=\"inc\">
-                <a href=\"".$inc->web."\"><img class=\"logo\" src=\"".$inc->logo."\" alt=\"".$inc->nom."\"/></a>
-                <h2>".$inc->nom."</h2>
+                <a href=\"".$organitzacio->__get('web')."\"><img class=\"logo\" src=\"".$organitzacio->__get('logo')."\" alt=\"".$organitzacio->__get('nom')."\"/></a>
+                <h2>".$organitzacio->__get('nom')."</h2>
             </div>
             <button class=\"logOut\"><a href=\"?home/show\">Log Out</a></button>";
         }

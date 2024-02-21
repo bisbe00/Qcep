@@ -6,51 +6,108 @@ ini_set("display_errors", 1);
 class ProcesModel
 {
 
+    private $pdo;
+
     public function __construct()
     {
+        $dsn = 'mysql:dbname=qcep;host=localhost';
+        $user = 'joseph';
+        $password = 'joseph';
+        $this->pdo = new PDO($dsn, $user, $password);
     }
 
-    public function connect()
+    public function getTable()
     {
-        $dbhost = 'localhost';
-        $dbuser = 'joseph';
-        $dbpassword = 'joseph';
-        $database = 'qcep';
-        $conn = new mysqli($dbhost, $dbuser, $dbpassword, $database);
-        return $conn;
-    }
+        $query = "SELECT * FROM proces";
+        $statement =  $this->pdo->prepare($query);
 
-    public function read($obj)
-    {
-        if ($obj->nom !== null) {
-            $query = "SELECT * FROM proces WHERE nom = ?";
-            $conn = $this->connect();
-            $statement = $conn->prepare($query);
-            $statement->bind_param('s', $obj->nom);
-            if ($statement->execute()) {
-                $results = $statement->get_result();
-                $data = [];
-                while ($row = $results->fetch_assoc()) {
-                    $data[] = new Proces($row["nom"],$row["tipus"],$row["objectiu"],$row["usuari_email"]);
-                }
-                $statement->close();
-                return $data;
+        if ($statement->execute()) {
+            $results = [];
+            while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+                $results[] = new Proces(
+                    $row["nom"],
+                    $row["tipus"],
+                    $row["objectiu"],
+                    $row["usuari_email"]
+                );
             }
-        } else {
-            $query = "SELECT * FROM proces";
-            $conn = $this->connect();
-            $statement = $conn->prepare($query);
-            if ($statement->execute()) {
-                $results = $statement->get_result();
-                $data = [];
-                while ($row = $results->fetch_assoc()) {
-                    $data[] = new Proces($row["nom"],$row["tipus"],$row["objectiu"],$row["usuari_email"]);
-                }
-                $statement->close();
-                return $data;
-            }
+            $statement->closeCursor();
+            return $results;
         }
     }
-}
 
-?>
+    public function read(Proces $obj)
+    {
+        $nom = $obj->__get('nom');
+        $query = "SELECT * FROM proces WHERE nom = :nom";
+        $statement = $this->pdo->prepare($query);
+        $statement->bindParam(':nom', $nom, PDO::PARAM_STR);
+
+        if ($statement->execute()) {
+            $results = [];
+            while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+                $results[] = new Proces(
+                    $row["nom"],
+                    $row["tipus"],
+                    $row["objectiu"],
+                    $row["usuari_email"]
+                );
+            }
+            $statement->closeCursor();
+            return $results;
+        }
+    }
+
+    public function create(Proces $obj)
+    {
+        if (count($this->read($obj)) === 0) {
+            $query = "INSERT INTO proces (nom, tipus, objectiu, usuari_email) VALUES (?, ?, ?, ?)";
+            $statement = $this->pdo->prepare($query);
+            $state = $statement->execute([$obj->__get('nom'), $obj->__get('tipus'), $obj->__get('objectiu'), $obj->__get('usuari_email')]);
+            if ($state) {
+                $statement->closeCursor();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function update(Proces $obj)
+    {
+        if (count($this->read($obj)) !== 0) {
+            $query = "UPDATE apartat SET tipus = :tipus, objectiu = :objectiu, usuari_email = :usuari_email WHERE nom = :nom";
+            $statement = $this->pdo->prepare($query);
+
+            $nom = $obj->__get('nom');
+            $tipus = $obj->__get('tipus');
+            $objectiu = $obj->__get('objectiu');
+            $usuari_email = $obj->__get('usuari_email');
+
+            $statement->bindParam(':nom', $nom, PDO::PARAM_STR);
+            $statement->bindParam(':tipus', $tipus, PDO::PARAM_STR);
+            $statement->bindParam(':objectiu', $objectiu, PDO::PARAM_STR);
+            $statement->bindParam(':usuari_email', $usuari_email, PDO::PARAM_STR);
+
+            $state = $statement->execute();
+            if ($state) {
+                $statement->closeCursor();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function delete(Apartat $obj)
+    {
+        if (count($this->read($obj)) !== 0) {
+            $query = "DELETE FROM apartat WHERE id = ?";
+            $statement = $this->pdo->prepare($query);
+            $state = $statement->execute([$obj->__get('id')]);
+            if ($state) {
+                $statement->closeCursor();
+                return true;
+            }
+        }
+        return false;
+    }
+}

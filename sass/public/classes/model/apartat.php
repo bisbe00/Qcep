@@ -2,13 +2,15 @@
 
 class Apartat
 {
+    private $id;
     private $nom;
     private $icona;
     private $descripcio;
     private $link;
 
-    public function __construct($nom, $icona, $descripcio, $link)
+    public function __construct($id,$nom, $icona, $descripcio, $link)
     {
+        $this->id = $id;
         $this->nom = $nom;
         $this->icona = $icona;
         $this->descripcio = $descripcio;
@@ -35,6 +37,6 @@ class Apartat
      * @return string
      */
     public function __toString() {
-    	return "Nom: {$this->nom}, Icona: {$this->icona}, Descripcio: {$this->descripcio}, Link: {$this->link}";
+    	return "Id: {$this->id}, Nom: {$this->nom}, Icona: {$this->icona}, Descripcio: {$this->descripcio}, Link: {$this->link}";
     }
 }

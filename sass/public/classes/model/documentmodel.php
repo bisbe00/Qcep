@@ -37,6 +37,29 @@ class DocumentModel
         }
     }
 
+    public function getDocumentByProcesNom(Document $obj){
+        $query = "SELECT * FROM document WHERE proces_nom = :proces_nom";
+        $statement = $this->pdo->prepare($query);
+
+        $id = $obj->__get('proces_nom');
+        $statement->bindParam(':proces_nom', $id, PDO::PARAM_STR);
+
+        if ($statement->execute()) {
+            $results = [];
+            while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+                $results[] = new Document(
+                    $row['id'],
+                    $row["nom"],
+                    $row["tipus"],
+                    $row["link"],
+                    $row["proces_nom"]
+                );
+            }
+            $statement->closeCursor();
+            return $results;
+        }
+    }
+
     public function read(Document $obj)
     {
         

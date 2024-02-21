@@ -12,10 +12,13 @@ class DocController
         $apartats = [];
 
         if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["proces"])) {
+
             $proces_nom = $_GET["proces"];
+
             $document = new Document(null,null, null, null, $proces_nom);
             $documentModel = new DocumentModel();
-            $result = $documentModel->read($document);
+            $result = $documentModel->getDocumentByProcesNom($document);
+
             if (count($result) !== 0) {
                 $data = $result;
             }
@@ -25,7 +28,7 @@ class DocController
             $resultProces = $procesM->read($proces);
         }
 
-        $organitzacio = new Organitzacio('Thos i Codina',null,null,null);
+        $organitzacio = new Organitzacio(2,'Thos i Codina',null,null,null);
         $organitzacioM = new OrganitzacioModel();
         $org = $organitzacioM->read($organitzacio);
         $header = $this->generateHeader($org);
@@ -37,13 +40,13 @@ class DocController
         DocumentView::show($data, $resultProces, $header, $footer);
     }
 
-    public function generateHeader($org){
+    public function generateHeader($organitzacions){
         $html = "";
-        foreach($org as $inc){
-            $html = $html . "
+        foreach($organitzacions as $organitzacio){
+            $html .= "
             <div class=\"inc\">
-                <a href=\"".$inc->web."\"><img class=\"logo\" src=\"".$inc->logo."\" alt=\"".$inc->nom."\"/></a>
-                <h2>".$inc->nom."</h2>
+                <a href=\"".$organitzacio->__get('web')."\"><img class=\"logo\" src=\"".$organitzacio->__get('logo')."\" alt=\"".$organitzacio->__get('nom')."\"/></a>
+                <h2>".$organitzacio->__get('nom')."</h2>
             </div>
             <button class=\"logOut\"><a href=\"?home/show\">Log Out</a></button>";
         }
@@ -54,7 +57,7 @@ class DocController
     {
         $html = '';
         foreach ($apartats as $apartat) {
-            $html = $html . "
+            $html .= "
             <div>
                 <a href=\"" . $apartat->__get('link') . "\" target=\"_blank\"><img src=\"" . $apartat->__get('icona') . "\" alt=\"" . $apartat->__get('nom') . "\" /></a>
                 <p>" . $apartat->__get('nom') . "</p>
@@ -64,5 +67,3 @@ class DocController
         return $html;
     }
 }
-
-?>
