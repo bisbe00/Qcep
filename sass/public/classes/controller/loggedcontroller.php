@@ -12,13 +12,18 @@ class LoggedController
         $organitzacioModel = new OrganitzacioModel();
         $organitzacions = $organitzacioModel->read($organitzacio);
         $header = $this->generateHeader($organitzacions);
+
+
+        $procesModel = new ProcesModel();
+        $procesos = $procesModel->getTable();
+        $main = $this->generateMain($procesos);
        
         $apartats = [];
         $apartatModel = new ApartatModel();
         $apartats = $apartatModel->getTable();
         $footer = $this->generateFooter($apartats);
 
-        LoggedView::show($header,$footer);
+        LoggedView::show($header,$main,$footer);
     }
 
     public function generateHeader($organitzacions){
@@ -31,6 +36,20 @@ class LoggedController
             </div>
             <button class=\"logOut\"><a href=\"?home/show\">Log Out</a></button>";
         }
+        return $html;
+    }
+
+    public function generateMain($procesos){
+        $html = "<div class=\"cards\">";
+
+        foreach ($procesos as $proces) {
+            $html .= "<div class=\"card\">
+            <h2><a href='?doc/documents&proces=".$proces->__get('nom')."'>{".$proces->__get('nom')."}</a>: ".$proces->__get('objectiu')."</h2>
+            </div>";
+        }
+
+        $html .= "</div>";
+
         return $html;
     }
 
@@ -48,5 +67,3 @@ class LoggedController
         return $html;
     }
 }
-
-?>

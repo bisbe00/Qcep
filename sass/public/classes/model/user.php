@@ -7,76 +7,62 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 class User{
-    const DBHOST = "localhost";
-    const DBUSER = "joseph";
-    const DBPASSWORD = "joseph";
-    const DBNAME = "qcep";
+    private $pdo;
+    private $email;
 
-    public $email;
-
-    public function __construct($email){
+    public function __construct($email)
+    {
+        $dsn = 'mysql:dbname=qcep;host=localhost';
+        $user = 'joseph';
+        $password = 'joseph';
+        $this->pdo = new PDO($dsn, $user, $password);
         $this->email = $email;
     }
 
-    public function __set($name, $value){
-        if(property_exists($this, $name)){
-            return $this->$name = $value;
-        }else{
-            throw new Exception("Attribute ".$name." does not exist");
-        }
+    public function getEmail() {
+    	return $this->email;
+    }
+
+    /**
+    * @param $email
+    */
+    public function setEmail($email) {
+    	$this->email = $email;
     }
 
     public function read() {
-        $conn = new mysqli(self::DBHOST, self::DBUSER, self::DBPASSWORD, self::DBNAME);
+        $mail = $this->getEmail();
     
-        $mail = $this->email;
-    
-        $sql = "SELECT email FROM usuari WHERE email = ?";
+        $query = "SELECT email FROM usuari WHERE email = ?";
 
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param('s', $mail);
-        $stmt->execute();
-        $stmt->store_result();
-    
-        if ($stmt->num_rows > 0) {
-            $stmt->close();
-            $query = "SELECT * FROM proces";
-            $statement = $conn->prepare($query);
-    
-            if ($statement->execute()) {
-                $res = $statement->get_result();
-                $data = [];
-    
-                while ($row = $res->fetch_assoc()) {
-                    $data[] = new Proces($row["nom"], $row["tipus"], $row["objectiu"], $row["usuari_email"]);
-                }
-    
-                $_SESSION['table'] = $data;
-    
-                $statement->close();
-                $conn->close();
-                return true;
+        $statement = $this->pdo->prepare($query);
+        
+        if($statement->execute([$mail])){
+            $result = $statement->fetch(PDO::FETCH_ASSOC);
+            if(count($result) !== 0){
+                $statement->closeCursor();
+                $procesModel = new ProcesModel();
+                $results = $procesModel->getTable();
+                return $results;
+            }else{
+                return null;
             }
         }
-    
-        $stmt->close();
-        $conn->close();
-        return false;
     }
 
-    public function create(){
-        $conn = new mysqli(self::DBHOST, self::DBUSER, self::DBNAME);
-        if(!$this->read()){
-            $part = explode($this->email,'@');
-            $query = "INSERT INTO usuari values ('$this->email','$part[0]',0)";
-            $statement = $conn->prepare($query);
-            if($statement->execute()){
-                $statement->close();
-                $conn->close();
-                return true;
-            }
-        }
-        return false;
-    }
+    // public function create(){
+    //     $conn = new mysqli(self::DBHOST, self::DBUSER, self::DBNAME);
+    //     if(!$this->read()){
+    //         $part = explode($this->email,'@');
+    //         $query = "INSERT INTO usuari values ('$this->getEmail()','$part[0]',0)";
+    //         $statement = $this->pdo->prepare($query);
+    //         if($statement->execute()){
+    //             $statement->closeCursor();
+    //             $conn->close();
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
   
 }

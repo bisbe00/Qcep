@@ -113,7 +113,8 @@ nav a:hover {
     margin: 5px;
 }
 
-/* main proces */
+/* main login *********************************************************************************/
+
 main.login {
     background-color: #f5f5f5; 
     padding: 20px; 
@@ -161,12 +162,14 @@ p {
 a {
     color: blue;
     text-decoration: none;
-    margin-left: 5px; /* Add space to the left of the "Sign In" link */
+    margin-left: 5px; 
 }
 
 a:hover {
-    text-decoration: underline; /* Add underline on hover for the link */
+    text-decoration: underline; 
 }
+
+/* main proces **********************************************************************/
 
 .cards {
     display: grid;
@@ -198,7 +201,8 @@ a:hover {
 }
 
 
-/* Main proces *****************************************/
+/* main document **************************************************************************/
+
 main.proces {
     padding: 20px; 
 }

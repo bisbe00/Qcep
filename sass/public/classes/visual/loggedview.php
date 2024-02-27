@@ -1,7 +1,7 @@
 <?php
 
 class LoggedView{
-    public static function show($header, $footer) {
+    public static function show($header, $main, $footer) {
         echo "<!DOCTYPE html><html lang=\"en\">";
         include "template/head.php";
         echo "<body>";
@@ -11,5 +11,3 @@ class LoggedView{
 		echo "</body></html>";
     }
 }
-
-?>

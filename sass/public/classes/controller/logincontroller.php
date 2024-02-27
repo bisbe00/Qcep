@@ -44,25 +44,57 @@ class LoginController extends Controlador
 
             if (empty($error)) {
                 $user = new User($email);
-                if ($user->read()) {
-                    $error['log'] = "OK, you are currently online";
+                $results = $user->read();
+
+                if(count($results) > 0){
                     header("Location: ?logged/connected");
-                } else {
+                }else{
                     $error['log'] = "the email does not exist or is wrong written";
                 }
+                // if ($user->read()) {
+                //     $error['log'] = "OK, you are currently online";
+                //     header("Location: ?logged/connected");
+                // } else {
+                //     $error['log'] = "the email does not exist or is wrong written";
+                // }
             }
         }
         
+        $main = $this->generateMain($data,$error);
         $footer = $this->generateFooter();
 
         $login = new LoginView();
-        $login->show($lang, $translator, $error, $data, $footer);
+        $login->show($lang, $translator, $main, $footer);
     }
 
     public function logOut()
     {
         unset($_SESSION['user']);
         header("Location: index.php");
+    }
+
+    public function generateMain($data,$error){
+        
+        $html = '';
+
+        if (isset($error["log"])) { 
+            $html .= "<span>". $error["log"] . "</span><br>"; 
+        }
+       
+        $html .= '<form action="?login/load" method="post">
+        <input type="email" placeholder="name@example.com" id="email" name="email" value="'. $data['email'] .'">
+        <br>';
+
+        if (isset($error["email"])) { 
+            $html .= "<span>". $error["email"] . "</span><br>"; 
+        }
+
+        $html .= '<input type="submit" id="login" name="login" value="Login">
+        <br>
+        </form>
+        <p>No account?<a href="#">Sign In</a></p>';
+
+        return $html;
     }
 
     public function generateFooter()

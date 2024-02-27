@@ -50,7 +50,7 @@ class ProcesModel
                     $row["nom"],
                     $row["tipus"],
                     $row["objectiu"],
-                    $row["usuari_email"]
+                    $row["usuari_id"]
                 );
             }
             $statement->closeCursor();
@@ -61,9 +61,9 @@ class ProcesModel
     public function create(Proces $obj)
     {
         if (count($this->read($obj)) === 0) {
-            $query = "INSERT INTO proces (nom, tipus, objectiu, usuari_email) VALUES (?, ?, ?, ?)";
+            $query = "INSERT INTO proces (nom, tipus, objectiu, usuari_id) VALUES (?, ?, ?, ?)";
             $statement = $this->pdo->prepare($query);
-            $state = $statement->execute([$obj->__get('nom'), $obj->__get('tipus'), $obj->__get('objectiu'), $obj->__get('usuari_email')]);
+            $state = $statement->execute([$obj->__get('nom'), $obj->__get('tipus'), $obj->__get('objectiu'), $obj->__get('usuari_id')]);
             if ($state) {
                 $statement->closeCursor();
                 return true;
@@ -75,18 +75,20 @@ class ProcesModel
     public function update(Proces $obj)
     {
         if (count($this->read($obj)) !== 0) {
-            $query = "UPDATE apartat SET tipus = :tipus, objectiu = :objectiu, usuari_email = :usuari_email WHERE nom = :nom";
+            $query = "UPDATE apartat SET nom = :nom, tipus = :tipus, objectiu = :objectiu, usuari_email = :usuari_email WHERE id = :id";
             $statement = $this->pdo->prepare($query);
 
             $nom = $obj->__get('nom');
             $tipus = $obj->__get('tipus');
             $objectiu = $obj->__get('objectiu');
-            $usuari_email = $obj->__get('usuari_email');
+            $usuari_id = $obj->__get('usuari_id');
+            $id = $obj->__get('id');
 
             $statement->bindParam(':nom', $nom, PDO::PARAM_STR);
             $statement->bindParam(':tipus', $tipus, PDO::PARAM_STR);
             $statement->bindParam(':objectiu', $objectiu, PDO::PARAM_STR);
-            $statement->bindParam(':usuari_email', $usuari_email, PDO::PARAM_STR);
+            $statement->bindParam(':usuari_id', $usuari_id, PDO::PARAM_STR);
+            $statement->bindParam(':id', $id, PDO::PARAM_INT);
 
             $state = $statement->execute();
             if ($state) {

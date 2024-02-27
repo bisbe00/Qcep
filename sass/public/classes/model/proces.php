@@ -2,17 +2,19 @@
 
 class Proces
 {
+    private $id;
     private $nom;
     private $tipus;
     private $objectiu;
-    private $usuari_email;
+    private $usuari_id;
 
-    public function __construct($nom, $tipus, $objectiu, $usuari_email)
+    public function __construct($id,$nom, $tipus, $objectiu, $usuari_id)
     {
+        $this->id = $id;
         $this->nom = $nom;
         $this->tipus = $tipus;
         $this->objectiu = $objectiu;
-        $this->usuari_email = $usuari_email;
+        $this->usuari_email = $usuari_id;
     }
 
     public function __get($name){
@@ -35,6 +37,6 @@ class Proces
      * @return string
      */
     public function __toString() {
-    	return "Nom: {$this->nom}, Tipus: {$this->tipus}, Objectiu: {$this->objectiu}, Usuari_email: {$this->usuari_email}";
+    	return "Id: {$this->id}, Nom: {$this->nom}, Tipus: {$this->tipus}, Objectiu: {$this->objectiu}, Usuari_id: {$this->usuari_id}";
     }
 }

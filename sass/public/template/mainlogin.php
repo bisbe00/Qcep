@@ -1,5 +1,5 @@
 <main class="login">
-    <span><?php if (isset($error["log"])) { echo $error["log"]; } ?></span>
+    <!-- <span><?php if (isset($error["log"])) { echo $error["log"]; } ?></span>
     <form action="?login/load" method="post">
         <input type="email" placeholder="name@example.com" id="email" name="email" value="<?php if(isset($data['email'])) { echo $data['email'];} ?>" >
         <br>
@@ -8,5 +8,6 @@
         <input type="submit" id="login" name="login" value="Login">
         <br>
     </form>
-   <p>No account?<a href="#">Sign In</a></p>
+   <p>No account?<a href="#">Sign In</a></p> -->
+   <?php echo $main; ?>
 </main>
