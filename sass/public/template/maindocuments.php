@@ -7,7 +7,7 @@
                     echo "<h2>".$proces->nom."</h2>";
                     echo "<h3>Objectiu</h3>";
                     echo "<p class=\"text\">".$proces->objectiu."</p>";
-                    echo "<p><b>Author:</b> ".$proces->usuari_email."</p>";
+                    echo "<p><b>Author:</b> ".$proces->usuari_id."</p>";
                 echo "</div>";
                 if(isset($data) && count($data) !== 0){
                     echo "<div>";

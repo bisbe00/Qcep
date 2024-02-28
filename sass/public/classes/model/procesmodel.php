@@ -25,10 +25,11 @@ class ProcesModel
             $results = [];
             while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
                 $results[] = new Proces(
+                    $row["id"],
                     $row["nom"],
                     $row["tipus"],
                     $row["objectiu"],
-                    $row["usuari_email"]
+                    $row["usuari_id"]
                 );
             }
             $statement->closeCursor();
@@ -47,6 +48,7 @@ class ProcesModel
             $results = [];
             while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
                 $results[] = new Proces(
+                    $row["id"],
                     $row["nom"],
                     $row["tipus"],
                     $row["objectiu"],
@@ -75,7 +77,7 @@ class ProcesModel
     public function update(Proces $obj)
     {
         if (count($this->read($obj)) !== 0) {
-            $query = "UPDATE apartat SET nom = :nom, tipus = :tipus, objectiu = :objectiu, usuari_email = :usuari_email WHERE id = :id";
+            $query = "UPDATE apartat SET nom = :nom, tipus = :tipus, objectiu = :objectiu, usuari_id = :usuari_id WHERE id = :id";
             $statement = $this->pdo->prepare($query);
 
             $nom = $obj->__get('nom');
@@ -99,7 +101,7 @@ class ProcesModel
         return false;
     }
 
-    public function delete(Apartat $obj)
+    public function delete(Proces $obj)
     {
         if (count($this->read($obj)) !== 0) {
             $query = "DELETE FROM apartat WHERE id = ?";

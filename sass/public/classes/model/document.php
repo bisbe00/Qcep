@@ -6,15 +6,15 @@ class Document
     private $nom;
     private $tipus;
     private $link;
-    private $proces_nom;
+    private $proces_id;
 
-    public function __construct($id,$nom, $tipus, $link, $proces_nom)
+    public function __construct($id,$nom, $tipus, $link, $proces_id)
     {        
         $this->id = $id;
         $this->nom = $nom;
         $this->tipus = $tipus;
         $this->link = $link;
-        $this->proces_nom = $proces_nom;
+        $this->proces_id = $proces_id;
     }
 
     public function __get($name){
@@ -37,6 +37,6 @@ class Document
      * @return string
      */
     public function __toString() {
-    	return "Nom: {$this->nom}, Tipus: {$this->tipus}, Link: {$this->link}, Proces_nom: {$this->proces_nom}";
+    	return "Id: {$this->id}, Nom: {$this->nom}, Tipus: {$this->tipus}, Link: {$this->link}, Proces_id: {$this->proces_id}";
     }
 }

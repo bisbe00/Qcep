@@ -103,5 +103,3 @@ class LoginController extends Controlador
         return $html;
     }
 }
-
-?>

@@ -46,5 +46,3 @@ class FrontController extends Controlador
     }
 
 }
-
-?>

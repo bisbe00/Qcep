@@ -13,9 +13,9 @@ class DocController
 
         if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["proces"])) {
 
-            $proces_nom = $_GET["proces"];
+            $proces_id = $_GET["proces"];
 
-            $document = new Document(null,null, null, null, $proces_nom);
+            $document = new Document(null,null, null, null, $proces_id);
             $documentModel = new DocumentModel();
             $result = $documentModel->getDocumentByProcesNom($document);
 
@@ -23,7 +23,7 @@ class DocController
                 $data = $result;
             }
 
-            $proces = new Proces($proces_nom, null, null, null);
+            $proces = new Proces($proces_id, null, null, null,null);
             $procesM = new ProcesModel();
             $resultProces = $procesM->read($proces);
         }

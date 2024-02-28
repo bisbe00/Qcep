@@ -14,7 +14,7 @@ class Proces
         $this->nom = $nom;
         $this->tipus = $tipus;
         $this->objectiu = $objectiu;
-        $this->usuari_email = $usuari_id;
+        $this->usuari_id = $usuari_id;
     }
 
     public function __get($name){

@@ -24,5 +24,3 @@ class LangController extends Controlador
         return $html;
     }
 }
-
-?>
