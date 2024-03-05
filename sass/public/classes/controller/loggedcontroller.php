@@ -2,6 +2,9 @@
 
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
+
+session_start();
+
 class LoggedController
 {
 
@@ -42,8 +45,14 @@ class LoggedController
     public function generateMain($procesos){
         $html = "<div class=\"cards\">";
 
+        if(isset($_SESSION['admin']) && $_SESSION['admin'] === true){
+            $html .= "<div class=\"card ui-state-default\">
+            <h1 class='new'>+ NEW</h1>
+            </div>";
+        }
+
         foreach ($procesos as $proces) {
-            $html .= "<div class=\"card\">
+            $html .= "<div class=\"card ui-state-default\">
             <h2><a href='?doc/documents&proces=".$proces->__get('nom')."'>{".$proces->__get('nom')."}</a>: ".$proces->__get('objectiu')."</h2>
             </div>";
         }

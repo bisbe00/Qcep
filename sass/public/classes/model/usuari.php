@@ -1,0 +1,117 @@
+<?php
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+class Usuari{
+    private $pdo;
+    private $id;
+    private $email;
+    private $username;
+    private $es_administrador;
+
+    public function __construct($id,$email,$username,$es_administrador)
+    {
+        $dsn = 'mysql:dbname=qcep;host=localhost';
+        $user = 'joseph';
+        $password = 'joseph';
+        $this->pdo = new PDO($dsn, $user, $password);
+        $this->id = $id;
+        $this->email = $email;
+        $this->username = $username;
+        $this->es_administrador = $es_administrador;
+    }
+
+    public function getId() {
+    	return $this->id;
+    }
+
+    /**
+    * @param $id
+    */
+    public function setId($id) {
+    	$this->id = $id;
+    }
+
+    public function getEmail() {
+    	return $this->email;
+    }
+
+    /**
+    * @param $email
+    */
+    public function setEmail($email) {
+    	$this->email = $email;
+    }
+
+    public function getUsername() {
+    	return $this->username;
+    }
+
+    /**
+    * @param $username
+    */
+    public function setUsername($username) {
+    	$this->username = $username;
+    }
+
+    public function getEs_administrador() {
+    	return $this->es_administrador;
+    }
+
+    /**
+    * @param $es_administrador
+    */
+    public function setEs_administrador($es_administrador) {
+    	$this->es_administrador = $es_administrador;
+    }
+
+    public function read() {
+        $mail = $this->getEmail();
+    
+        $query = "SELECT * FROM usuari WHERE email = ?";
+
+        $statement = $this->pdo->prepare($query);
+        
+        if($statement->execute([$mail])){
+            $result = $statement->fetch(PDO::FETCH_ASSOC);
+            if(count($result) !== 0){
+
+                $this->setEs_administrador($result["es_administrador"]);
+
+                if ($this->getEs_administrador() === 1) {
+                    $_SESSION['admin'] = true;
+                }else{
+                    $_SESSION['admin'] = false;
+                }
+
+                $statement->closeCursor();
+                $procesModel = new ProcesModel();
+                $results = $procesModel->getTable();
+                return $results;
+            }else{
+                return null;
+            }
+        }
+    }
+
+
+    public function create()
+    {
+        if ($this->read() === null) {
+            $part = explode('@', $this->getEmail());
+            $query = "INSERT INTO usuari VALUES (?, ?, ?)";
+            $statement = $this->pdo->prepare($query);
+            if ($statement->execute([$this->getEmail(), $part[0], 0])) {
+                $statement->closeCursor();
+                return true;
+            }
+        }
+        return false;
+    }
+    
+
+}

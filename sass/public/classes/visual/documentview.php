@@ -1,7 +1,7 @@
 <?php
 
 class DocumentView{
-    public static function show($data,$resultProces,$header,$footer){
+    public static function show($header,$main,$footer){
         echo "<!DOCTYPE html><html lang=\"en\">";
         include "template/head.php";
         echo "<body>";

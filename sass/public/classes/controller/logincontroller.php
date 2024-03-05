@@ -27,7 +27,7 @@ class LoginController extends Controlador
         $translator = "languages/{$lang}_translate.php";
 
         $error = [];
-        $data = [];
+        $data = new Usuari(null,null,null,null);
 
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
             $email = $this->sanitize($_POST['email']);
@@ -39,11 +39,11 @@ class LoginController extends Controlador
                 $error["email"] = "write the correct form of the email";
                 unset($email);
             } else {
-                $data["email"] = $email;
+                $data->setEmail($email);
             }
 
             if (empty($error)) {
-                $user = new User($email);
+                $user = new Usuari(null,$email,null,null);
                 $results = $user->read();
 
                 if(count($results) > 0){
@@ -51,12 +51,7 @@ class LoginController extends Controlador
                 }else{
                     $error['log'] = "the email does not exist or is wrong written";
                 }
-                // if ($user->read()) {
-                //     $error['log'] = "OK, you are currently online";
-                //     header("Location: ?logged/connected");
-                // } else {
-                //     $error['log'] = "the email does not exist or is wrong written";
-                // }
+                
             }
         }
         
@@ -82,7 +77,7 @@ class LoginController extends Controlador
         }
        
         $html .= '<form action="?login/load" method="post">
-        <input type="email" placeholder="name@example.com" id="email" name="email" value="'. $data['email'] .'">
+        <input type="email" placeholder="name@example.com" id="email" name="email" value="'. $data->getEmail() .'">
         <br>';
 
         if (isset($error["email"])) { 

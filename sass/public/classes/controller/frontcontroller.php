@@ -13,7 +13,6 @@ class FrontController extends Controlador
             $action = self::DEFAULT_ACTION;
         } else {
             $url = array_keys($_GET)[0];
-            //$_SERVER["QUERY_STRING"]
             $url = $this->sanitize($url, 0);
             $url = trim($url, "/");
             $url = filter_var($url, FILTER_SANITIZE_URL);
@@ -36,10 +35,10 @@ class FrontController extends Controlador
             if (method_exists($controller, $action)) {
                 $controller->$action($params);
             } else {
-                throw new Exception("No existeix l'acció definida $action de $controller_name");
+                throw new Exception("The action $action of $controller_name does not exist");
             }
         } else {
-            throw new Exception("No existeix el controlador demanat $controller_name");
+            throw new Exception("The controller $controller_name does not exist");
         }
 
 
