@@ -53,7 +53,7 @@ class LoggedController
 
         foreach ($procesos as $proces) {
             $html .= "<div class=\"card ui-state-default\">
-            <h2><a href='?doc/documents&proces=".$proces->__get('nom')."'>{".$proces->__get('nom')."}</a>: ".$proces->__get('objectiu')."</h2>
+            <h2><a href='?document/documents&proces=".$proces->__get('nom')."'>{".$proces->__get('nom')."}</a>: ".$proces->__get('objectiu')."</h2>
             </div>";
         }
 
