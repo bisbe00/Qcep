@@ -120,7 +120,8 @@ main.login {
     padding: 20px; 
     border-radius: 8px; 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-    max-width: 300px; 
+    width: 600px;
+    height: auto;
     margin: auto; 
 }
 
@@ -131,9 +132,10 @@ span {
     margin-bottom: 10px;
 }
 
-form {
+main.login form {
     display: flex;
     flex-direction: column;
+    max-width: 100%;
 }
 
 input {
@@ -279,6 +281,8 @@ footer {
     color: white;
     padding: 20px; 
     text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
 footer div {
@@ -304,5 +308,6 @@ footer div p {
 footer p {
     margin-top: 20px; 
 }
+
 
 /* FOOTER*************************************************************************************************************** */

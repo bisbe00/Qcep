@@ -11,5 +11,3 @@ class DocumentView{
         echo "</body></html>";
     }
 }
-
-?>
