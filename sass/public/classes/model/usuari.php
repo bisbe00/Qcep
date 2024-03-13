@@ -98,12 +98,31 @@ class Usuari{
         }
     }
 
+    public function getUsernameByID(){
+        $query = "SELECT * FROM usuari WHERE id = :id";
+        $statement = $this->pdo->prepare($query);
+
+        $id = $this->getId();
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+
+        if($statement->execute()){
+            $row = $statement->fetch(PDO::FETCH_ASSOC);
+            $usuari = new Usuari(
+                $row["id"],
+                $row["email"],
+                $row["username"],
+                $row["es_administrador"]
+            );
+            $statement->closeCursor();
+            return $usuari;
+        }
+    }
 
     public function create()
     {
         if ($this->read() === null) {
             $part = explode('@', $this->getEmail());
-            $query = "INSERT INTO usuari VALUES (?, ?, ?)";
+            $query = "INSERT INTO usuari(email,username,es_administrador) VALUES (?, ?, ?)";
             $statement = $this->pdo->prepare($query);
             if ($statement->execute([$this->getEmail(), $part[0], 0])) {
                 $statement->closeCursor();

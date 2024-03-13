@@ -82,7 +82,14 @@ class DocumentController extends Controlador
                     $html .= "<h2>".$proces->__get('nom')."</h2>";
                     $html .= "<h3>Objectiu</h3>";
                     $html .= "<p class=\"text\">".$proces->__get('objectiu')."</p>";
-                    $html .= "<p><b>Author:</b> ".$proces->__get('usuari_id')."</p>";
+
+                    $usuari_id = $proces->__get('usuari_id');
+                    $usuari = new Usuari($usuari_id,null,null,null);
+                    $autor = $usuari->getUsernameByID();
+
+                    $html .= "<p><b>Author:</b>". $autor->getUsername() ."</p>";
+                    $html .= "<p><b>Email:</b>".  $autor->getEmail() ."</p>";
+
                 $html .= "</div>";
 
                 if(isset($_SESSION['admin']) && $_SESSION['admin'] === true){

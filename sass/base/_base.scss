@@ -267,6 +267,31 @@ table a:hover {
     text-decoration: underline;
 }
 
+.edit{
+    border-top: 0;
+    border-left: 0;
+    border-bottom: 3px solid green;
+    border-right: 3px solid green;
+}
+
+.edit:hover{
+    border-right: 0;
+    border-bottom: 0;
+    border-top: 3px solid green;
+    border-left: 3px solid green;
+}
+
+.delete{
+    border-top: 0;
+    border-left: 0;
+    border-bottom: 3px solid red;
+    border-right: 3px solid red;
+}
+
+.delete:hover{
+    border: 3px solid red;
+}
+
 /* MAIN***************************************************************************************************************** */
 
 /* FOOTER*************************************************************************************************************** */
