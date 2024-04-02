@@ -87,7 +87,7 @@ class LoginController extends Controlador
         $html .= '<input type="submit" id="login" name="login" value="Login">
         <br>
         </form>
-        <p>No account?<a href="#">Sign In</a></p>';
+        <p>No account?<a href="#">Sign Up</a></p>';
 
         return $html;
     }

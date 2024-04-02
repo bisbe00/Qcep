@@ -14,4 +14,3 @@ try {
     $errors = new ErrorView();
     $errors->show($e);
 }
-
