@@ -1,6 +1,7 @@
 <?php
-// error_reporting(E_ALL);
-// ini_set("display_errors", 1);
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+
 include 'classes/config/Autoloader.php';
 spl_autoload_register("Autoloader::load");
 spl_autoload_register("Autoloader::newLoad");
@@ -14,4 +15,3 @@ try {
     $errors->show($e);
 }
 
-?>

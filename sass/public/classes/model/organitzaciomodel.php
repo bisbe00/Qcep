@@ -9,10 +9,7 @@ class OrganitzacioModel
 
     public function __construct()
     {
-        $dsn = 'mysql:dbname=qcep;host=localhost';
-        $user = 'joseph';
-        $password = 'joseph';
-        $this->pdo = new PDO($dsn, $user, $password);
+        $this->pdo = DbConnection::getInstance();
     }
 
     public function getTable()

@@ -15,10 +15,7 @@ class Usuari{
 
     public function __construct($id,$email,$username,$es_administrador)
     {
-        $dsn = 'mysql:dbname=qcep;host=localhost';
-        $user = 'joseph';
-        $password = 'joseph';
-        $this->pdo = new PDO($dsn, $user, $password);
+        $this->pdo = DbConnection::getInstance();
         $this->id = $id;
         $this->email = $email;
         $this->username = $username;
