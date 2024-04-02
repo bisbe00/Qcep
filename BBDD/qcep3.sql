@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 27, 2024 at 08:27 PM
+-- Generation Time: Apr 02, 2024 at 06:58 PM
 -- Server version: 8.0.36-0ubuntu0.22.04.1
 -- PHP Version: 8.2.15
 
@@ -69,7 +69,7 @@ CREATE TABLE `avaluacio` (
 CREATE TABLE `document` (
   `nom` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `tipus` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
-  `link` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `link` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `proces_id` int NOT NULL,
   `id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
@@ -178,6 +178,29 @@ INSERT INTO `proces` (`nom`, `tipus`, `objectiu`, `id`, `usuari_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `proces_puntNorma`
+--
+
+CREATE TABLE `proces_puntNorma` (
+  `proces_id` int NOT NULL,
+  `primerNum` int NOT NULL,
+  `segundaNum` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `proces_recus`
+--
+
+CREATE TABLE `proces_recus` (
+  `proces_id` int NOT NULL,
+  `recurs_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `puntNorma`
 --
 
@@ -270,7 +293,21 @@ ALTER TABLE `organitzacio`
 --
 ALTER TABLE `proces`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `proces_ibfk_1` (`usuari_id`);
+  ADD KEY `fk_usuari` (`usuari_id`);
+
+--
+-- Indexes for table `proces_puntNorma`
+--
+ALTER TABLE `proces_puntNorma`
+  ADD PRIMARY KEY (`proces_id`,`primerNum`,`segundaNum`),
+  ADD KEY `primerNum` (`primerNum`,`segundaNum`);
+
+--
+-- Indexes for table `proces_recus`
+--
+ALTER TABLE `proces_recus`
+  ADD PRIMARY KEY (`proces_id`,`recurs_id`),
+  ADD KEY `recurs_id` (`recurs_id`);
 
 --
 -- Indexes for table `puntNorma`
@@ -362,7 +399,22 @@ ALTER TABLE `indicador`
 -- Constraints for table `proces`
 --
 ALTER TABLE `proces`
+  ADD CONSTRAINT `fk_usuari` FOREIGN KEY (`usuari_id`) REFERENCES `usuari` (`id`),
   ADD CONSTRAINT `proces_ibfk_1` FOREIGN KEY (`usuari_id`) REFERENCES `usuari` (`id`);
+
+--
+-- Constraints for table `proces_puntNorma`
+--
+ALTER TABLE `proces_puntNorma`
+  ADD CONSTRAINT `proces_puntNorma_ibfk_1` FOREIGN KEY (`proces_id`) REFERENCES `proces` (`id`),
+  ADD CONSTRAINT `proces_puntNorma_ibfk_2` FOREIGN KEY (`primerNum`,`segundaNum`) REFERENCES `puntNorma` (`primerNum`, `segundaNum`);
+
+--
+-- Constraints for table `proces_recus`
+--
+ALTER TABLE `proces_recus`
+  ADD CONSTRAINT `proces_recus_ibfk_1` FOREIGN KEY (`proces_id`) REFERENCES `proces` (`id`),
+  ADD CONSTRAINT `proces_recus_ibfk_2` FOREIGN KEY (`recurs_id`) REFERENCES `recurs` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
