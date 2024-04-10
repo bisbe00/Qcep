@@ -92,92 +92,33 @@
                                     <div class="col-sm-12 col-md-6">
                                         <div id="order-list_filter" class="dataTables_filter" style="display: none;">
                                             <label>Search:<input type="search" class="form-control form-control-sm"
-                                                    placeholder="" aria-controls="order-list"></label></div>
+                                                    placeholder="" aria-controls="order-list"></label>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <table
-                                            class="table align-middle table-nowrap dt-responsive nowrap w-100 table-check dataTable no-footer dtr-inline"
-                                            id="order-list" aria-describedby="order-list_info" style="width: 1502px;">
+                                            class="table align-middle table-nowrap dt-responsive nowrap w-100 table-check dataTable no-footer dtr-inline collapsed"
+                                            id="order-list" aria-describedby="order-list_info" style="width: 948px;">
                                             <thead class="table-light">
                                                 <tr>
-                                                    <th style="width: 24px;" class="align-middle sorting" tabindex="0"
-                                                        aria-controls="order-list" rowspan="1" colspan="1" aria-label="
-                                                            
-                                                                
-                                                                
-                                                            
-                                                        : activate to sort column ascending">
-                                                        <div class="form-check font-size-16">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                id="checkAll">
-                                                            <label class="form-check-label" for="checkAll"></label>
-                                                        </div>
-                                                    </th>
-                                                    <th class="align-middle sorting sorting_desc" tabindex="0"
-                                                        aria-controls="order-list" rowspan="1" colspan="1"
-                                                        style="width: 113px;" aria-sort="descending"
-                                                        aria-label="Order ID: activate to sort column ascending">Order
-                                                        ID</th>
-                                                    <th class="align-middle sorting" tabindex="0"
-                                                        aria-controls="order-list" rowspan="1" colspan="1"
-                                                        style="width: 168px;"
-                                                        aria-label="Billing Name: activate to sort column ascending">
-                                                        Billing Name</th>
-                                                    <th class="align-middle sorting" tabindex="0"
-                                                        aria-controls="order-list" rowspan="1" colspan="1"
-                                                        style="width: 137px;"
-                                                        aria-label="Date: activate to sort column ascending">Date</th>
-                                                    <th class="align-middle sorting" tabindex="0"
-                                                        aria-controls="order-list" rowspan="1" colspan="1"
-                                                        style="width: 79px;"
-                                                        aria-label="Total: activate to sort column ascending">Total</th>
-                                                    <th class="align-middle sorting" tabindex="0"
-                                                        aria-controls="order-list" rowspan="1" colspan="1"
-                                                        style="width: 198px;"
-                                                        aria-label="Payment Status: activate to sort column ascending">
-                                                        Payment Status</th>
-                                                    <th class="align-middle sorting" tabindex="0"
-                                                        aria-controls="order-list" rowspan="1" colspan="1"
-                                                        style="width: 211px;"
-                                                        aria-label="Payment Method: activate to sort column ascending">
-                                                        Payment Method</th>
-                                                    <th class="align-middle sorting_disabled" rowspan="1" colspan="1"
-                                                        style="width: 157px;" aria-label="View Details">View Details
-                                                    </th>
-                                                    <th class="align-middle sorting_disabled" rowspan="1" colspan="1"
-                                                        style="width: 101px;" aria-label="Action">Action</th>
+                                                    <th>ID</th>
+                                                    <th>Billing Name</th>
+                                                    <th>Total</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr class="odd">
-                                                    <td class="dtr-control">
-                                                        <div class="form-check font-size-16"> <input
-                                                                class="form-check-input" type="checkbox"
-                                                                id="orderlistIdCheck-12"> <label
-                                                                class="form-check-label"
-                                                                for="orderlistIdCheck-12"></label> </div>
+                                                    <td><a href="javascript: void(0);"
+                                                            class="text-body orderlist-id fw-bold">#SK12</a>
                                                     </td>
-                                                    <td class="sorting_1"><a href="javascript: void(0);"
-                                                            class="text-body orderlist-id fw-bold">#SK12</a></td>
                                                     <td>
                                                         <div class="customerlist-name">Valerie Keys</div>
                                                     </td>
-                                                    <td>25 Sept, 2019</td>
                                                     <td>$345</td>
-                                                    <td><span
-                                                            class="badge rounded-pill badge-soft-warning font-size-12">Refund</span>
-                                                    </td>
-                                                    <td>
-                                                        <div><i class="fab fa-cc-visa me-1"></i>Visa</div>
-                                                    </td>
-                                                    <td><button type="button"
-                                                            class="btn btn-primary btn-sm btn-rounded viewdetail-btn"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target=".orderdetailsModal">View Details</button>
-                                                    </td>
-                                                    <td>
+                                                    <td class="dtr-hidden" style="display: none;">
                                                         <div class="d-flex gap-3"> <a href="#newOrderModal"
                                                                 data-bs-toggle="modal" class="text-success edit-list"
                                                                 data-edit-id="12"><i
@@ -188,326 +129,55 @@
                                                     </td>
                                                 </tr>
                                                 <tr class="even">
-                                                    <td class="dtr-control">
-                                                        <div class="form-check font-size-16"> <input
-                                                                class="form-check-input" type="checkbox"
-                                                                id="orderlistIdCheck-11"> <label
-                                                                class="form-check-label"
-                                                                for="orderlistIdCheck-11"></label> </div>
+                                                    <td><a href="javascript: void(0);"
+                                                            class="text-body orderlist-id fw-bold">#SK11</a>
                                                     </td>
-                                                    <td class="sorting_1"><a href="javascript: void(0);"
-                                                            class="text-body orderlist-id fw-bold">#SK11</a></td>
                                                     <td>
                                                         <div class="customerlist-name">David Crawford</div>
                                                     </td>
-                                                    <td>26 Sept, 2019</td>
                                                     <td>$350</td>
-                                                    <td><span
-                                                            class="badge rounded-pill badge-soft-success font-size-12">Paid</span>
-                                                    </td>
-                                                    <td>
-                                                        <div><i class="fab fa-cc-mastercard me-1"></i>Mastercard</div>
-                                                    </td>
-                                                    <td><button type="button"
-                                                            class="btn btn-primary btn-sm btn-rounded viewdetail-btn"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target=".orderdetailsModal">View Details</button>
-                                                    </td>
-                                                    <td>
+                                                    <td class="dtr-hidden" style="display: none;">
                                                         <div class="d-flex gap-3"> <a href="#newOrderModal"
                                                                 data-bs-toggle="modal" class="text-success edit-list"
-                                                                data-edit-id="11"><i
+                                                                data-edit-id="12"><i
                                                                     class="mdi mdi-pencil font-size-18"></i></a> <a
                                                                 href="#removeItemModal" data-bs-toggle="modal"
-                                                                class="text-danger remove-list" data-remove-id="11"><i
+                                                                class="text-danger remove-list" data-remove-id="12"><i
                                                                     class="mdi mdi-delete font-size-18"></i></a> </div>
                                                     </td>
                                                 </tr>
                                                 <tr class="odd">
-                                                    <td class="dtr-control" tabindex="0">
-                                                        <div class="form-check font-size-16"> <input
-                                                                class="form-check-input" type="checkbox"
-                                                                id="orderlistIdCheck-10"> <label
-                                                                class="form-check-label"
-                                                                for="orderlistIdCheck-10"></label> </div>
-                                                    </td>
-                                                    <td class="sorting_1"><a href="javascript: void(0);"
+                                                    <td><a href="javascript: void(0);"
                                                             class="text-body orderlist-id fw-bold">#SK10</a></td>
                                                     <td>
                                                         <div class="customerlist-name">Jessie Jones</div>
                                                     </td>
-                                                    <td>26 Sept, 2019</td>
                                                     <td>$374</td>
-                                                    <td><span
-                                                            class="badge rounded-pill badge-soft-success font-size-12">Paid</span>
-                                                    </td>
-                                                    <td>
-                                                        <div><i class="fas fa-money-bill-alt me-1"></i>COD</div>
-                                                    </td>
-                                                    <td><button type="button"
-                                                            class="btn btn-primary btn-sm btn-rounded viewdetail-btn"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target=".orderdetailsModal">View Details</button>
-                                                    </td>
-                                                    <td>
+                                                    <td class="dtr-hidden" style="display: none;">
                                                         <div class="d-flex gap-3"> <a href="#newOrderModal"
                                                                 data-bs-toggle="modal" class="text-success edit-list"
-                                                                data-edit-id="10"><i
+                                                                data-edit-id="12"><i
                                                                     class="mdi mdi-pencil font-size-18"></i></a> <a
                                                                 href="#removeItemModal" data-bs-toggle="modal"
-                                                                class="text-danger remove-list" data-remove-id="10"><i
+                                                                class="text-danger remove-list" data-remove-id="12"><i
                                                                     class="mdi mdi-delete font-size-18"></i></a> </div>
                                                     </td>
                                                 </tr>
                                                 <tr class="even">
-                                                    <td class="dtr-control" tabindex="0">
-                                                        <div class="form-check font-size-16"> <input
-                                                                class="form-check-input" type="checkbox"
-                                                                id="orderlistIdCheck-09"> <label
-                                                                class="form-check-label"
-                                                                for="orderlistIdCheck-09"></label> </div>
+                                                    <td><a href="javascript: void(0);"
+                                                            class="text-body orderlist-id fw-bold">#SK09</a>
                                                     </td>
-                                                    <td class="sorting_1"><a href="javascript: void(0);"
-                                                            class="text-body orderlist-id fw-bold">#SK09</a></td>
                                                     <td>
                                                         <div class="customerlist-name">Clark Benson</div>
                                                     </td>
-                                                    <td>01 Oct, 2019</td>
                                                     <td>$345</td>
-                                                    <td><span
-                                                            class="badge rounded-pill badge-soft-warning font-size-12">Refund</span>
-                                                    </td>
-                                                    <td>
-                                                        <div><i class="fab fa-cc-visa me-1"></i>Visa</div>
-                                                    </td>
-                                                    <td><button type="button"
-                                                            class="btn btn-primary btn-sm btn-rounded viewdetail-btn"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target=".orderdetailsModal">View Details</button>
-                                                    </td>
-                                                    <td>
+                                                    <td class="dtr-hidden" style="display: none;">
                                                         <div class="d-flex gap-3"> <a href="#newOrderModal"
                                                                 data-bs-toggle="modal" class="text-success edit-list"
-                                                                data-edit-id="09"><i
+                                                                data-edit-id="12"><i
                                                                     class="mdi mdi-pencil font-size-18"></i></a> <a
                                                                 href="#removeItemModal" data-bs-toggle="modal"
-                                                                class="text-danger remove-list" data-remove-id="09"><i
-                                                                    class="mdi mdi-delete font-size-18"></i></a> </div>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd">
-                                                    <td class="dtr-control" tabindex="0">
-                                                        <div class="form-check font-size-16"> <input
-                                                                class="form-check-input" type="checkbox"
-                                                                id="orderlistIdCheck-08"> <label
-                                                                class="form-check-label"
-                                                                for="orderlistIdCheck-08"></label> </div>
-                                                    </td>
-                                                    <td class="sorting_1"><a href="javascript: void(0);"
-                                                            class="text-body orderlist-id fw-bold">#SK08</a></td>
-                                                    <td>
-                                                        <div class="customerlist-name">Dustin Moser</div>
-                                                    </td>
-                                                    <td>02 Oct, 2019</td>
-                                                    <td>$350</td>
-                                                    <td><span
-                                                            class="badge rounded-pill badge-soft-success font-size-12">Paid</span>
-                                                    </td>
-                                                    <td>
-                                                        <div><i class="fab fa-cc-mastercard me-1"></i>Mastercard</div>
-                                                    </td>
-                                                    <td><button type="button"
-                                                            class="btn btn-primary btn-sm btn-rounded viewdetail-btn"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target=".orderdetailsModal">View Details</button>
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex gap-3"> <a href="#newOrderModal"
-                                                                data-bs-toggle="modal" class="text-success edit-list"
-                                                                data-edit-id="08"><i
-                                                                    class="mdi mdi-pencil font-size-18"></i></a> <a
-                                                                href="#removeItemModal" data-bs-toggle="modal"
-                                                                class="text-danger remove-list" data-remove-id="08"><i
-                                                                    class="mdi mdi-delete font-size-18"></i></a> </div>
-                                                    </td>
-                                                </tr>
-                                                <tr class="even">
-                                                    <td class="dtr-control" tabindex="0">
-                                                        <div class="form-check font-size-16"> <input
-                                                                class="form-check-input" type="checkbox"
-                                                                id="orderlistIdCheck-07"> <label
-                                                                class="form-check-label"
-                                                                for="orderlistIdCheck-07"></label> </div>
-                                                    </td>
-                                                    <td class="sorting_1"><a href="javascript: void(0);"
-                                                            class="text-body orderlist-id fw-bold">#SK07</a></td>
-                                                    <td>
-                                                        <div class="customerlist-name">William Cruz</div>
-                                                    </td>
-                                                    <td>03 Oct, 2019</td>
-                                                    <td>$374</td>
-                                                    <td><span
-                                                            class="badge rounded-pill badge-soft-success font-size-12">Paid</span>
-                                                    </td>
-                                                    <td>
-                                                        <div><i class="fas fa-money-bill-alt me-1"></i>COD</div>
-                                                    </td>
-                                                    <td><button type="button"
-                                                            class="btn btn-primary btn-sm btn-rounded viewdetail-btn"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target=".orderdetailsModal">View Details</button>
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex gap-3"> <a href="#newOrderModal"
-                                                                data-bs-toggle="modal" class="text-success edit-list"
-                                                                data-edit-id="07"><i
-                                                                    class="mdi mdi-pencil font-size-18"></i></a> <a
-                                                                href="#removeItemModal" data-bs-toggle="modal"
-                                                                class="text-danger remove-list" data-remove-id="07"><i
-                                                                    class="mdi mdi-delete font-size-18"></i></a> </div>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd">
-                                                    <td class="dtr-control" tabindex="0">
-                                                        <div class="form-check font-size-16"> <input
-                                                                class="form-check-input" type="checkbox"
-                                                                id="orderlistIdCheck-06"> <label
-                                                                class="form-check-label"
-                                                                for="orderlistIdCheck-06"></label> </div>
-                                                    </td>
-                                                    <td class="sorting_1"><a href="javascript: void(0);"
-                                                            class="text-body orderlist-id fw-bold">#SK06</a></td>
-                                                    <td>
-                                                        <div class="customerlist-name">Jacob Hunter</div>
-                                                    </td>
-                                                    <td>04 Oct, 2019</td>
-                                                    <td>$392</td>
-                                                    <td><span
-                                                            class="badge rounded-pill badge-soft-success font-size-12">Paid</span>
-                                                    </td>
-                                                    <td>
-                                                        <div><i class="fab fa-cc-paypal me-1"></i>Paypal</div>
-                                                    </td>
-                                                    <td><button type="button"
-                                                            class="btn btn-primary btn-sm btn-rounded viewdetail-btn"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target=".orderdetailsModal">View Details</button>
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex gap-3"> <a href="#newOrderModal"
-                                                                data-bs-toggle="modal" class="text-success edit-list"
-                                                                data-edit-id="06"><i
-                                                                    class="mdi mdi-pencil font-size-18"></i></a> <a
-                                                                href="#removeItemModal" data-bs-toggle="modal"
-                                                                class="text-danger remove-list" data-remove-id="06"><i
-                                                                    class="mdi mdi-delete font-size-18"></i></a> </div>
-                                                    </td>
-                                                </tr>
-                                                <tr class="even">
-                                                    <td class="dtr-control" tabindex="0">
-                                                        <div class="form-check font-size-16"> <input
-                                                                class="form-check-input" type="checkbox"
-                                                                id="orderlistIdCheck-05"> <label
-                                                                class="form-check-label"
-                                                                for="orderlistIdCheck-05"></label> </div>
-                                                    </td>
-                                                    <td class="sorting_1"><a href="javascript: void(0);"
-                                                            class="text-body orderlist-id fw-bold">#SK05</a></td>
-                                                    <td>
-                                                        <div class="customerlist-name">Ronald Taylor</div>
-                                                    </td>
-                                                    <td>04 Oct, 2019</td>
-                                                    <td>$404</td>
-                                                    <td><span
-                                                            class="badge rounded-pill badge-soft-warning font-size-12">Refund</span>
-                                                    </td>
-                                                    <td>
-                                                        <div><i class="fab fa-cc-visa me-1"></i>Visa</div>
-                                                    </td>
-                                                    <td><button type="button"
-                                                            class="btn btn-primary btn-sm btn-rounded viewdetail-btn"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target=".orderdetailsModal">View Details</button>
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex gap-3"> <a href="#newOrderModal"
-                                                                data-bs-toggle="modal" class="text-success edit-list"
-                                                                data-edit-id="05"><i
-                                                                    class="mdi mdi-pencil font-size-18"></i></a> <a
-                                                                href="#removeItemModal" data-bs-toggle="modal"
-                                                                class="text-danger remove-list" data-remove-id="05"><i
-                                                                    class="mdi mdi-delete font-size-18"></i></a> </div>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd">
-                                                    <td class="dtr-control" tabindex="0">
-                                                        <div class="form-check font-size-16"> <input
-                                                                class="form-check-input" type="checkbox"
-                                                                id="orderlistIdCheck-04"> <label
-                                                                class="form-check-label"
-                                                                for="orderlistIdCheck-04"></label> </div>
-                                                    </td>
-                                                    <td class="sorting_1"><a href="javascript: void(0);"
-                                                            class="text-body orderlist-id fw-bold">#SK04</a></td>
-                                                    <td>
-                                                        <div class="customerlist-name">Barry Dick</div>
-                                                    </td>
-                                                    <td>05 Oct, 2019</td>
-                                                    <td>$412</td>
-                                                    <td><span
-                                                            class="badge rounded-pill badge-soft-success font-size-12">Paid</span>
-                                                    </td>
-                                                    <td>
-                                                        <div><i class="fab fa-cc-mastercard me-1"></i>Mastercard</div>
-                                                    </td>
-                                                    <td><button type="button"
-                                                            class="btn btn-primary btn-sm btn-rounded viewdetail-btn"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target=".orderdetailsModal">View Details</button>
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex gap-3"> <a href="#newOrderModal"
-                                                                data-bs-toggle="modal" class="text-success edit-list"
-                                                                data-edit-id="04"><i
-                                                                    class="mdi mdi-pencil font-size-18"></i></a> <a
-                                                                href="#removeItemModal" data-bs-toggle="modal"
-                                                                class="text-danger remove-list" data-remove-id="04"><i
-                                                                    class="mdi mdi-delete font-size-18"></i></a> </div>
-                                                    </td>
-                                                </tr>
-                                                <tr class="even">
-                                                    <td class="dtr-control" tabindex="0">
-                                                        <div class="form-check font-size-16"> <input
-                                                                class="form-check-input" type="checkbox"
-                                                                id="orderlistIdCheck-03"> <label
-                                                                class="form-check-label"
-                                                                for="orderlistIdCheck-03"></label> </div>
-                                                    </td>
-                                                    <td class="sorting_1"><a href="javascript: void(0);"
-                                                            class="text-body orderlist-id fw-bold">#SK03</a></td>
-                                                    <td>
-                                                        <div class="customerlist-name">Juan Mitchell</div>
-                                                    </td>
-                                                    <td>06 Oct, 2019</td>
-                                                    <td>$384</td>
-                                                    <td><span
-                                                            class="badge rounded-pill badge-soft-success font-size-12">Paid</span>
-                                                    </td>
-                                                    <td>
-                                                        <div><i class="fab fa-cc-paypal me-1"></i>Paypal</div>
-                                                    </td>
-                                                    <td><button type="button"
-                                                            class="btn btn-primary btn-sm btn-rounded viewdetail-btn"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target=".orderdetailsModal">View Details</button>
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex gap-3"> <a href="#newOrderModal"
-                                                                data-bs-toggle="modal" class="text-success edit-list"
-                                                                data-edit-id="03"><i
-                                                                    class="mdi mdi-pencil font-size-18"></i></a> <a
-                                                                href="#removeItemModal" data-bs-toggle="modal"
-                                                                class="text-danger remove-list" data-remove-id="03"><i
+                                                                class="text-danger remove-list" data-remove-id="12"><i
                                                                     class="mdi mdi-delete font-size-18"></i></a> </div>
                                                     </td>
                                                 </tr>
@@ -516,34 +186,6 @@
                                         <div style="width: 20px;"></div>
                                         <div style="width: 20px;"></div>
                                         <div style="width: 20px;"></div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-5">
-                                        <div class="dataTables_info" id="order-list_info" role="status"
-                                            aria-live="polite">Showing 1 to 10 of 12 entries</div>
-                                    </div>
-                                    <div class="col-sm-12 col-md-7">
-                                        <div class="dataTables_paginate paging_simple_numbers pagination-rounded"
-                                            id="order-list_paginate">
-                                            <ul class="pagination">
-                                                <li class="paginate_button page-item previous disabled"
-                                                    id="order-list_previous"><a aria-controls="order-list"
-                                                        aria-disabled="true" role="link" data-dt-idx="previous"
-                                                        tabindex="-1" class="page-link"><i
-                                                            class="mdi mdi-chevron-left"></i></a></li>
-                                                <li class="paginate_button page-item active"><a href="#"
-                                                        aria-controls="order-list" role="link" aria-current="page"
-                                                        data-dt-idx="0" tabindex="0" class="page-link">1</a></li>
-                                                <li class="paginate_button page-item "><a href="#"
-                                                        aria-controls="order-list" role="link" data-dt-idx="1"
-                                                        tabindex="0" class="page-link">2</a></li>
-                                                <li class="paginate_button page-item next" id="order-list_next"><a
-                                                        href="#" aria-controls="order-list" role="link"
-                                                        data-dt-idx="next" tabindex="0" class="page-link"><i
-                                                            class="mdi mdi-chevron-right"></i></a></li>
-                                            </ul>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -659,7 +301,117 @@
                 </div>
             </div>
             <!-- proces user admin -->
-
         </div>
+
+        <!-- modals -->
+
+        <div class="modal fade orderdetailsModal" tabindex="-1" role="dialog" aria-labelledby="orderdetailsModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="orderdetailsModalLabel">Order Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="orderlist-overview">
+                            <p class="mb-2">Product id: <span class="list-id text-primary">#SK2540</span></p>
+                            <p class="mb-4">Billing Name: <span class="orderlist-customer text-primary">Neal
+                                    Matthews</span></p>
+
+                            <div class="table-responsive">
+                                <table class="table align-middle table-nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Product</th>
+                                            <th scope="col">Product Name</th>
+                                            <th scope="col">Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">
+                                                <div>
+                                                    <img src="assets/images/product/img-7.png" alt="" class="avatar-sm">
+                                                </div>
+                                            </th>
+                                            <td>
+                                                <div>
+                                                    <h5 class="text-truncate font-size-14">Wireless Headphone (Black)
+                                                    </h5>
+                                                    <p class="text-muted mb-0">$ 225 x 1</p>
+                                                </div>
+                                            </td>
+                                            <td>$ 255</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                                <div>
+                                                    <img src="assets/images/product/img-4.png" alt="" class="avatar-sm">
+                                                </div>
+                                            </th>
+                                            <td>
+                                                <div>
+                                                    <h5 class="text-truncate font-size-14">Hoodie (Blue)</h5>
+                                                    <p class="text-muted mb-0">$ 145 x 1</p>
+                                                </div>
+                                            </td>
+                                            <td>$ 145</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <h6 class="m-0 text-right">Sub Total:</h6>
+                                            </td>
+                                            <td>
+                                                $ 400
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <h6 class="m-0 text-right">Shipping:</h6>
+                                            </td>
+                                            <td>
+                                                Free
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <h6 class="m-0 text-right">Total:</h6>
+                                            </td>
+                                            <td>
+                                                $ 400
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- modals -->
+
+        <!-- JAVASCRIPT -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/metisMenu.min.js"></script>
+        <script src="assets/js/simplebar.min.js"></script>
+        <script src="assets/js/waves.min.js"></script>
+        <script src="assets/js/bootstrap-datepicker.min.js"></script>
+        <script src="assets/js/jquery.dataTables.min.js"></script>
+        <script src="assets/js/dataTables.bootstrap4.min.js"></script>
+        <script src="assets/js/dataTables.responsive.min.js"></script>
+        <script src="assets/js/responsive.bootstrap4.min.js"></script>
+        <script src="assets/js/ecommerce-order-list.init.js"></script>
+
+        <script src="assets/js/app.js"></script>
 
 </main>
