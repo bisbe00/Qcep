@@ -301,6 +301,83 @@ td input{
     border: 3px solid red;
 }
 
+/* pencil*/
+.mdi-pencil::before {
+    content: "\f03eb"
+}
+
+.mdi-pencil-box::before {
+    content: "\f03ec"
+}
+
+.mdi-pencil-box-multiple::before {
+    content: "\f1144"
+}
+
+.mdi-pencil-box-multiple-outline::before {
+    content: "\f1145"
+}
+
+.mdi-pencil-box-outline::before {
+    content: "\f03ed"
+}
+
+.mdi-pencil-circle::before {
+    content: "\f06ff"
+}
+
+.mdi-pencil-circle-outline::before {
+    content: "\f0776"
+}
+
+.mdi-pencil-lock::before {
+    content: "\f03ee"
+}
+
+.mdi-pencil-lock-outline::before {
+    content: "\f0de7"
+}
+
+.mdi-pencil-minus::before {
+    content: "\f0de8"
+}
+
+.mdi-pencil-minus-outline::before {
+    content: "\f0de9"
+}
+
+.mdi-pencil-off::before {
+    content: "\f03ef"
+}
+
+.mdi-pencil-off-outline::before {
+    content: "\f0dea"
+}
+
+.mdi-pencil-outline::before {
+    content: "\f0cb6"
+}
+
+.mdi-pencil-plus::before {
+    content: "\f0deb"
+}
+
+.mdi-pencil-plus-outline::before {
+    content: "\f0dec"
+}
+
+.mdi-pencil-remove::before {
+    content: "\f0ded"
+}
+
+.mdi-pencil-remove-outline::before {
+    content: "\f0dee"
+}
+
+.mdi-pencil-ruler::before {
+    content: "\f1353"
+}
+
 /* MAIN***************************************************************************************************************** */
 
 /* FOOTER*************************************************************************************************************** */

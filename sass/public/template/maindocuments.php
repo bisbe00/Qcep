@@ -202,97 +202,31 @@
             <div class="col-xl-3">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title mb-4">Team Members</h4>
+                        <h4 class="card-title mb-4">Owner Member</h4>
 
                         <div class="table-responsive">
                             <table class="table align-middle table-nowrap">
                                 <tbody>
                                     <tr>
-                                        <td style="width: 50px;"><img src="assets/images/users/avatar-2.jpg"
-                                                class="rounded-circle avatar-xs" alt=""></td>
                                         <td>
                                             <h5 class="font-size-14 m-0"><a href="javascript: void(0);"
                                                     class="text-dark">Daniel Canales</a></h5>
                                         </td>
-                                        <td>
-                                            <div>
-                                                <a href="javascript: void(0);"
-                                                    class="badge bg-primary-subtle text-primary font-size-11">Frontend</a>
-                                                <a href="javascript: void(0);"
-                                                    class="badge bg-primary-subtle text-primary font-size-11">UI</a>
-                                            </div>
-                                        </td>
+                                        <td>Author</td>
                                     </tr>
                                     <tr>
-                                        <td><img src="assets/images/users/avatar-1.jpg" class="rounded-circle avatar-xs"
-                                                alt=""></td>
                                         <td>
                                             <h5 class="font-size-14 m-0"><a href="javascript: void(0);"
                                                     class="text-dark">Jennifer Walker</a></h5>
                                         </td>
-                                        <td>
-                                            <div>
-                                                <a href="javascript: void(0);"
-                                                    class="badge bg-primary-subtle text-primary font-size-11">UI /
-                                                    UX</a>
-                                            </div>
-                                        </td>
+                                        <td>Email</td>
                                     </tr>
                                     <tr>
-                                        <td>
-                                            <div class="avatar-xs">
-                                                <span
-                                                    class="avatar-title rounded-circle bg-primary text-white font-size-16">
-                                                    C
-                                                </span>
-                                            </div>
-                                        </td>
                                         <td>
                                             <h5 class="font-size-14 m-0"><a href="javascript: void(0);"
                                                     class="text-dark">Carl Mackay</a></h5>
                                         </td>
-                                        <td>
-                                            <div>
-                                                <a href="javascript: void(0);"
-                                                    class="badge bg-primary-subtle text-primary font-size-11">Backend</a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs"
-                                                alt=""></td>
-                                        <td>
-                                            <h5 class="font-size-14 m-0"><a href="javascript: void(0);"
-                                                    class="text-dark">Janice Cole</a></h5>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                <a href="javascript: void(0);"
-                                                    class="badge bg-primary-subtle text-primary font-size-11">Frontend</a>
-                                                <a href="javascript: void(0);"
-                                                    class="badge bg-primary-subtle text-primary font-size-11">UI</a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="avatar-xs">
-                                                <span
-                                                    class="avatar-title rounded-circle bg-primary text-white font-size-16">
-                                                    T
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h5 class="font-size-14 m-0"><a href="javascript: void(0);"
-                                                    class="text-dark">Tony Brafford</a></h5>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                <a href="javascript: void(0);"
-                                                    class="badge bg-primary-subtle text-primary font-size-11">Backend</a>
-                                            </div>
-                                        </td>
+                                        <td>Updated</td>
                                     </tr>
                                 </tbody>
                             </table>
