@@ -1,6 +1,6 @@
-$( function() {
-    $( ".cards" ).sortable({
-      revert: true
-    });
-    $( ".cards, .card" ).disableSelection();
-  } );
+// $( function() {
+//     $( ".cards" ).sortable({
+//       revert: true
+//     });
+//     $( ".cards, .card" ).disableSelection();
+//   } );

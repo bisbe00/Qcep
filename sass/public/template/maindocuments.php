@@ -21,7 +21,7 @@
                     <div class="card-body">
                         <div class="d-flex">
                             <div class="flex-shrink-0 me-4">
-                                <img src="assets/images/companies/img-1.png" alt="" class="avatar-sm">
+                                <img src="img/forest.jpg" alt="" class="avatar-sm">
                             </div>
 
                             <div class="flex-grow-1 overflow-hidden">
@@ -82,7 +82,7 @@
                                         class="btn btn-success btn-rounded waves-effect waves-light mb-2 me-2 addOrder-modal"><i
                                             class="mdi mdi-plus me-1"></i> Add New Order</button>
                                 </div>
-                            </div><!-- end col-->
+                            </div>
                         </div>
 
                         <div class="table-responsive">
@@ -90,7 +90,7 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-6"></div>
                                     <div class="col-sm-12 col-md-6">
-                                        <div id="order-list_filter" class="dataTables_filter" style="display: none;">
+                                        <div id="order-list_filter" class="dataTables_filter">
                                             <label>Search:<input type="search" class="form-control form-control-sm"
                                                     placeholder="" aria-controls="order-list"></label>
                                         </div>
@@ -118,14 +118,17 @@
                                                         <div class="customerlist-name">Valerie Keys</div>
                                                     </td>
                                                     <td>$345</td>
-                                                    <td class="dtr-hidden" style="display: none;">
-                                                        <div class="d-flex gap-3"> <a href="#newOrderModal"
-                                                                data-bs-toggle="modal" class="text-success edit-list"
-                                                                data-edit-id="12"><i
-                                                                    class="mdi mdi-pencil font-size-18"></i></a> <a
-                                                                href="#removeItemModal" data-bs-toggle="modal"
-                                                                class="text-danger remove-list" data-remove-id="12"><i
-                                                                    class="mdi mdi-delete font-size-18"></i></a> </div>
+                                                    <td>
+                                                        <div class="d-flex gap-3">
+                                                            <a href="#newOrderModal" data-bs-toggle="modal"
+                                                                class="text-success edit-list" data-edit-id="12">
+                                                                <i class="bi bi-pencil font-size-18"></i>
+                                                            </a>
+                                                            <a href="#removeItemModal" data-bs-toggle="modal"
+                                                                class="text-danger remove-list" data-remove-id="12">
+                                                                <i class="bi bi-trash font-size-18"></i>
+                                                            </a>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                                 <tr class="even">
@@ -136,14 +139,17 @@
                                                         <div class="customerlist-name">David Crawford</div>
                                                     </td>
                                                     <td>$350</td>
-                                                    <td class="dtr-hidden" style="display: none;">
-                                                        <div class="d-flex gap-3"> <a href="#newOrderModal"
-                                                                data-bs-toggle="modal" class="text-success edit-list"
-                                                                data-edit-id="12"><i
-                                                                    class="mdi mdi-pencil font-size-18"></i></a> <a
-                                                                href="#removeItemModal" data-bs-toggle="modal"
-                                                                class="text-danger remove-list" data-remove-id="12"><i
-                                                                    class="mdi mdi-delete font-size-18"></i></a> </div>
+                                                    <td>
+                                                        <div class="d-flex gap-3">
+                                                            <a href="#newOrderModal" data-bs-toggle="modal"
+                                                                class="text-success edit-list" data-edit-id="12">
+                                                                <i class="bi bi-pencil font-size-18"></i>
+                                                            </a>
+                                                            <a href="#removeItemModal" data-bs-toggle="modal"
+                                                                class="text-danger remove-list" data-remove-id="12">
+                                                                <i class="bi bi-trash font-size-18"></i>
+                                                            </a>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                                 <tr class="odd">
@@ -153,14 +159,17 @@
                                                         <div class="customerlist-name">Jessie Jones</div>
                                                     </td>
                                                     <td>$374</td>
-                                                    <td class="dtr-hidden" style="display: none;">
-                                                        <div class="d-flex gap-3"> <a href="#newOrderModal"
-                                                                data-bs-toggle="modal" class="text-success edit-list"
-                                                                data-edit-id="12"><i
-                                                                    class="mdi mdi-pencil font-size-18"></i></a> <a
-                                                                href="#removeItemModal" data-bs-toggle="modal"
-                                                                class="text-danger remove-list" data-remove-id="12"><i
-                                                                    class="mdi mdi-delete font-size-18"></i></a> </div>
+                                                    <td>
+                                                        <div class="d-flex gap-3">
+                                                            <a href="#newOrderModal" data-bs-toggle="modal"
+                                                                class="text-success edit-list" data-edit-id="12">
+                                                                <i class="bi bi-pencil font-size-18"></i>
+                                                            </a>
+                                                            <a href="#removeItemModal" data-bs-toggle="modal"
+                                                                class="text-danger remove-list" data-remove-id="12">
+                                                                <i class="bi bi-trash font-size-18"></i>
+                                                            </a>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                                 <tr class="even">
@@ -171,14 +180,17 @@
                                                         <div class="customerlist-name">Clark Benson</div>
                                                     </td>
                                                     <td>$345</td>
-                                                    <td class="dtr-hidden" style="display: none;">
-                                                        <div class="d-flex gap-3"> <a href="#newOrderModal"
-                                                                data-bs-toggle="modal" class="text-success edit-list"
-                                                                data-edit-id="12"><i
-                                                                    class="mdi mdi-pencil font-size-18"></i></a> <a
-                                                                href="#removeItemModal" data-bs-toggle="modal"
-                                                                class="text-danger remove-list" data-remove-id="12"><i
-                                                                    class="mdi mdi-delete font-size-18"></i></a> </div>
+                                                    <td>
+                                                        <div class="d-flex gap-3">
+                                                            <a href="#newOrderModal" data-bs-toggle="modal"
+                                                                class="text-success edit-list" data-edit-id="12">
+                                                                <i class="bi bi-pencil font-size-18"></i>
+                                                            </a>
+                                                            <a href="#removeItemModal" data-bs-toggle="modal"
+                                                                class="text-danger remove-list" data-remove-id="12">
+                                                                <i class="bi bi-trash font-size-18"></i>
+                                                            </a>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -239,7 +251,7 @@
 
         <!-- modals -->
 
-        <div class="modal fade orderdetailsModal" tabindex="-1" role="dialog" aria-labelledby="orderdetailsModalLabel"
+        <div class="modal fade orderdetailsModal" tabindex="-1" aria-labelledby="orderdetailsModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -249,9 +261,9 @@
                     </div>
                     <div class="modal-body">
                         <div id="orderlist-overview">
-                            <p class="mb-2">Product id: <span class="list-id text-primary">#SK2540</span></p>
-                            <p class="mb-4">Billing Name: <span class="orderlist-customer text-primary">Neal
-                                    Matthews</span></p>
+                            <p class="mb-2">Product id: <span class="list-id text-primary">#SK12</span></p>
+                            <p class="mb-4">Billing Name: <span class="orderlist-customer text-primary">Valerie
+                                    Keys</span></p>
 
                             <div class="table-responsive">
                                 <table class="table align-middle table-nowrap">
@@ -328,7 +340,6 @@
                 </div>
             </div>
         </div>
-
 
 
         <!-- modals -->
