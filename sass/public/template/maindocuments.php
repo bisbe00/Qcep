@@ -1,13 +1,14 @@
 <main class="proces">
     <!-- <?php
     // echo $main; //is in classes/controller/doccontroller/generateMain ?> -->
+
     <div class="container-fluid">
 
         <!-- start page title -->
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0 font-size-18">Project Overview</h4>
+                    <h4 class="mb-sm-3 font-size-18">Project Overview</h4>
                 </div>
             </div>
         </div>
@@ -21,7 +22,7 @@
                     <div class="card-body">
                         <div class="d-flex">
                             <div class="flex-shrink-0 me-4">
-                                <img src="img/forest.jpg" alt="" class="avatar-sm">
+                                <img src="img/forest.jpg" alt="" class="avatar-sm" style="width:60px;height:60px;">
                             </div>
 
                             <div class="flex-grow-1 overflow-hidden">
@@ -66,143 +67,92 @@
                 <!-- document table -->
                 <div class="card">
                     <div class="card-body">
-                        <div class="row mb-2">
-                            <div class="col-sm-4">
-                                <div class="search-box me-2 mb-2 d-inline-block">
-                                    <div class="position-relative">
-                                        <input type="text" class="form-control" autocomplete="off" id="searchTableList"
-                                            placeholder="Search...">
-                                        <i class="bx bx-search-alt search-icon"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-8">
-                                <div class="text-sm-end">
-                                    <button type="button" data-bs-toggle="modal" data-bs-target="#newOrderModal"
-                                        class="btn btn-success btn-rounded waves-effect waves-light mb-2 me-2 addOrder-modal"><i
-                                            class="mdi mdi-plus me-1"></i> Add New Order</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="table-responsive">
-                            <div id="order-list_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-6"></div>
-                                    <div class="col-sm-12 col-md-6">
-                                        <div id="order-list_filter" class="dataTables_filter">
-                                            <label>Search:<input type="search" class="form-control form-control-sm"
-                                                    placeholder="" aria-controls="order-list"></label>
+                        <!-- table -->
+                        <table class="table">
+                            <thead>
+                                <tr class="table-danger">
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Document Name</th>
+                                    <th scope="col">Link</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-body">1</td>
+                                    <td>
+                                        <div class="customerlist-name">Valerie Keys</div>
+                                    </td>
+                                    <td>$345</td>
+                                    <td>
+                                        <div class="d-flex gap-1">
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                class="text-success">
+                                                <i class="bi bi-pencil font-size-18"></i>
+                                            </a>
+                                            <a href="#removeItemModal" data-bs-toggle="modal" class="text-danger">
+                                                <i class="bi bi-trash font-size-18"></i>
+                                            </a>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <table
-                                            class="table align-middle table-nowrap dt-responsive nowrap w-100 table-check dataTable no-footer dtr-inline collapsed"
-                                            id="order-list" aria-describedby="order-list_info" style="width: 948px;">
-                                            <thead class="table-light">
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>Billing Name</th>
-                                                    <th>Total</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr class="odd">
-                                                    <td><a href="javascript: void(0);"
-                                                            class="text-body orderlist-id fw-bold">#SK12</a>
-                                                    </td>
-                                                    <td>
-                                                        <div class="customerlist-name">Valerie Keys</div>
-                                                    </td>
-                                                    <td>$345</td>
-                                                    <td>
-                                                        <div class="d-flex gap-3">
-                                                            <a href="#newOrderModal" data-bs-toggle="modal"
-                                                                class="text-success edit-list" data-edit-id="12">
-                                                                <i class="bi bi-pencil font-size-18"></i>
-                                                            </a>
-                                                            <a href="#removeItemModal" data-bs-toggle="modal"
-                                                                class="text-danger remove-list" data-remove-id="12">
-                                                                <i class="bi bi-trash font-size-18"></i>
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr class="even">
-                                                    <td><a href="javascript: void(0);"
-                                                            class="text-body orderlist-id fw-bold">#SK11</a>
-                                                    </td>
-                                                    <td>
-                                                        <div class="customerlist-name">David Crawford</div>
-                                                    </td>
-                                                    <td>$350</td>
-                                                    <td>
-                                                        <div class="d-flex gap-3">
-                                                            <a href="#newOrderModal" data-bs-toggle="modal"
-                                                                class="text-success edit-list" data-edit-id="12">
-                                                                <i class="bi bi-pencil font-size-18"></i>
-                                                            </a>
-                                                            <a href="#removeItemModal" data-bs-toggle="modal"
-                                                                class="text-danger remove-list" data-remove-id="12">
-                                                                <i class="bi bi-trash font-size-18"></i>
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd">
-                                                    <td><a href="javascript: void(0);"
-                                                            class="text-body orderlist-id fw-bold">#SK10</a></td>
-                                                    <td>
-                                                        <div class="customerlist-name">Jessie Jones</div>
-                                                    </td>
-                                                    <td>$374</td>
-                                                    <td>
-                                                        <div class="d-flex gap-3">
-                                                            <a href="#newOrderModal" data-bs-toggle="modal"
-                                                                class="text-success edit-list" data-edit-id="12">
-                                                                <i class="bi bi-pencil font-size-18"></i>
-                                                            </a>
-                                                            <a href="#removeItemModal" data-bs-toggle="modal"
-                                                                class="text-danger remove-list" data-remove-id="12">
-                                                                <i class="bi bi-trash font-size-18"></i>
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr class="even">
-                                                    <td><a href="javascript: void(0);"
-                                                            class="text-body orderlist-id fw-bold">#SK09</a>
-                                                    </td>
-                                                    <td>
-                                                        <div class="customerlist-name">Clark Benson</div>
-                                                    </td>
-                                                    <td>$345</td>
-                                                    <td>
-                                                        <div class="d-flex gap-3">
-                                                            <a href="#newOrderModal" data-bs-toggle="modal"
-                                                                class="text-success edit-list" data-edit-id="12">
-                                                                <i class="bi bi-pencil font-size-18"></i>
-                                                            </a>
-                                                            <a href="#removeItemModal" data-bs-toggle="modal"
-                                                                class="text-danger remove-list" data-remove-id="12">
-                                                                <i class="bi bi-trash font-size-18"></i>
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <div style="width: 20px;"></div>
-                                        <div style="width: 20px;"></div>
-                                        <div style="width: 20px;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end table responsive -->
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-body">2</td>
+                                    <td>
+                                        <div class="customerlist-name">David Crawford</div>
+                                    </td>
+                                    <td>$350</td>
+                                    <td>
+                                        <div class="d-flex gap-1">
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                class="text-success">
+                                                <i class="bi bi-pencil font-size-18"></i>
+                                            </a>
+                                            <a href="#removeItemModal" data-bs-toggle="modal" class="text-danger">
+                                                <i class="bi bi-trash font-size-18"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-body">3</td>
+                                    <td>
+                                        <div class="customerlist-name">Jessie Jones</div>
+                                    </td>
+                                    <td>$374</td>
+                                    <td>
+                                        <div class="d-flex gap-1">
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                class="text-success">
+                                                <i class="bi bi-pencil font-size-18"></i>
+                                            </a>
+                                            <a href="#removeItemModal" data-bs-toggle="modal" class="text-danger">
+                                                <i class="bi bi-trash font-size-18"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-body">4</td>
+                                    <td>
+                                        <div class="customerlist-name">Clark Benson</div>
+                                    </td>
+                                    <td>$345</td>
+                                    <td>
+                                        <div class="d-flex gap-1">
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                class="text-success">
+                                                <i class="bi bi-pencil font-size-18"></i>
+                                            </a>
+                                            <a href="#removeItemModal" data-bs-toggle="modal" class="text-danger">
+                                                <i class="bi bi-trash font-size-18"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- end table -->
                     </div>
                     <!-- end card body -->
                 </div>
@@ -251,112 +201,59 @@
 
         <!-- modals -->
 
-        <div class="modal fade orderdetailsModal" tabindex="-1" aria-labelledby="orderdetailsModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="orderdetailsModalLabel">Order Details</h5>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        <div id="orderlist-overview">
-                            <p class="mb-2">Product id: <span class="list-id text-primary">#SK12</span></p>
-                            <p class="mb-4">Billing Name: <span class="orderlist-customer text-primary">Valerie
-                                    Keys</span></p>
 
-                            <div class="table-responsive">
-                                <table class="table align-middle table-nowrap">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Product</th>
-                                            <th scope="col">Product Name</th>
-                                            <th scope="col">Price</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">
-                                                <div>
-                                                    <img src="assets/images/product/img-7.png" alt="" class="avatar-sm">
-                                                </div>
-                                            </th>
-                                            <td>
-                                                <div>
-                                                    <h5 class="text-truncate font-size-14">Wireless Headphone (Black)
-                                                    </h5>
-                                                    <p class="text-muted mb-0">$ 225 x 1</p>
-                                                </div>
-                                            </td>
-                                            <td>$ 255</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <div>
-                                                    <img src="assets/images/product/img-4.png" alt="" class="avatar-sm">
-                                                </div>
-                                            </th>
-                                            <td>
-                                                <div>
-                                                    <h5 class="text-truncate font-size-14">Hoodie (Blue)</h5>
-                                                    <p class="text-muted mb-0">$ 145 x 1</p>
-                                                </div>
-                                            </td>
-                                            <td>$ 145</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2">
-                                                <h6 class="m-0 text-right">Sub Total:</h6>
-                                            </td>
-                                            <td>
-                                                $ 400
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2">
-                                                <h6 class="m-0 text-right">Shipping:</h6>
-                                            </td>
-                                            <td>
-                                                Free
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2">
-                                                <h6 class="m-0 text-right">Total:</h6>
-                                            </td>
-                                            <td>
-                                                $ 400
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                    <form autocomplete="off" class="needs-validation createorder-form" id="createorder-form"
+                        novalidate="">
+
+                        <!-- modal body -->
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <input type="hidden" class="form-control" value="12">
+                                    <div class="mb-3">
+                                        <label for="nom" class="form-label">Document Name</label>
+                                        <input type="text" id="nom" name="nom" class="form-control"
+                                            placeholder="Document name">
+                                        <div class="invalid-feedback">Please enter a name.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="link" class="form-label">Document Link</label>
+                                        <input type="text" id="link" name="link" class="form-control"
+                                            placeholder="Document link">
+                                        <div class="invalid-feedback">Please enter amount.</div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
+
+                        </div>
+                        <!-- end modal body -->
+
+                        <!-- modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                Cancel
+                            </button>
+                            <button type="submit" class="btn btn-success">Save</button>
+                        </div>
+                        <!-- end modal footer -->
+
+                    </form>
+
                 </div>
+                <!-- end modal-content -->
             </div>
+            <!-- end modal-dialog -->
         </div>
 
-
         <!-- modals -->
-
-        <!-- JAVASCRIPT -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/js/metisMenu.min.js"></script>
-        <script src="assets/js/simplebar.min.js"></script>
-        <script src="assets/js/waves.min.js"></script>
-        <script src="assets/js/bootstrap-datepicker.min.js"></script>
-        <script src="assets/js/jquery.dataTables.min.js"></script>
-        <script src="assets/js/dataTables.bootstrap4.min.js"></script>
-        <script src="assets/js/dataTables.responsive.min.js"></script>
-        <script src="assets/js/responsive.bootstrap4.min.js"></script>
-        <script src="assets/js/ecommerce-order-list.init.js"></script>
-
-        <script src="assets/js/app.js"></script>
 
 </main>
