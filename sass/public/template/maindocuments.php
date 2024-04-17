@@ -171,22 +171,19 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <h5 class="font-size-14 m-0"><a href="javascript: void(0);"
-                                                    class="text-dark">Daniel Canales</a></h5>
+                                            <h5 class="font-size-14 m-0">Daniel Canales</h5>
                                         </td>
                                         <td>Author</td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <h5 class="font-size-14 m-0"><a href="javascript: void(0);"
-                                                    class="text-dark">Jennifer Walker</a></h5>
+                                            <h5 class="font-size-14 m-0">Jennifer Walker</h5>
                                         </td>
                                         <td>Email</td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <h5 class="font-size-14 m-0"><a href="javascript: void(0);"
-                                                    class="text-dark">Carl Mackay</a></h5>
+                                            <h5 class="font-size-14 m-0">Carl Mackay</h5>
                                         </td>
                                         <td>Updated</td>
                                     </tr>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 21, 2024 at 08:30 PM
+-- Generation Time: Apr 17, 2024 at 07:14 PM
 -- Server version: 8.0.36-0ubuntu0.22.04.1
 -- PHP Version: 8.2.15
 
@@ -57,19 +57,7 @@ CREATE TABLE `avaluacio` (
   `planificacio` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
   `accions` varchar(300) COLLATE utf8mb4_spanish_ci NOT NULL,
   `estrategia` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `id` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `avaluacions`
---
-
-CREATE TABLE `avaluacions` (
-  `avaluacio_tipus` varchar(200) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `usuari_email` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `proces_nom` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL
+  `id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
@@ -79,10 +67,9 @@ CREATE TABLE `avaluacions` (
 --
 
 CREATE TABLE `client` (
-  `grup_nom` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `proces_nom` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `sortida` varchar(300) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `id` int DEFAULT NULL
+  `proces_id` int NOT NULL,
+  `grupInteres_id` int NOT NULL,
+  `sortida` text COLLATE utf8mb4_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
@@ -92,10 +79,10 @@ CREATE TABLE `client` (
 --
 
 CREATE TABLE `document` (
-  `nom` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `tipus` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `link` varchar(200) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `proces_nom` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `nom` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `tipus` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `link` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `proces_id` int NOT NULL,
   `id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
@@ -103,23 +90,23 @@ CREATE TABLE `document` (
 -- Dumping data for table `document`
 --
 
-INSERT INTO `document` (`nom`, `tipus`, `link`, `proces_nom`, `id`) VALUES
-('arrays', 'docs', 'documents/javascriptArrays.docs', 'M6', 1),
-('bootstrap', 'docs', 'documents/htmlBootstrap.docs', 'M9', 2),
-('database table', 'sql', 'documents/database_tables.sql', 'M12', 3),
-('eslint Installation', 'txt', 'documents/javascriptESlint.txt', 'M6', 4),
-('functions', 'pdf', 'documents/javascriptFunctions.pdf', 'M6', 5),
-('introduction to javascript', 'pdf', 'documents/javascriptIntroduction.pdf', 'M6', 6),
-('introduction to PHP', 'pdf', 'documents/phpIntroductions.pdf', 'M7', 7),
-('java introduction', 'mp4', 'documents/javaTutorial.mp4', 'M3', 8),
-('media query', 'pdf', 'documents/htmlMediaQuery.pdf', 'M9', 9),
-('objects', 'txt', 'documents/javascriptObjects.txt', 'M6', 10),
-('oop objects and hierchary', 'pdf', 'documents/javascriptOOP.pdf', 'M6', 11),
-('php Linux installation', 'pdf', 'documents/phpLinuxInstallation.pdf', 'M7', 12),
-('poo introduction', 'pdf', 'documents/javaPOO.pdf', 'M3', 13),
-('sass introduction', 'docs', 'documents/htmlSASS.docs', 'M9', 14),
-('structure', 'text', 'documents/javascriptStructures.pdf', 'M6', 15),
-('xpath manual', 'docs', 'documents/xmlXPath.docs', 'M4', 16);
+INSERT INTO `document` (`nom`, `tipus`, `link`, `proces_id`, `id`) VALUES
+('arrays', 'docs', 'documents/javascriptArrays.docs', 3, 1),
+('bootstrap', 'docs', 'documents/htmlBootstrap.docs', 6, 2),
+('database table', 'sql', 'documents/database_tables.sql', 9, 3),
+('eslint Installation', 'txt', 'documents/javascriptESlint.txt', 3, 4),
+('functions', 'pdf', 'documents/javascriptFunctions.pdf', 3, 5),
+('introduction to javascript', 'pdf', 'documents/javascriptIntroduction.pdf', 3, 6),
+('introduction to PHP', 'pdf', 'documents/phpIntroductions.pdf', 4, 7),
+('java introduction', 'mp4', 'documents/javaTutorial.mp4', 1, 8),
+('media query', 'pdf', 'documents/htmlMediaQuery.pdf', 6, 9),
+('objects', 'txt', 'documents/javascriptObjects.txt', 3, 10),
+('oop objects and hierchary', 'pdf', 'documents/javascriptOOP.pdf', 3, 11),
+('php Linux installation', 'pdf', 'documents/phpLinuxInstallation.pdf', 4, 12),
+('poo introduction', 'pdf', 'documents/javaPOO.pdf', 1, 13),
+('sass introduction', 'docs', 'documents/htmlSASS.docs', 6, 14),
+('structure', 'text', 'documents/javascriptStructures.pdf', 3, 15),
+('xpath manual', 'docs', 'documents/xmlXPath.docs', 2, 16);
 
 -- --------------------------------------------------------
 
@@ -130,7 +117,7 @@ INSERT INTO `document` (`nom`, `tipus`, `link`, `proces_nom`, `id`) VALUES
 CREATE TABLE `grupInteres` (
   `nom` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
   `descripcio` varchar(300) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `id` int DEFAULT NULL
+  `id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
@@ -140,12 +127,13 @@ CREATE TABLE `grupInteres` (
 --
 
 CREATE TABLE `indicador` (
-  `codi` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `nom` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `link` varchar(200) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `curs` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `valoracio` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `proces_nom` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL
+  `id` int NOT NULL,
+  `codi` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `nom` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `link` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `curs` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `valoracio` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `proces_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
@@ -168,7 +156,7 @@ CREATE TABLE `organitzacio` (
 
 INSERT INTO `organitzacio` (`nom`, `email`, `web`, `logo`, `id`) VALUES
 ('Bisbe Sivilla', 'a8015171@xtec.cat', 'agora.xtec.cat/institutbisbesivilla', 'data:image/png;base64,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', 1),
-('Thos i Codina', '<django-aula@iesthosicodina.cat', 'www.iesthosicodina.cat', 'data:image/png;base64,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', 2);
+('Thos i Codina', 'django-aula@iesthosicodina.cat', 'www.iesthosicodina.cat', 'data:image/png;base64,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', 2);
 
 -- --------------------------------------------------------
 
@@ -177,48 +165,57 @@ INSERT INTO `organitzacio` (`nom`, `email`, `web`, `logo`, `id`) VALUES
 --
 
 CREATE TABLE `proces` (
-  `nom` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `tipus` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `objectiu` varchar(300) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `usuari_email` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL
+  `nom` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `tipus` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `objectiu` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `id` int NOT NULL,
+  `usuari_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
 -- Dumping data for table `proces`
 --
 
-INSERT INTO `proces` (`nom`, `tipus`, `objectiu`, `usuari_email`) VALUES
-('M10', 'DAW', 'FOL', 'joseph@gmail.com'),
-('M11', 'DAW', 'EIE', 'yuanduo@gmail.com'),
-('M12', 'DAW', 'Project', 'joseph@gmail.com'),
-('M3', 'DAW', 'Java', 'yuanduo@gmail.com'),
-('M4', 'DAW', 'XML (Markdown, XPath, XQuery)', 'joseph@gmail.com'),
-('M6', 'DAW', 'Javascript', 'yuanduo@gmail.com'),
-('M7', 'DAW', 'PHP', 'yuanduo@gmail.com'),
-('M8', 'DAW', 'GitHub, Servlet', 'joseph@gmail.com'),
-('M9', 'DAW', 'HTML, CSS, SASS', 'joseph@gmail.com');
+INSERT INTO `proces` (`nom`, `tipus`, `objectiu`, `id`, `usuari_id`) VALUES
+('M3', 'DAW', 'Java', 1, 6),
+('M4', 'DAW', 'XML (Markdown, XPath, XQuery)', 2, 5),
+('M6', 'DAW', 'Javascript', 3, 6),
+('M7', 'DAW', 'PHP', 4, 6),
+('M8', 'DAW', 'GitHub, Servlet', 5, 5),
+('M9', 'DAW', 'HTML, CSS, SASS', 6, 5),
+('M10', 'DAW', 'FOL', 7, 5),
+('M11', 'DAW', 'EIE', 8, 6),
+('M12', 'DAW', 'Project', 9, 5);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `proces_necessita_recurs`
+-- Table structure for table `proces_puntNorma`
 --
 
-CREATE TABLE `proces_necessita_recurs` (
-  `recurs_nom` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `proces_nom` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL
+CREATE TABLE `proces_puntNorma` (
+  `proces_id` int NOT NULL,
+  `primerNum` int NOT NULL,
+  `segundaNum` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
+--
+-- Dumping data for table `proces_puntNorma`
+--
+
+INSERT INTO `proces_puntNorma` (`proces_id`, `primerNum`, `segundaNum`) VALUES
+(1, 1, 0),
+(1, 1, 1);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `proces_te_puntNorma`
+-- Table structure for table `proces_recus`
 --
 
-CREATE TABLE `proces_te_puntNorma` (
-  `num1` int NOT NULL,
-  `num2` int NOT NULL,
-  `proces_nom` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL
+CREATE TABLE `proces_recus` (
+  `proces_id` int NOT NULL,
+  `recurs_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
@@ -228,9 +225,9 @@ CREATE TABLE `proces_te_puntNorma` (
 --
 
 CREATE TABLE `proveidor` (
-  `grup_nom` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `proces_nom` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `entrada` varchar(300) COLLATE utf8mb4_spanish_ci NOT NULL
+  `proces_id` int NOT NULL,
+  `grupInteres_id` int NOT NULL,
+  `entrada` text COLLATE utf8mb4_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
@@ -244,6 +241,16 @@ CREATE TABLE `puntNorma` (
   `segundaNum` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
+--
+-- Dumping data for table `puntNorma`
+--
+
+INSERT INTO `puntNorma` (`primerNum`, `segundaNum`) VALUES
+(1, 0),
+(1, 1),
+(1, 2),
+(1, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -252,7 +259,8 @@ CREATE TABLE `puntNorma` (
 
 CREATE TABLE `recurs` (
   `nom` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `tipus` varchar(300) COLLATE utf8mb4_spanish_ci NOT NULL
+  `tipus` varchar(300) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
@@ -264,20 +272,21 @@ CREATE TABLE `recurs` (
 CREATE TABLE `usuari` (
   `email` varchar(200) COLLATE utf8mb4_spanish_ci NOT NULL,
   `username` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `es_administrador` tinyint(1) NOT NULL
+  `es_administrador` tinyint(1) NOT NULL,
+  `id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
 -- Dumping data for table `usuari`
 --
 
-INSERT INTO `usuari` (`email`, `username`, `es_administrador`) VALUES
-('Elizabeth@gmail.com', 'Elizabeth2023', 0),
-('fernandez@outlook.es', 'Ferz', 0),
-('gabriel@yahoo.com', 'garbriel', 0),
-('izan@gmail.com', 'IZAN', 0),
-('joseph@gmail.com', 'BISB', 1),
-('yuanduo@gmail.com', 'TalkFox', 1);
+INSERT INTO `usuari` (`email`, `username`, `es_administrador`, `id`) VALUES
+('Elizabeth@gmail.com', 'Elizabeth2023', 0, 1),
+('fernandez@outlook.es', 'Ferz', 0, 2),
+('gabriel@yahoo.com', 'garbriel', 0, 3),
+('izan@gmail.com', 'IZAN', 0, 4),
+('joseph@gmail.com', 'BISB', 1, 5),
+('yuanduo@gmail.com', 'TalkFox', 1, 6);
 
 --
 -- Indexes for dumped tables
@@ -293,42 +302,34 @@ ALTER TABLE `apartat`
 -- Indexes for table `avaluacio`
 --
 ALTER TABLE `avaluacio`
-  ADD PRIMARY KEY (`tipus`);
-
---
--- Indexes for table `avaluacions`
---
-ALTER TABLE `avaluacions`
-  ADD PRIMARY KEY (`avaluacio_tipus`),
-  ADD KEY `usuari_email` (`usuari_email`),
-  ADD KEY `proces_nom` (`proces_nom`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `client`
 --
 ALTER TABLE `client`
-  ADD PRIMARY KEY (`grup_nom`,`proces_nom`),
-  ADD KEY `proces_nom` (`proces_nom`);
+  ADD PRIMARY KEY (`proces_id`,`grupInteres_id`),
+  ADD KEY `grupInteres_id` (`grupInteres_id`);
 
 --
 -- Indexes for table `document`
 --
 ALTER TABLE `document`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `proces_nom` (`proces_nom`);
+  ADD KEY `proces_id` (`proces_id`);
 
 --
 -- Indexes for table `grupInteres`
 --
 ALTER TABLE `grupInteres`
-  ADD PRIMARY KEY (`nom`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `indicador`
 --
 ALTER TABLE `indicador`
-  ADD PRIMARY KEY (`codi`),
-  ADD KEY `proces_nom` (`proces_nom`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `proces_id` (`proces_id`);
 
 --
 -- Indexes for table `organitzacio`
@@ -340,29 +341,29 @@ ALTER TABLE `organitzacio`
 -- Indexes for table `proces`
 --
 ALTER TABLE `proces`
-  ADD PRIMARY KEY (`nom`),
-  ADD KEY `usuari_email` (`usuari_email`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_usuari` (`usuari_id`);
 
 --
--- Indexes for table `proces_necessita_recurs`
+-- Indexes for table `proces_puntNorma`
 --
-ALTER TABLE `proces_necessita_recurs`
-  ADD PRIMARY KEY (`recurs_nom`,`proces_nom`),
-  ADD KEY `proces_nom` (`proces_nom`);
+ALTER TABLE `proces_puntNorma`
+  ADD PRIMARY KEY (`proces_id`,`primerNum`,`segundaNum`),
+  ADD KEY `primerNum` (`primerNum`,`segundaNum`);
 
 --
--- Indexes for table `proces_te_puntNorma`
+-- Indexes for table `proces_recus`
 --
-ALTER TABLE `proces_te_puntNorma`
-  ADD PRIMARY KEY (`num1`,`num2`,`proces_nom`),
-  ADD KEY `proces_nom` (`proces_nom`);
+ALTER TABLE `proces_recus`
+  ADD PRIMARY KEY (`proces_id`,`recurs_id`),
+  ADD KEY `recurs_id` (`recurs_id`);
 
 --
 -- Indexes for table `proveidor`
 --
 ALTER TABLE `proveidor`
-  ADD PRIMARY KEY (`grup_nom`,`proces_nom`),
-  ADD KEY `proces_nom` (`proces_nom`);
+  ADD PRIMARY KEY (`proces_id`,`grupInteres_id`),
+  ADD KEY `grupInteres_id` (`grupInteres_id`);
 
 --
 -- Indexes for table `puntNorma`
@@ -374,13 +375,13 @@ ALTER TABLE `puntNorma`
 -- Indexes for table `recurs`
 --
 ALTER TABLE `recurs`
-  ADD PRIMARY KEY (`nom`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `usuari`
 --
 ALTER TABLE `usuari`
-  ADD PRIMARY KEY (`email`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -393,10 +394,22 @@ ALTER TABLE `apartat`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `document`
+-- AUTO_INCREMENT for table `avaluacio`
 --
-ALTER TABLE `document`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+ALTER TABLE `avaluacio`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `grupInteres`
+--
+ALTER TABLE `grupInteres`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `indicador`
+--
+ALTER TABLE `indicador`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `organitzacio`
@@ -405,62 +418,73 @@ ALTER TABLE `organitzacio`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- Constraints for dumped tables
+-- AUTO_INCREMENT for table `proces`
 --
+ALTER TABLE `proces`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- Constraints for table `avaluacions`
+-- AUTO_INCREMENT for table `recurs`
 --
-ALTER TABLE `avaluacions`
-  ADD CONSTRAINT `avaluacions_ibfk_1` FOREIGN KEY (`avaluacio_tipus`) REFERENCES `avaluacio` (`tipus`),
-  ADD CONSTRAINT `avaluacions_ibfk_2` FOREIGN KEY (`usuari_email`) REFERENCES `usuari` (`email`),
-  ADD CONSTRAINT `avaluacions_ibfk_3` FOREIGN KEY (`proces_nom`) REFERENCES `proces` (`nom`);
+ALTER TABLE `recurs`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `usuari`
+--
+ALTER TABLE `usuari`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- Constraints for dumped tables
+--
 
 --
 -- Constraints for table `client`
 --
 ALTER TABLE `client`
-  ADD CONSTRAINT `client_ibfk_1` FOREIGN KEY (`grup_nom`) REFERENCES `grupInteres` (`nom`),
-  ADD CONSTRAINT `client_ibfk_2` FOREIGN KEY (`proces_nom`) REFERENCES `proces` (`nom`);
+  ADD CONSTRAINT `client_ibfk_1` FOREIGN KEY (`proces_id`) REFERENCES `proces` (`id`),
+  ADD CONSTRAINT `client_ibfk_2` FOREIGN KEY (`grupInteres_id`) REFERENCES `grupInteres` (`id`);
 
 --
 -- Constraints for table `document`
 --
 ALTER TABLE `document`
-  ADD CONSTRAINT `document_ibfk_1` FOREIGN KEY (`proces_nom`) REFERENCES `proces` (`nom`);
+  ADD CONSTRAINT `document_ibfk_1` FOREIGN KEY (`proces_id`) REFERENCES `proces` (`id`);
 
 --
 -- Constraints for table `indicador`
 --
 ALTER TABLE `indicador`
-  ADD CONSTRAINT `indicador_ibfk_1` FOREIGN KEY (`proces_nom`) REFERENCES `proces` (`nom`);
+  ADD CONSTRAINT `indicador_ibfk_1` FOREIGN KEY (`proces_id`) REFERENCES `proces` (`id`);
 
 --
 -- Constraints for table `proces`
 --
 ALTER TABLE `proces`
-  ADD CONSTRAINT `proces_ibfk_1` FOREIGN KEY (`usuari_email`) REFERENCES `usuari` (`email`);
+  ADD CONSTRAINT `fk_usuari` FOREIGN KEY (`usuari_id`) REFERENCES `usuari` (`id`),
+  ADD CONSTRAINT `proces_ibfk_1` FOREIGN KEY (`usuari_id`) REFERENCES `usuari` (`id`);
 
 --
--- Constraints for table `proces_necessita_recurs`
+-- Constraints for table `proces_puntNorma`
 --
-ALTER TABLE `proces_necessita_recurs`
-  ADD CONSTRAINT `proces_necessita_recurs_ibfk_1` FOREIGN KEY (`recurs_nom`) REFERENCES `recurs` (`nom`),
-  ADD CONSTRAINT `proces_necessita_recurs_ibfk_2` FOREIGN KEY (`proces_nom`) REFERENCES `proces` (`nom`);
+ALTER TABLE `proces_puntNorma`
+  ADD CONSTRAINT `proces_puntNorma_ibfk_1` FOREIGN KEY (`proces_id`) REFERENCES `proces` (`id`),
+  ADD CONSTRAINT `proces_puntNorma_ibfk_2` FOREIGN KEY (`primerNum`,`segundaNum`) REFERENCES `puntNorma` (`primerNum`, `segundaNum`);
 
 --
--- Constraints for table `proces_te_puntNorma`
+-- Constraints for table `proces_recus`
 --
-ALTER TABLE `proces_te_puntNorma`
-  ADD CONSTRAINT `proces_te_puntNorma_ibfk_1` FOREIGN KEY (`num1`,`num2`) REFERENCES `puntNorma` (`primerNum`, `segundaNum`),
-  ADD CONSTRAINT `proces_te_puntNorma_ibfk_2` FOREIGN KEY (`proces_nom`) REFERENCES `proces` (`nom`);
+ALTER TABLE `proces_recus`
+  ADD CONSTRAINT `proces_recus_ibfk_1` FOREIGN KEY (`proces_id`) REFERENCES `proces` (`id`),
+  ADD CONSTRAINT `proces_recus_ibfk_2` FOREIGN KEY (`recurs_id`) REFERENCES `recurs` (`id`);
 
 --
 -- Constraints for table `proveidor`
 --
 ALTER TABLE `proveidor`
-  ADD CONSTRAINT `proveidor_ibfk_1` FOREIGN KEY (`grup_nom`) REFERENCES `grupInteres` (`nom`),
-  ADD CONSTRAINT `proveidor_ibfk_2` FOREIGN KEY (`proces_nom`) REFERENCES `proces` (`nom`);
+  ADD CONSTRAINT `proveidor_ibfk_1` FOREIGN KEY (`proces_id`) REFERENCES `proces` (`id`),
+  ADD CONSTRAINT `proveidor_ibfk_2` FOREIGN KEY (`grupInteres_id`) REFERENCES `grupInteres` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
