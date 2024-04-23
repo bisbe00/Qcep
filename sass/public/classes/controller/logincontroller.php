@@ -1,12 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-
-// By using session_status() to check if a session is already active, 
-// you can avoid calling session_start() redundantly.
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
 
 class LoginController extends Controlador
 {

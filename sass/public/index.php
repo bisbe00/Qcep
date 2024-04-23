@@ -7,6 +7,13 @@ spl_autoload_register("Autoloader::load");
 spl_autoload_register("Autoloader::newLoad");
 spl_autoload_register("Autoloader::oldLoad");
 
+// By using session_status() to check if a session is already active, 
+// you can avoid calling session_start() redundantly.
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+
 try {
     $home = new FrontController();
     $home->dispatch();

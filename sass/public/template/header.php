@@ -2,9 +2,6 @@
     <h1>Qcep</h1>
 
     <?php
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
     // Check if a user is logged in
     if (isset($_SESSION['user'])) {
         // Display the user image with a link to the logout function

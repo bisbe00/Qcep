@@ -1,10 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
 
 class Usuari{
     private $pdo;
@@ -95,12 +89,11 @@ class Usuari{
         }
     }
 
-    public function getUsernameByID(){
+    public function getUsernameByID($usuari_id){
         $query = "SELECT * FROM usuari WHERE id = :id";
         $statement = $this->pdo->prepare($query);
 
-        $id = $this->getId();
-        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->bindParam(':id', $usuari_id, PDO::PARAM_INT);
 
         if($statement->execute()){
             $row = $statement->fetch(PDO::FETCH_ASSOC);

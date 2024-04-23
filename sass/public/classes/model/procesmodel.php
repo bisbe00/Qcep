@@ -1,8 +1,5 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-
 class ProcesModel
 {
 
@@ -36,15 +33,15 @@ class ProcesModel
 
     public function read(Proces $obj)
     {
+        $proces = [];
         $nom = $obj->__get('nom');
         $query = "SELECT * FROM proces WHERE nom = :nom";
         $statement = $this->pdo->prepare($query);
         $statement->bindParam(':nom', $nom, PDO::PARAM_STR);
 
         if ($statement->execute()) {
-            $results = [];
             while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
-                $results[] = new Proces(
+                $proces = new Proces(
                     $row["id"],
                     $row["nom"],
                     $row["tipus"],
@@ -53,7 +50,7 @@ class ProcesModel
                 );
             }
             $statement->closeCursor();
-            return $results;
+            return $proces;
         }
     }
 
