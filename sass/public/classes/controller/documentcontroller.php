@@ -1,12 +1,5 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-
 class DocumentController extends Controlador
 {
 
@@ -32,85 +25,85 @@ class DocumentController extends Controlador
         return $html;
     }
 
-    public function generateMain($procesos, $documents)
-    {
-        $main = [];
-        $html = "";
+    // public function generateMain($procesos, $documents)
+    // {
+    //     $main = [];
+    //     $html = "";
 
-        if (isset($procesos) && count($procesos) !== 0) {
-            foreach ($procesos as $proces) {
-                $main[] = $proces;
-                $html .= "<div class=\"proces1\">";
-                $html .= "<a href=\"?logged/connected\">BACK</a>";
-                $html .= "<h2>" . $proces->__get('nom') . "</h2>";
-                $html .= "<h3>Objectiu</h3>";
-                $html .= "<p class=\"text\">" . $proces->__get('objectiu') . "</p>";
+    //     if (isset($procesos) && count($procesos) !== 0) {
+    //         foreach ($procesos as $proces) {
+    //             $main[] = $proces;
+    //             $html .= "<div class=\"proces1\">";
+    //             $html .= "<a href=\"?logged/connected\">BACK</a>";
+    //             $html .= "<h2>" . $proces->__get('nom') . "</h2>";
+    //             $html .= "<h3>Objectiu</h3>";
+    //             $html .= "<p class=\"text\">" . $proces->__get('objectiu') . "</p>";
 
-                $usuari_id = $proces->__get('usuari_id');
-                $usuari = new Usuari($usuari_id, null, null, null);
-                $autor = $usuari->getUsernameByID();
+    //             $usuari_id = $proces->__get('usuari_id');
+    //             $usuari = new Usuari($usuari_id, null, null, null);
+    //             $autor = $usuari->getUsernameByID();
 
-                $html .= "<p><b>Author:</b>" . $autor->getUsername() . "</p>";
-                $html .= "<p><b>Email:</b>" . $autor->getEmail() . "</p>";
+    //             $html .= "<p><b>Author:</b>" . $autor->getUsername() . "</p>";
+    //             $html .= "<p><b>Email:</b>" . $autor->getEmail() . "</p>";
 
-                $html .= "</div>";
+    //             $html .= "</div>";
 
-                if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
-                    $html .= "<p class='new'><a href='#'>+ NEW</a></p>";
-                }
+    //             if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
+    //                 $html .= "<p class='new'><a href='#'>+ NEW</a></p>";
+    //             }
 
-                if (isset($documents) && count($documents) !== 0) {
-                    $html .= "<div>";
-                    $html .= "<table><thead>";
-                    $html .= "<tr>";
-                    $html .= "<th>nom</th>";
-                    $html .= "<th>link</th>";
+    //             if (isset($documents) && count($documents) !== 0) {
+    //                 $html .= "<div>";
+    //                 $html .= "<table><thead>";
+    //                 $html .= "<tr>";
+    //                 $html .= "<th>nom</th>";
+    //                 $html .= "<th>link</th>";
 
-                    if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
-                        $html .= "<th></th><th></th>";
-                    }
+    //                 if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
+    //                     $html .= "<th></th><th></th>";
+    //                 }
 
-                    $html .= "</tr></thead><tbody>";
+    //                 $html .= "</tr></thead><tbody>";
 
-                    // Adding a form to add new documents if user is an admin
-                    if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
-                        $html .= "<tr>";
-                        $html .= "<form action='?document/create' method='post'>";
-                        $html .= "<td>";
-                        $html .= "<input type='text' name='nom' placeholder='New Document'>";
-                        $html .= "</td>";
-                        $html .= "<td>";
-                        $html .= "<input type='text' name='link' placeholder='Document link'>";
-                        $html .= "</td>";
-                        $html .= "<td colspan='2'>";
-                        $html .= "<button class='btnAdd' type='submit'>Add</button>";
-                        $html .= "</td>";
-                        $html .= "</form>";
-                        $html .= "</tr>";
-                    }
+    //                 // Adding a form to add new documents if user is an admin
+    //                 if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
+    //                     $html .= "<tr>";
+    //                     $html .= "<form action='?document/create' method='post'>";
+    //                     $html .= "<td>";
+    //                     $html .= "<input type='text' name='nom' placeholder='New Document'>";
+    //                     $html .= "</td>";
+    //                     $html .= "<td>";
+    //                     $html .= "<input type='text' name='link' placeholder='Document link'>";
+    //                     $html .= "</td>";
+    //                     $html .= "<td colspan='2'>";
+    //                     $html .= "<button class='btnAdd' type='submit'>Add</button>";
+    //                     $html .= "</td>";
+    //                     $html .= "</form>";
+    //                     $html .= "</tr>";
+    //                 }
 
-                    foreach ($documents as $document) {
-                        $main[] = $document;
-                        $html .= "<tr>";
-                        $html .= "<td>" . $document->__get('nom') . "</td>";
-                        $html .= "<td><a href=\"\">" . $document->__get('link') . "</a></td>";
+    //                 foreach ($documents as $document) {
+    //                     $main[] = $document;
+    //                     $html .= "<tr>";
+    //                     $html .= "<td>" . $document->__get('nom') . "</td>";
+    //                     $html .= "<td><a href=\"\">" . $document->__get('link') . "</a></td>";
 
-                        if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
-                            $html .= "<td><button class='edit'>Edit</button></td><td><button class='delete'>Delete</button></td>";
-                        }
+    //                     if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
+    //                         $html .= "<td><button class='edit'>Edit</button></td><td><button class='delete'>Delete</button></td>";
+    //                     }
 
-                        $html .= "</tr>";
-                    }
+    //                     $html .= "</tr>";
+    //                 }
 
-                    $html .= "</tbody></table>";
-                    $html .= "</div>";
-                }
-            }
-        }
+    //                 $html .= "</tbody></table>";
+    //                 $html .= "</div>";
+    //             }
+    //         }
+    //     }
 
-        // return $html;
-        return $main;
-    }
+    //     // return $html;
+    //     return $main;
+    // }
 
     public function generateFooter($apartats)
     {
@@ -135,7 +128,7 @@ class DocumentController extends Controlador
         $organitzacions = $organitzacioModel->read($organitzacio);
         $header = $this->generateHeader($organitzacions);
 
-        $procesos = [];
+        $proces = [];
         $documents = [];
         $apartats = [];
 
@@ -143,38 +136,32 @@ class DocumentController extends Controlador
 
             $proces_id = $_GET["proces"];
 
-            $proces = new Proces(null, $proces_id, null, null, null);
+            $procesSelected = new Proces(null, $proces_id, null, null, null);
             $procesModel = new ProcesModel();
-            $procesos = $procesModel->read($proces);
+            $proces = $procesModel->read($procesSelected);
 
-            if (count($procesos) > 0) {
-
-                foreach ($procesos as $p) {
-                    $pid = $p->__get('id');
-                    $document = new Document(null, null, null, null, $pid);
-                    $documentModel = new DocumentModel();
-                    $documents = $documentModel->getDocumentByProcesNom($document);
-                }
-
-            }
+            $pid = $proces->__get('id');
+            $document = new Document(null, null, null, null, $pid);
+            $documentModel = new DocumentModel();
+            $documents = $documentModel->getDocumentByProcesNom($document);
         }
 
-        $main = $this->generateMain($procesos, $documents);
 
         $apartatModel = new ApartatModel();
         $apartats = $apartatModel->getTable();
         $footer = $this->generateFooter($apartats);
 
-        DocumentView::show($header, $main, $footer);
+        DocumentView::show($header, $proces, $documents, $footer);
     }
 
-    public function create(){
-        
-        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])){
+    public function create()
+    {
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             // $nom = $this->sanitize($_POST["nom"]);
             // $link = $this->sanitize($_POST["link"]);
 
-        
+
         }
     }
 

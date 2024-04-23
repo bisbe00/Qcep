@@ -1,14 +1,21 @@
 <main class="proces">
     <!-- <?php
-    // echo $main; //is in classes/controller/doccontroller/generateMain ?> -->
+        var_dump($proces);
+    // echo $main; //is in classes/controller/doccontroller/generateMain
+     ?> -->
 
     <div class="container-fluid">
 
         <!-- start page title -->
         <div class="row">
-            <div class="col-12">
+            <div class="col-11">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                     <h4 class="mb-sm-3 font-size-18">Project Overview</h4>
+                </div>
+            </div>
+            <div class="col-1">
+                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                    <h5 class="mb-sm-3 font-size-16"><a href="?logged/connected"><i class="bi bi-box-arrow-left h1"></i></a></h5>
                 </div>
             </div>
         </div>
@@ -21,12 +28,16 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex">
-                            <div class="flex-shrink-0 me-4">
-                                <img src="img/forest.jpg" alt="" class="avatar-sm" style="width:60px;height:60px;">
-                            </div>
+                            <h1 class="fw-bold me-4">
+                                <!-- <img src="img/forest.jpg" alt="" class="avatar-sm" style="width:60px;height:60px;"> -->
+                                <?php echo $proces->__get('nom'); ?>
+                            </h1>
 
                             <div class="flex-grow-1 overflow-hidden">
-                                <h5 class="text-truncate font-size-15">Skote Dashboard UI</h5>
+                                <h5 class="text-truncate font-size-15">
+                                    <!-- Skote Dashboard UI -->
+                                    <?php echo $proces->__get('tipus'); ?>
+                                </h5>
                                 <p class="text-muted">Separate existence is a myth. For science, music, sport, etc.</p>
                             </div>
                         </div>
@@ -68,90 +79,65 @@
                 <div class="card">
                     <div class="card-body">
                         <!-- table -->
-                        <table class="table">
-                            <thead>
-                                <tr class="table-danger">
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Document Name</th>
-                                    <th scope="col">Link</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="text-body">1</td>
-                                    <td>
-                                        <div class="customerlist-name">Valerie Keys</div>
-                                    </td>
-                                    <td>$345</td>
-                                    <td>
-                                        <div class="d-flex gap-1">
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                                class="text-success">
-                                                <i class="bi bi-pencil font-size-18"></i>
-                                            </a>
-                                            <a href="#removeItemModal" data-bs-toggle="modal" class="text-danger">
-                                                <i class="bi bi-trash font-size-18"></i>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-body">2</td>
-                                    <td>
-                                        <div class="customerlist-name">David Crawford</div>
-                                    </td>
-                                    <td>$350</td>
-                                    <td>
-                                        <div class="d-flex gap-1">
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                                class="text-success">
-                                                <i class="bi bi-pencil font-size-18"></i>
-                                            </a>
-                                            <a href="#removeItemModal" data-bs-toggle="modal" class="text-danger">
-                                                <i class="bi bi-trash font-size-18"></i>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-body">3</td>
-                                    <td>
-                                        <div class="customerlist-name">Jessie Jones</div>
-                                    </td>
-                                    <td>$374</td>
-                                    <td>
-                                        <div class="d-flex gap-1">
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                                class="text-success">
-                                                <i class="bi bi-pencil font-size-18"></i>
-                                            </a>
-                                            <a href="#removeItemModal" data-bs-toggle="modal" class="text-danger">
-                                                <i class="bi bi-trash font-size-18"></i>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-body">4</td>
-                                    <td>
-                                        <div class="customerlist-name">Clark Benson</div>
-                                    </td>
-                                    <td>$345</td>
-                                    <td>
-                                        <div class="d-flex gap-1">
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                                class="text-success">
-                                                <i class="bi bi-pencil font-size-18"></i>
-                                            </a>
-                                            <a href="#removeItemModal" data-bs-toggle="modal" class="text-danger">
-                                                <i class="bi bi-trash font-size-18"></i>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <?php
+
+                        if (isset($documents) && count($documents) !== 0) {
+                            echo '<table class="table">
+                                <thead>
+                                    <tr class="table-danger">
+                                        <th scope="col">Document</th>
+                                        <th scope="col">Link</th>';
+
+                            if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
+                                echo '<th scope="col">Action</th>';
+                            }
+
+                            echo '</tr></head><tbody>';
+
+                            if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
+                                echo "<tr>";
+                                echo "<form action='?document/create' method='post'>";
+                                echo "<td>";
+                                echo "<input  class='form-control input-sm' type='text' name='nom' placeholder='New Document'>";
+                                echo "</td>";
+                                echo "<td>";
+                                echo "<input  class='form-control input-sm' type='text' name='link' placeholder='Document link'>";
+                                echo "</td>";
+                                echo "<td>";
+                                echo '<div class="d-flex justify-content-center">
+                                <button type="button" class="btn btn-success">Add</button>
+                                </div>';
+                                echo "</td>";
+                                echo "</form>";
+                                echo "</tr>";
+                            }
+
+                            foreach ($documents as $document){
+                                echo '<tr><td class="text-body ms-2">'.$document->__get('nom').'</td>';
+                                echo '<td><a class="ms-2" href="#">' . $document->__get('link') . '</a></td>';
+
+                                if (isset($_SESSION['admin']) && $_SESSION['admin'] === true){
+                                    echo '<td>
+                                    <div class="d-flex justify-content-center gap-1">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                            class="text-success">
+                                            <i class="bi bi-pencil font-size-18"></i>
+                                        </a>
+                                        <a href="#removeItemModal" data-bs-toggle="modal" class="text-danger">
+                                            <i class="bi bi-trash font-size-18"></i>
+                                        </a>
+                                    </div>
+                                    </td>';
+                                }
+
+                                echo '</tr>';
+                            }
+
+                            echo '</tbody></table>';
+
+                        }
+
+                        ?>
                         <!-- end table -->
                     </div>
                     <!-- end card body -->
@@ -166,24 +152,36 @@
                     <div class="card-body">
                         <h4 class="card-title mb-4">Owner Member</h4>
 
+                        <?php
+                            $usuari_id = $proces->__get('usuari_id');
+                            $usuari = new Usuari($usuari_id, null, null, null);
+                            $autor = $usuari->getUsernameByID($usuari_id);
+                        ?>
+
                         <div class="table-responsive">
                             <table class="table align-middle table-nowrap">
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <h5 class="font-size-14 m-0">Daniel Canales</h5>
+                                            <h5 class="font-size-10 m-0">
+                                                <?php echo $autor->getUsername(); ?>
+                                            </h5>
                                         </td>
                                         <td>Author</td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <h5 class="font-size-14 m-0">Jennifer Walker</h5>
+                                            <h5 class="font-size-10 m-0">
+                                                <?php echo $autor->getEmail(); ?>
+                                            </h5>
                                         </td>
                                         <td>Email</td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <h5 class="font-size-14 m-0">Carl Mackay</h5>
+                                            <h5 class="font-size-10 m-0">
+                                                <?php echo "data"; ?>
+                                            </h5>
                                         </td>
                                         <td>Updated</td>
                                     </tr>
