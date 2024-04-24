@@ -96,7 +96,8 @@
 
                             if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
                                 echo "<tr>";
-                                echo "<form action='?document/create' method='post'>";
+                                echo '<form action="?document/create('.$proces->__get('nom').')" method="post">
+                                <input type="hidden" value='.$proces->__get('id'). '>';
                                 echo "<td>";
                                 echo "<input  class='form-control input-sm' type='text' name='nom' placeholder='New Document'>";
                                 echo "</td>";
@@ -120,11 +121,11 @@
                                     echo '<td>
                                     <div class="d-flex justify-content-center gap-1">
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                            class="text-success">
-                                            <i class="bi bi-pencil font-size-18"></i>
+                                            class="text-success me-2">
+                                            <i class="bi bi-pencil h4"></i>
                                         </a>
-                                        <a href="#removeItemModal" data-bs-toggle="modal" class="text-danger">
-                                            <i class="bi bi-trash font-size-18"></i>
+                                        <a href="#removeItemModal" data-bs-toggle="modal" class="text-danger ms-2">
+                                            <i class="bi bi-trash h4"></i>
                                         </a>
                                     </div>
                                     </td>';
@@ -163,25 +164,25 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <h5 class="font-size-10 m-0">
+                                            <h6 class="m-0">
                                                 <?php echo $autor->getUsername(); ?>
-                                            </h5>
+                                            </h6>
                                         </td>
                                         <td>Author</td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <h5 class="font-size-10 m-0">
+                                            <h6 class="m-0">
                                                 <?php echo $autor->getEmail(); ?>
-                                            </h5>
+                                            </h6>
                                         </td>
                                         <td>Email</td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <h5 class="font-size-10 m-0">
-                                                <?php echo "data"; ?>
-                                            </h5>
+                                            <h6 class="m-0">
+                                                <?php echo "12/10/2023"; ?>
+                                            </h6>
                                         </td>
                                         <td>Updated</td>
                                     </tr>
