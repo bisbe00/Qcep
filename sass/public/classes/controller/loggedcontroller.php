@@ -6,49 +6,25 @@ class LoggedController
     public function connected()
     {
 
-        $organitzacio = new Organitzacio(2,'Thos i Codina',null,null,null);
-        $organitzacioModel = new OrganitzacioModel();
-        $organitzacions = $organitzacioModel->read($organitzacio);
-        $header = $this->generateHeader($organitzacions);
-
-
         $procesModel = new ProcesModel();
         $procesos = $procesModel->getTable();
         $main = $this->generateMain($procesos);
-       
-        $apartats = [];
-        $apartatModel = new ApartatModel();
-        $apartats = $apartatModel->getTable();
-        $footer = $this->generateFooter($apartats);
 
-        LoggedView::show($header,$main,$footer);
-    }
-
-    public function generateHeader($organitzacions){
-        $html = "";
-        foreach($organitzacions as $organitzacio){
-            $html .= "
-            <div class=\"inc\">
-                <a href=\"".$organitzacio->__get('web')."\"><img class=\"logo\" src=\"".$organitzacio->__get('logo')."\" alt=\"".$organitzacio->__get('nom')."\"/></a>
-                <h2>".$organitzacio->__get('nom')."</h2>
-            </div>
-            <button class=\"logOut\"><a href=\"?home/show\">Log Out</a></button>";
-        }
-        return $html;
+        LoggedView::show($main);
     }
 
     public function generateMain($procesos){
         $html = "<div class=\"cards\">";
 
         if(isset($_SESSION['admin']) && $_SESSION['admin'] === true){
-            $html .= "<div class=\"card ui-state-default\">
+            $html .= "<div class=\"card text-center\">
             <h1 class='new'>+ NEW</h1>
             </div>";
         }
 
         foreach ($procesos as $proces) {
-            $html .= "<div class=\"card ui-state-default\">
-            <h2><a href='?document/documents&proces=".$proces->__get('nom')."'>{".$proces->__get('nom')."}</a>: ".$proces->__get('objectiu')."</h2>
+            $html .= "<div class=\"card\">
+            <h2><a href='?document/documents&proces=".$proces->__get('id')."'>".$proces->__get('nom')."</a></h2>
             </div>";
         }
 
@@ -57,17 +33,4 @@ class LoggedController
         return $html;
     }
 
-    public function generateFooter($apartats)
-    {
-        $html = '';
-        foreach ($apartats as $apartat) {
-            $html = $html . "
-            <div>
-                <a href=\"" . $apartat->__get('link') . "\" target=\"_blank\"><img src=\"" . $apartat->__get('icona') . "\" alt=\"" . $apartat->__get('nom') . "\" /></a>
-                <p>" . $apartat->__get('nom') . "</p>
-            </div>";
-        }
-
-        return $html;
-    }
 }

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1deb5ubuntu1
+-- version 5.2.1deb1+jammy2
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 17, 2024 at 07:14 PM
+-- Generation Time: May 06, 2024 at 06:20 PM
 -- Server version: 8.0.36-0ubuntu0.22.04.1
--- PHP Version: 8.2.15
+-- PHP Version: 8.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,10 +28,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `apartat` (
-  `nom` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `nom` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `icona` text CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
-  `descripcio` varchar(200) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `link` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `descripcio` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `link` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
@@ -51,14 +51,23 @@ INSERT INTO `apartat` (`nom`, `icona`, `descripcio`, `link`, `id`) VALUES
 --
 
 CREATE TABLE `avaluacio` (
-  `tipus` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `nivell` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `valoracio` varchar(200) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `planificacio` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `accions` varchar(300) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `estrategia` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `tipus` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `nivell` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `valoracio` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `planificacio` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `accions` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `estrategia` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `proces_id` int NOT NULL,
   `id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Dumping data for table `avaluacio`
+--
+
+INSERT INTO `avaluacio` (`tipus`, `nivell`, `valoracio`, `planificacio`, `accions`, `estrategia`, `proces_id`, `id`) VALUES
+('Risc', 'mig', 'Estalvi en neteja i telèfon. Continuem fomentant l’ús del moodle i no fotocòpies.', 'Curs 2018-19', 'Estalviar en fotocòpies i manteniment', 'Preventiva', 1, 1),
+('Oportunitat', 'Alt', 'Es comença a treballar al Març 2024', 'Fins 2022', 'Reorganitzar elsprocessos i revisar la documntació, fent-la més funcional', 'De millora', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -69,8 +78,18 @@ CREATE TABLE `avaluacio` (
 CREATE TABLE `client` (
   `proces_id` int NOT NULL,
   `grupInteres_id` int NOT NULL,
-  `sortida` text COLLATE utf8mb4_spanish_ci NOT NULL
+  `sortida` text CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Dumping data for table `client`
+--
+
+INSERT INTO `client` (`proces_id`, `grupInteres_id`, `sortida`) VALUES
+(1, 1, 'Projecte Educatiu (PE) revisat'),
+(1, 2, '	\r\n\r\nPressupost'),
+(1, 9, 'Programació General de centre (PGC)'),
+(1, 13, 'Normativa d\'organització i Funcionament de centre (NOFC) actualitzat');
 
 -- --------------------------------------------------------
 
@@ -115,10 +134,29 @@ INSERT INTO `document` (`nom`, `tipus`, `link`, `proces_id`, `id`) VALUES
 --
 
 CREATE TABLE `grupInteres` (
-  `nom` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `descripcio` varchar(300) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `nom` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `descripcio` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Dumping data for table `grupInteres`
+--
+
+INSERT INTO `grupInteres` (`nom`, `descripcio`, `id`) VALUES
+('Famílies', 'Famílies amb alumnat al centre', 1),
+('Alumnat', 'Alumnat', 2),
+('Empreses', 'Empreses', 3),
+('Claustre', 'Claustre', 4),
+('Equip directiu', 'Equip directiu', 5),
+('Comissió de qualitat', 'Comissió de qualitat', 6),
+('Professorat', 'Professorat', 7),
+('Tutors', 'Tutors', 8),
+('Departament d\'educació', 'Departament d\'educació', 9),
+('Empresa auditora', 'Empresa auditora', 10),
+('Altres centres', 'Altres centres', 11),
+('Organismes locals, nacionals, internacionals', 'Organismes locals, nacionals, internacionals', 12),
+('Tots els procesos', 'Tots els procesos', 13);
 
 -- --------------------------------------------------------
 
@@ -136,6 +174,17 @@ CREATE TABLE `indicador` (
   `proces_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
+--
+-- Dumping data for table `indicador`
+--
+
+INSERT INTO `indicador` (`id`, `codi`, `nom`, `link`, `curs`, `valoracio`, `proces_id`) VALUES
+(1, 'IN047', 'Resultats Alumnat que supera el curs ESO', '', '', '', 1),
+(2, 'IN048', 'Resultats Alumnat que supera el curs Batxillerat', '', '', '', 2),
+(3, 'IN053', 'Rendiment acadèmic CFGM', '', '', '', 3),
+(4, 'IN054', 'Rendiment acadèmic CFGS', '', '', '', 4),
+(5, 'IN056', 'Recursos humans : ratios Alumnes / Professors', '', '', '', 5);
+
 -- --------------------------------------------------------
 
 --
@@ -143,9 +192,9 @@ CREATE TABLE `indicador` (
 --
 
 CREATE TABLE `organitzacio` (
-  `nom` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `web` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `nom` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `web` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `logo` text CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
@@ -177,15 +226,15 @@ CREATE TABLE `proces` (
 --
 
 INSERT INTO `proces` (`nom`, `tipus`, `objectiu`, `id`, `usuari_id`) VALUES
-('M3', 'DAW', 'Java', 1, 6),
-('M4', 'DAW', 'XML (Markdown, XPath, XQuery)', 2, 5),
-('M6', 'DAW', 'Javascript', 3, 6),
-('M7', 'DAW', 'PHP', 4, 6),
-('M8', 'DAW', 'GitHub, Servlet', 5, 5),
-('M9', 'DAW', 'HTML, CSS, SASS', 6, 5),
-('M10', 'DAW', 'FOL', 7, 5),
-('M11', 'DAW', 'EIE', 8, 6),
-('M12', 'DAW', 'Project', 9, 5);
+('Planificar i Organitzar el centre', 'Estratègic', 'Elaborar, revisar i mantenir actualitzada la missió o finalitat i la visió del centre educatiu, i planificar i organitzar les accions i les estratègies que les fan possibles', 1, 6),
+('Elaborar i revisar el projecte curricular de centre', 'Estratègic', 'Contextualitzar, definir i actualitzar el projecte curricular, programacions de centre', 2, 5),
+('Desenvolupar i revisar el Sistema de Gestió', 'Estratègic', 'Crear el marc per a la gestió de la qualitat del centre. Mantenir i millorar el sistema de qualitat', 3, 6),
+('Gestionar la comunicació, promoció i relacions', 'Estratègic', 'Crear el marc per la gestió de la comunicació interna i externa del centre', 4, 6),
+('Intercanvi experiències pedagògiques i de gestió', 'Estratègic', 'Crear oportunitats de millora interna del centre mitjançant l\'observació i comparació amb experiències d\'altres centres o organitzacions', 5, 5),
+('Gestionar la informació i l\'admissió de l\'alumnat', 'Estratègic', 'Planificar i dur a terme les activitats d\'atenció, informació, preinscripció i matricula de l\'alumnat i les inscripcions d\'altres usuaris, per tal de satisfer les necessitats i expectatives dels grups d\'interès (principalment alumnat i famílies)', 6, 5),
+('Desenvolupar els ensenyaments-aprenentatges', 'Estratègic', 'Desenvolupar les activitats didàctiques d\'ensenyament, avaluar iqualificar l\'evolució i l\'aprenentatge dels alumnes, d\'acord amb el marc establert en el projecte educatiu i les concrecions i metodologies expressades a les programacions, (per què) per possibilitar el desenvolupament personal, social ', 7, 5),
+('Gestionar el Servei d\'assessorament i reconeixement de FP', 'Estratègic', 'Proporcionar suport per detectar les competències adquirides a través de l\'activitat professional o en activitats socials, acreditar-se i proporcionar un itinerari formatiu per obtenir la titulació acadèmica corresponent als interessos, motivacions, capacitats i aptituds dels aspirants.', 8, 6),
+('Gestionar la satisfacció Alumnat i Famílies', 'Estratègic', 'Conèixer el grau de satisfacció de les necessitats i de les expectatives de l\'alumnat, de les famílies, per tal de disposar de dades i informació que permetin desenvolupar les accions i/o actuacions necessàries per avançar en la millora de la gestió de centre', 9, 5);
 
 -- --------------------------------------------------------
 
@@ -218,6 +267,14 @@ CREATE TABLE `proces_recus` (
   `recurs_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
+--
+-- Dumping data for table `proces_recus`
+--
+
+INSERT INTO `proces_recus` (`proces_id`, `recurs_id`) VALUES
+(1, 1),
+(1, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -227,8 +284,18 @@ CREATE TABLE `proces_recus` (
 CREATE TABLE `proveidor` (
   `proces_id` int NOT NULL,
   `grupInteres_id` int NOT NULL,
-  `entrada` text COLLATE utf8mb4_spanish_ci NOT NULL
+  `entrada` text CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Dumping data for table `proveidor`
+--
+
+INSERT INTO `proveidor` (`proces_id`, `grupInteres_id`, `entrada`) VALUES
+(1, 1, 'Veu Alumnes / Famílies'),
+(1, 7, 'Necessitats detectades en Ensenyament Aprenentatge'),
+(1, 9, 'Normativa i planificació del Departament d\'Ensenyament'),
+(1, 10, 'Avaluació de l\'organització');
 
 -- --------------------------------------------------------
 
@@ -258,10 +325,18 @@ INSERT INTO `puntNorma` (`primerNum`, `segundaNum`) VALUES
 --
 
 CREATE TABLE `recurs` (
-  `nom` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `tipus` varchar(300) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `nom` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `tipus` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Dumping data for table `recurs`
+--
+
+INSERT INTO `recurs` (`nom`, `tipus`, `id`) VALUES
+('Equip informàtic', 'Infraestrutura', 1),
+('Claustre', 'Personal', 2);
 
 -- --------------------------------------------------------
 
@@ -270,8 +345,8 @@ CREATE TABLE `recurs` (
 --
 
 CREATE TABLE `usuari` (
-  `email` varchar(200) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `username` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `email` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `es_administrador` tinyint(1) NOT NULL,
   `id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
@@ -302,7 +377,8 @@ ALTER TABLE `apartat`
 -- Indexes for table `avaluacio`
 --
 ALTER TABLE `avaluacio`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `proces` (`proces_id`);
 
 --
 -- Indexes for table `client`
@@ -397,19 +473,19 @@ ALTER TABLE `apartat`
 -- AUTO_INCREMENT for table `avaluacio`
 --
 ALTER TABLE `avaluacio`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `grupInteres`
 --
 ALTER TABLE `grupInteres`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `indicador`
 --
 ALTER TABLE `indicador`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `organitzacio`
@@ -427,7 +503,7 @@ ALTER TABLE `proces`
 -- AUTO_INCREMENT for table `recurs`
 --
 ALTER TABLE `recurs`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `usuari`
@@ -438,6 +514,12 @@ ALTER TABLE `usuari`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `avaluacio`
+--
+ALTER TABLE `avaluacio`
+  ADD CONSTRAINT `avaluacio_ibfk_1` FOREIGN KEY (`proces_id`) REFERENCES `proces` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 --
 -- Constraints for table `client`

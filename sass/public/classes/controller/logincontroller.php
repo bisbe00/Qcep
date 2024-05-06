@@ -19,7 +19,7 @@ class LoginController extends Controlador
         $translator = "languages/{$lang}_translate.php";
 
         $error = [];
-        $data = new Usuari(null,null,null,null);
+        $data = new Usuari(null, null, null, null);
 
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
             $email = $this->sanitize($_POST['email']);
@@ -35,48 +35,49 @@ class LoginController extends Controlador
             }
 
             if (empty($error)) {
-                $user = new Usuari(null,$email,null,null);
+                $user = new Usuari(null, $email, null, null);
                 $results = $user->read();
 
-                if(count($results) > 0){
+                if (count($results) > 0) {
                     header("Location: ?logged/connected");
-                }else{
+                } else {
                     $error['log'] = "the email does not exist or is wrong written";
                 }
-                
+
             }
         }
-        
-        $main = $this->generateMain($data,$error);
-        $footer = $this->generateFooter();
+
+        $main = $this->generateMain($data, $error);
 
         $login = new LoginView();
-        $login->show($lang, $translator, $main, $footer);
+        $login->show($lang, $translator, $main);
     }
 
     public function logOut()
     {
-        unset($_SESSION['user']);
+        unset($_SESSION['admin']);
+        unset($_SESSION['online']);
         header("Location: index.php");
     }
 
-    public function generateMain($data,$error){
-        
+    public function generateMain($data, $error)
+    {
+
         $html = '';
 
-        if (isset($error["log"])) { 
-            $html .= "<span>". $error["log"] . "</span><br>"; 
+        if (isset($error["log"])) {
+            $html .= "<span>" . $error["log"] . "</span><br>";
         }
-       
+
         $html .= '<form action="?login/load" method="post">
-        <input type="email" placeholder="name@example.com" id="email" name="email" value="'. $data->getEmail() .'">
+        <input class="form-control" type="email" placeholder="name@example.com" id="email" name="email" value="' . $data->getEmail() . '">
         <br>';
 
-        if (isset($error["email"])) { 
-            $html .= "<span>". $error["email"] . "</span><br>"; 
+        if (isset($error["email"])) {
+            $html .= "<span>" . $error["email"] . "</span><br>";
         }
 
-        $html .= '<input type="submit" id="login" name="login" value="Login">
+        $html .= '<input class="btn btn-primary" type="submit" id="login" name="login" value="Login">
         <br>
         </form>
         <p>No account?<a href="#">Sign Up</a></p>';
@@ -84,9 +85,4 @@ class LoginController extends Controlador
         return $html;
     }
 
-    public function generateFooter()
-    {
-        $html = "<p>2023-2024</p>";
-        return $html;
-    }
 }

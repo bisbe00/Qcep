@@ -1,7 +1,7 @@
 <?php
 
 class HomeView {
-    public static function show($lang,$translator,$footer) {
+    public static function show($lang,$translator) {
         require_once $translator;        
         
         echo "<!DOCTYPE html><html lang=\"en\">";
@@ -13,5 +13,3 @@ class HomeView {
 		echo "</body></html>";
     }
 }
-
-?>

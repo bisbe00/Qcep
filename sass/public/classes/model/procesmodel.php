@@ -13,7 +13,7 @@ class ProcesModel
     public function getTable()
     {
         $query = "SELECT * FROM proces";
-        $statement =  $this->pdo->prepare($query);
+        $statement = $this->pdo->prepare($query);
 
         if ($statement->execute()) {
             $results = [];
@@ -33,79 +33,91 @@ class ProcesModel
 
     public function read(Proces $obj)
     {
-        $proces = [];
-        $nom = $obj->__get('nom');
+        $nom = $obj->__get("nom");
         $query = "SELECT * FROM proces WHERE nom = :nom";
         $statement = $this->pdo->prepare($query);
         $statement->bindParam(':nom', $nom, PDO::PARAM_STR);
 
-        if ($statement->execute()) {
-            while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
-                $proces = new Proces(
-                    $row["id"],
-                    $row["nom"],
-                    $row["tipus"],
-                    $row["objectiu"],
-                    $row["usuari_id"]
-                );
-            }
-            $statement->closeCursor();
-            return $proces;
+        if ($statement->execute() && $row = $statement->fetch(PDO::FETCH_ASSOC)) {
+            return new Proces(
+                $row["id"],
+                $row["nom"],
+                $row["tipus"],
+                $row["objectiu"],
+                $row["usuari_id"]
+            );
         }
+        return null; // Return null if no process is found
     }
 
-    public function create(Proces $obj)
+    public function create(Proces $proces)
     {
-        if (count($this->read($obj)) === 0) {
-            $query = "INSERT INTO proces (nom, tipus, objectiu, usuari_id) VALUES (?, ?, ?, ?)";
+        if ($this->read($proces->__get('id')) === null) {
+            $query = "INSERT INTO proces (id, nom, tipus, objectiu, usuari_id) VALUES (?, ?, ?, ?, ?)";
             $statement = $this->pdo->prepare($query);
-            $state = $statement->execute([$obj->__get('nom'), $obj->__get('tipus'), $obj->__get('objectiu'), $obj->__get('usuari_id')]);
-            if ($state) {
-                $statement->closeCursor();
-                return true;
-            }
+            $values = [
+                $proces->__get('id'),
+                $proces->__get('nom'),
+                $proces->__get('tipus'),
+                $proces->__get('objectiu'),
+                $proces->__get('usuari_id')
+            ];
+            return $statement->execute($values);
         }
-        return false;
+        return false; // Return false if proces already exists
     }
 
-    public function update(Proces $obj)
+    public function update(Proces $proces)
     {
-        if (count($this->read($obj)) !== 0) {
-            $query = "UPDATE apartat SET nom = :nom, tipus = :tipus, objectiu = :objectiu, usuari_id = :usuari_id WHERE id = :id";
+        if ($this->read($proces->__get('id')) !== null) {
+            $query = "UPDATE proces SET nom = ?, tipus = ?, objectiu = ?, usuari_id = ? WHERE id = ?";
             $statement = $this->pdo->prepare($query);
+            $values = [
+                $proces->__get('nom'),
+                $proces->__get('tipus'),
+                $proces->__get('objectiu'),
+                $proces->__get('usuari_id'),
+                $proces->__get('id')
+            ];
+            return $statement->execute($values);
+        }
+        return false; // Return false if the proces does not exist
+    }
 
-            $nom = $obj->__get('nom');
-            $tipus = $obj->__get('tipus');
-            $objectiu = $obj->__get('objectiu');
-            $usuari_id = $obj->__get('usuari_id');
-            $id = $obj->__get('id');
+    public function delete(Proces $proces)
+    {
+        if ($this->read($proces->__get('id')) !== null) {
+            $query = "DELETE FROM proces WHERE id = ?";
+            $statement = $this->pdo->prepare($query);
+            return $statement->execute([$proces->__get('id')]);
+        }
+        return false; // Return false if the proces does not exist
+    }
 
-            $statement->bindParam(':nom', $nom, PDO::PARAM_STR);
-            $statement->bindParam(':tipus', $tipus, PDO::PARAM_STR);
-            $statement->bindParam(':objectiu', $objectiu, PDO::PARAM_STR);
-            $statement->bindParam(':usuari_id', $usuari_id, PDO::PARAM_STR);
+    public function getProcesByID($id)
+    {
+        if ($id !== null) {
+
+            $proces = [];
+            $query = "SELECT * FROM proces WHERE id = :id";
+            $statement = $this->pdo->prepare($query);
             $statement->bindParam(':id', $id, PDO::PARAM_INT);
 
-            $state = $statement->execute();
-            if ($state) {
+            if ($statement->execute()) {
+                while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+                    $proces = new Proces(
+                        $row["id"],
+                        $row["nom"],
+                        $row["tipus"],
+                        $row["objectiu"],
+                        $row["usuari_id"]
+                    );
+                }
                 $statement->closeCursor();
-                return true;
+                return $proces;
             }
+
         }
-        return false;
     }
 
-    public function delete(Proces $obj)
-    {
-        if (count($this->read($obj)) !== 0) {
-            $query = "DELETE FROM apartat WHERE id = ?";
-            $statement = $this->pdo->prepare($query);
-            $state = $statement->execute([$obj->__get('id')]);
-            if ($state) {
-                $statement->closeCursor();
-                return true;
-            }
-        }
-        return false;
-    }
 }

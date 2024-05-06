@@ -70,16 +70,12 @@ class Usuari{
         if($statement->execute([$mail])){
             $result = $statement->fetch(PDO::FETCH_ASSOC);
             if(count($result) !== 0){
-
                 $this->setEs_administrador($result["es_administrador"]);
-
-                if ($this->getEs_administrador() === 1) {
-                    $_SESSION['admin'] = true;
-                }else{
-                    $_SESSION['admin'] = false;
-                }
+                $_SESSION['admin'] = ($this->getEs_administrador() == 1);
+                $_SESSION['online'] = true;
 
                 $statement->closeCursor();
+
                 $procesModel = new ProcesModel();
                 $results = $procesModel->getTable();
                 return $results;
