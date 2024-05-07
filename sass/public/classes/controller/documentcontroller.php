@@ -24,14 +24,17 @@ class DocumentController extends Controlador
             $document = new Document(null, null, null, null, $proces_id);
             $documentModel = new DocumentModel();
             $documents = $documentModel->getDocumentByProcesNom($document);
+
+            $clientModel = new ClientModel();
+            $clients = $clientModel->getClientsByID($proces_id);
         }
 
-        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['create'])) {
             $error = $this->create(); // Process creation
         }
 
 
-        DocumentView::show($proces, $documents, $error);
+        DocumentView::show($proces, $documents, $error, $clients);
     }
 
     public function create()
@@ -39,7 +42,6 @@ class DocumentController extends Controlador
 
         $error = [];
         $saved = new Document(null, null, null, null, null);
-        $procesModel = new ProcesModel();
 
         $proces_id = (int) $this->sanitize($_POST["proces_id"]);
         $saved->__set("proces_id", $proces_id);
@@ -55,7 +57,7 @@ class DocumentController extends Controlador
         $link = $this->sanitize($_POST["link"]);
         if (strlen($link) == 0) {
             $error["link"] = "fill the section";
-            unset($descripcio);
+            unset($link);
         } else {
             $saved->__set("link", $link);
         }
@@ -68,13 +70,25 @@ class DocumentController extends Controlador
             $documentModel = new DocumentModel();
             $state = $documentModel->create($saved);
             if ($state) {
-                $Actualproces = $procesModel->getProcesByID($proces_id);
-                $procesNom = $Actualproces->__get("nom");
-                header("Location: ?document/documents&proces=$procesNom");
+                header("Location: ?document/documents&proces=$proces_id");
             }
         }
 
         return $error;
+    }
+
+
+    public function delete(){
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
+            $id = (int) $this->sanitize($_POST['doc_id']);
+            $proces_id = (int) $this->sanitize($_POST['doc_id']);
+            var_dump($proces_id);
+            $documentModel = new DocumentModel();
+            $state = $documentModel->deleteByID($id);
+            if($state){
+                header("Location: ?document/documents&proces=$proces_id"); 
+            }
+        }
     }
 
 }
