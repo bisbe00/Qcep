@@ -1,8 +1,7 @@
 <?php
 
 class LoginView{
-    public function show($lang,$translator,$main){
-        require_once $translator;
+    public function show($main){
         echo "<!DOCTYPE html><html lang=\"en\">";
         include "template/head.php";
         echo "<body>";

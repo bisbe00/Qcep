@@ -1,41 +1,38 @@
-<header>
+<header class="navbar bg-body-tertiary">
 
-    <?php
 
-        if (isset($_SESSION['online']) && $_SESSION['online'] == true) {
+    <div class="container-fluid d-flex flex-row p-2">
+        <?php
 
-            $organitzacio = new Organitzacio(2,'Thos i Codina',null,null,null);
-            $organitzacioModel = new OrganitzacioModel();
-            $organitzacions = $organitzacioModel->read($organitzacio);
+            if (isset($_SESSION['online']) && $_SESSION['online'] == true) {
 
-            foreach($organitzacions as $organitzacio){
-                echo "
-                <div class=\"inc\">
-                    <a href=\"".$organitzacio->__get('web')."\"><img class=\"logo\" src=\"".$organitzacio->__get('logo')."\" alt=\"".$organitzacio->__get('nom')."\"/></a>
-                    <h2>".$organitzacio->__get('nom')."</h2>
-                </div>
-                <button class=\"logOut\"><a href=\"?login/logOut\">Log Out</a></button>";
+                $organitzacio = new Organitzacio(2, 'Thos i Codina', null, null, null);
+                $organitzacioModel = new OrganitzacioModel();
+                $organitzacions = $organitzacioModel->read($organitzacio);
+
+                foreach ($organitzacions as $organitzacio) {
+                    echo "
+                    <div class=\"d-flex flex-row ms-5\">
+                        <a href=\"" . $organitzacio->__get('web') . "\"><img class=\"logo rounded-circle\" src=\"" . $organitzacio->__get('logo') . "\" alt=\"" . $organitzacio->__get('nom') . "\"/></a>
+                        <h2 class='ms-3 mt-3 mb-0'>" . $organitzacio->__get('nom') . "</h2>
+                    </div>
+                    <button type='button' class=\"btn btn-danger\"><a class='text-light nav-link' href=\"?login/logOut\">Log Out</a></button>";
+                }
+
+            } else {
+
+                echo '
+                <h1>Qcep</h1>
+                <nav>
+                    <ul>
+                        <li><a href="?home/show">Home</a></li>
+                        <li><a href="?login/load">Login</a></li>
+                    </ul>
+                </nav>';
+
             }
 
-        }else{
+        ?>
+    </div>
 
-            echo '<h1>Qcep</h1>
-            <nav>
-                <ul>
-                    <li><a href="?home/show">'. $translate["Home"] .'</a></li>
-                    <li><a href="?login/load">'. $translate["Login"] .'</a></li>
-                    <li class="idioma">'. $translate["Language"] .'
-                        <ul>
-                            <li><a href="?lang/set/en">'. $translate["English"] .'</a></li>
-                            <li><a href="?lang/set/es">'. $translate["Spanish"] .'</a></li>
-                            <li><a href="?lang/set/fr">'. $translate["French"] .'</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>';
-
-        }
-
-    ?>
-    
 </header>

@@ -1,6 +1,7 @@
 <?php
 
-class GrupInteresModel{
+class GrupInteresModel
+{
     private $pdo;
 
     public function __construct()
@@ -17,9 +18,9 @@ class GrupInteresModel{
             $results = [];
             while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
                 $grupInteres = new grupInteres();
-                $grupInteres->__set("id",$row["id"]);
+                $grupInteres->__set("id", $row["id"]);
                 $grupInteres->__set("nom", $row["nom"]);
-                $grupInteres->__set("descripcio",$row["descripcio"]);
+                $grupInteres->__set("descripcio", $row["descripcio"]);
                 $results[] = $grupInteres;
             }
             $statement->closeCursor();
@@ -27,12 +28,13 @@ class GrupInteresModel{
         }
     }
 
-    public function getGrupByID($id) {
+    public function getGrupByID($id)
+    {
         if ($id !== null) {
             $query = "SELECT * FROM grupInteres WHERE id = :id";
             $statement = $this->pdo->prepare($query);
             $statement->bindParam(':id', $id, PDO::PARAM_INT);
-    
+
             if ($statement->execute() && $row = $statement->fetch(PDO::FETCH_ASSOC)) {
                 $grupInteres = new GrupInteres();
                 $grupInteres->__set("id", $row["id"]);
@@ -44,5 +46,5 @@ class GrupInteresModel{
         }
         return null; // Return null if no GrupInteres found
     }
-    
+
 }

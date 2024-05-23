@@ -15,16 +15,16 @@ class ApartatModel
     public function getTable()
     {
         $query = "SELECT * FROM apartat";
-        $statement =  $this->pdo->prepare($query);
+        $statement = $this->pdo->prepare($query);
 
         if ($statement->execute()) {
             $results = [];
             while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
                 $results[] = new Apartat(
                     $row["id"],
-                    $row["nom"], 
-                    $row["icona"], 
-                    $row["descripcio"], 
+                    $row["nom"],
+                    $row["icona"],
+                    $row["descripcio"],
                     $row["link"]
                 );
             }
@@ -45,9 +45,9 @@ class ApartatModel
             while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
                 $results[] = new Apartat(
                     $row["id"],
-                    $row["nom"], 
-                    $row["icona"], 
-                    $row["descripcio"], 
+                    $row["nom"],
+                    $row["icona"],
+                    $row["descripcio"],
                     $row["link"]
                 );
             }

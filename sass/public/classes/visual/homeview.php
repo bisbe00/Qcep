@@ -1,9 +1,7 @@
 <?php
 
 class HomeView {
-    public static function show($lang,$translator) {
-        require_once $translator;        
-        
+    public static function show() {
         echo "<!DOCTYPE html><html lang=\"en\">";
         include "template/head.php";
         echo "<body>";

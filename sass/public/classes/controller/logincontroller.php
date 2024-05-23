@@ -10,14 +10,6 @@ class LoginController extends Controlador
 
     public function load()
     {
-        if (isset($_COOKIE["lang"])) {
-            $lang = $_COOKIE["lang"];
-        } else {
-            $lang = "en";
-        }
-
-        $translator = "languages/{$lang}_translate.php";
-
         $error = [];
         $data = new Usuari(null, null, null, null);
 
@@ -50,7 +42,7 @@ class LoginController extends Controlador
         $main = $this->generateMain($data, $error);
 
         $login = new LoginView();
-        $login->show($lang, $translator, $main);
+        $login->show($main);
     }
 
     public function logOut()

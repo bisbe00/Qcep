@@ -1,10 +1,15 @@
 <?php
 
-class Client
+class Avaluacio
 {
+    private $id;
+    private $tipus;
+    private $nivell;
+    private $valoracio;
+    private $planificacio;
+    private $accions;
+    private $estrategia;
     private $proces_id;
-    private $grupInteres_id;
-    private $sortida;
 
     public function __construct()
     {
@@ -28,5 +33,4 @@ class Client
             throw new Exception("Attribute " . $name . " does not exist");
         }
     }
-
 }

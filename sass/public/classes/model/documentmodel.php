@@ -1,8 +1,5 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-
 class DocumentModel
 {
 
@@ -34,7 +31,8 @@ class DocumentModel
         }
     }
 
-    public function getDocumentByProcesNom(Document $obj){
+    public function getDocumentByProcesNom(Document $obj)
+    {
         $query = "SELECT * FROM document WHERE proces_id = :proces_id";
         $statement = $this->pdo->prepare($query);
 
@@ -59,7 +57,7 @@ class DocumentModel
 
     public function read(Document $obj)
     {
-        
+
         $query = "SELECT * FROM document WHERE id = :id";
         $statement = $this->pdo->prepare($query);
 
@@ -139,7 +137,7 @@ class DocumentModel
 
     public function deleteByID($id)
     {
-        if($id !== 0) {
+        if ($id !== 0) {
             $query = "DELETE FROM document WHERE id = ?";
             $statement = $this->pdo->prepare($query);
             $state = $statement->execute([$id]);

@@ -8,7 +8,7 @@ class Apartat
     private $descripcio;
     private $link;
 
-    public function __construct($id,$nom, $icona, $descripcio, $link)
+    public function __construct($id, $nom, $icona, $descripcio, $link)
     {
         $this->id = $id;
         $this->nom = $nom;
@@ -17,26 +17,22 @@ class Apartat
         $this->link = $link;
     }
 
-    public function __get($name){
-        if(property_exists($this, $name)){
+    public function __get($name)
+    {
+        if (property_exists($this, $name)) {
             return $this->$name;
-        }else{
-            throw new Exception("Attribute ".$name." does not exist");
+        } else {
+            throw new Exception("Attribute " . $name . " does not exist");
         }
     }
 
-    public function __set($name, $value){
-        if(property_exists($this, $name)){
+    public function __set($name, $value)
+    {
+        if (property_exists($this, $name)) {
             return $this->$name = $value;
-        }else{
-            throw new Exception("Attribute ".$name." does not exist");
+        } else {
+            throw new Exception("Attribute " . $name . " does not exist");
         }
     }
 
-    /**
-     * @return string
-     */
-    public function __toString() {
-    	return "Id: {$this->id}, Nom: {$this->nom}, Icona: {$this->icona}, Descripcio: {$this->descripcio}, Link: {$this->link}";
-    }
 }

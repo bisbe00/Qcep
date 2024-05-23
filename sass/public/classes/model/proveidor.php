@@ -1,10 +1,10 @@
 <?php
 
-class Client
+class Proveidor
 {
     private $proces_id;
     private $grupInteres_id;
-    private $sortida;
+    private $entrada;
 
     public function __construct()
     {

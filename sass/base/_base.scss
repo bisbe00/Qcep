@@ -15,7 +15,6 @@ body {
         'h'
         'm'
         'f';
-    min-height: 100vh;
 }
 
 /* HEADER**************************************************************************************************************** */
@@ -81,33 +80,8 @@ nav a:hover {
 .logo {
     width: 60px; 
     height: 60px; 
-    background-size: cover;
-    background-position: center;
-    border-radius: 50%;
-    margin-right: 10px;
-    background-color: transparent; 
 }
 
-/* .inc h2{
-    padding: 5px;
-} */
-
-/**log Out button******************/
-.logOut {
-    background: linear-gradient(60deg, rgba(84, 58, 183, 1) 0%, rgba(0, 172, 193, 1) 100%);
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.logOut:hover {
-    background: linear-gradient(60deg, rgba(0, 172, 193, 1) 0%, rgba(84, 58, 183, 1) 100%);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-}
 
 /* HEADER**************************************************************************************************************** */
 
