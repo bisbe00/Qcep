@@ -107,60 +107,60 @@
 
         <div class="row">
             <!-- document table -->
-            <?php 
+            <?php
 
-                if(count($clients) == 0){
-                    echo '<div class="col-xl-12">';
-                }else{
-                    echo '<div class="col-xl-9">';
-                }
+            if (count($clients) == 0) {
+                echo '<div class="col-xl-12">';
+            } else {
+                echo '<div class="col-xl-9">';
+            }
 
             ?>
-                <div class="card mt-3">
-                    <div class="card-body">
-                        <h3 class="card-title">Documents</h3>
-                        <?php
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h3 class="card-title">Documents</h3>
+                    <?php
 
-                        if (isset($documents) && count($documents) !== 0) {
-                            echo '<table class="table">
+                    if (isset($documents) && count($documents) !== 0) {
+                        echo '<table class="table">
                             <thead>
                             <tr class="table-danger">
                             <th scope="col">Document</th>
                             <th scope="col">Link</th>';
 
-                            if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
-                                echo '<th scope="col">Action</th>';
+                        if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
+                            echo '<th scope="col">Action</th>';
+                        }
+
+                        echo '</tr></head><tbody>';
+
+                        if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
+                            echo "<tr>";
+                            echo '<form action="?document/documents" method="post">';
+                            echo '<input type="hidden" name="proces_id" id="proces_id" value="' . $proces->__get('id') . '">';
+                            echo "<td><input class='form-control input-sm' type='text' name='nom' placeholder='New Document' required/>";
+                            if (isset($error["nom"])) {
+                                echo "<br><span class='error'>" . $error["nom"] . "</span><br>";
                             }
+                            echo "</td>";
+                            echo "<td><input class='form-control input-sm' type='text' name='link' placeholder='Document link' required/>";
+                            if (isset($error["link"])) {
+                                echo "<br><span class='error'>" . $error["link"] . "</span><br>";
+                            }
+                            echo "</td>";
+                            echo "<td><button type='submit' name='create' class='btn btn-success'>Add</button></td>";
+                            echo "</form>";
+                            echo "</tr>";
+                        }
 
-                            echo '</tr></head><tbody>';
+
+                        foreach ($documents as $document) {
+                            $docId = $document->__get('id');
+                            echo '<tr><td class="text-body ms-2">' . $document->__get('nom') . '</td>';
+                            echo '<td><a class="ms-2" href="' . $document->__get('link') . '" target="_blank" rel="noopener noreferrer">documents/' . $document->__get('nom') . '</a></td>';
 
                             if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
-                                echo "<tr>";
-                                echo '<form action="?document/documents" method="post">';
-                                echo '<input type="hidden" name="proces_id" id="proces_id" value="' . $proces->__get('id') . '">';
-                                echo "<td><input class='form-control input-sm' type='text' name='nom' placeholder='New Document' required/>";
-                                if (isset($error["nom"])) {
-                                    echo "<br><span class='error'>" . $error["nom"] . "</span><br>";
-                                }
-                                echo "</td>";
-                                echo "<td><input class='form-control input-sm' type='text' name='link' placeholder='Document link' required/>";
-                                if (isset($error["link"])) {
-                                    echo "<br><span class='error'>" . $error["link"] . "</span><br>";
-                                }
-                                echo "</td>";
-                                echo "<td><button type='submit' name='create' class='btn btn-success'>Add</button></td>";
-                                echo "</form>";
-                                echo "</tr>";
-                            }
-
-
-                            foreach ($documents as $document) {
-                                $docId = $document->__get('id');
-                                echo '<tr><td class="text-body ms-2">' . $document->__get('nom') . '</td>';
-                                echo '<td><a class="ms-2" href="' . $document->__get('link') . '" target="_blank" rel="noopener noreferrer">documents/' . $document->__get('nom') . '</a></td>';
-
-                                if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
-                                    echo '<td>
+                                echo '<td>
                                     <div class="d-flex justify-content-center gap-1">
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal' . $docId . '"
                                             class="text-danger ms-2">
@@ -168,12 +168,12 @@
                                         </a>
                                     </div>
                                     </td>';
-                                }
+                            }
 
-                                echo '</tr>';
+                            echo '</tr>';
 
-                                // delete modal
-                                echo '<div class="modal fade" id="deleteModal' . $docId . '" tabindex="-1"
+                            // delete modal document
+                            echo '<div class="modal fade" id="deleteModal' . $docId . '" tabindex="-1"
                                     aria-labelledby="deleteModal_' . $docId . 'Label" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered modal-lg">
                                         <div class="modal-content">
@@ -195,15 +195,15 @@
                                         </div>
                                     </div>
                                 </div>';
-                            }
+                        }
 
-                            echo '</tbody></table>';
+                        echo '</tbody></table>';
 
-                        } else {
+                    } else {
 
-                            if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
+                        if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
 
-                                echo '<table class="table">
+                            echo '<table class="table">
                                 <thead>
                                     <tr class="table-danger">
                                         <th scope="col">Document</th>
@@ -212,62 +212,73 @@
                                     </tr>
                                 </head><tbody><tr>';
 
-                                echo '<form action="?document/documents" method="post">';
+                            echo '<form action="?document/documents" method="post">';
 
-                                echo '<input type="hidden" name="proces_id" id="proces_id" value="' . $proces->__get('id') . '">';
-                                echo "<td><input class='form-control input-sm' type='text' name='nom' placeholder='New Document'>";
-                                if (isset($error["nom"]) && !empty($error["nom"])) {
-                                    echo "<br><span class='error'>" . $error["nom"] . "</span><br>";
-                                }
-                                echo "</td>";
-                                echo "<td><input class='form-control input-sm' type='text' name='link' placeholder='Document link'>";
-                                if (isset($error["link"]) && !empty($error["link"])) {
-                                    echo "<br><span class='error'>" . $error["link"] . "</span><br>";
-                                }
-                                echo "</td>";
-                                echo "<td><button type='submit' name='create' class='btn btn-success'>Add</button></td>";
-
-                                echo "</form>";
-
-                                echo "</tr></tbody></table>";
-
-                            } else {
-                                echo '<p class="card-text fs-4">There are no documents</p>';
+                            echo '<input type="hidden" name="proces_id" id="proces_id" value="' . $proces->__get('id') . '">';
+                            echo "<td><input class='form-control input-sm' type='text' name='nom' placeholder='New Document'>";
+                            if (isset($error["nom"]) && !empty($error["nom"])) {
+                                echo "<br><span class='error'>" . $error["nom"] . "</span><br>";
                             }
-                        }
+                            echo "</td>";
+                            echo "<td><input class='form-control input-sm' type='text' name='link' placeholder='Document link'>";
+                            if (isset($error["link"]) && !empty($error["link"])) {
+                                echo "<br><span class='error'>" . $error["link"] . "</span><br>";
+                            }
+                            echo "</td>";
+                            echo "<td><button type='submit' name='create' class='btn btn-success'>Add</button></td>";
 
-                        ?>
-                    </div>
+                            echo "</form>";
+
+                            echo "</tr></tbody></table>";
+
+                        } else {
+                            echo '<p class="card-text fs-4">There are no documents</p>';
+                        }
+                    }
+
+                    ?>
                 </div>
             </div>
-            <!-- document table -->
+        </div>
+        <!-- document table -->
 
-            <?php
-            if (isset($clients) && count($clients) !== 0) {
-                echo '<div class="col-md-6 col-xl-3">
+        <?php
+        if (isset($clients) && count($clients) !== 0) {
+            echo '<div class="col-md-6 col-xl-3">
                     <div class="card"><div class="card-body">
                     <p class="d-flex justify-content-between border-bottom border-danger fs-3 pb-1">
                        Clients
                     </p>';
 
-                $grups = [];
-                $grupInteresModel = new GrupInteresModel();
-                foreach ($clients as $client) {
-                    $grup_id = $client->__get('grupInteres_id');
-                    $grupRegistrat = $grupInteresModel->getGrupByID($grup_id);
-                    echo '<p class="border-bottom border-secondary-subtle m-3">' . $grupRegistrat->__get('nom') . '</p>';
+            $grups = [];
+            $grupInteresModel = new GrupInteresModel();
+            foreach ($clients as $client) {
+                $grup_id = $client->__get('grupInteres_id');
+                $grupRegistrat = $grupInteresModel->getGrupByID($grup_id);
+                echo '<p class="border-bottom border-secondary-subtle m-3">' . $grupRegistrat->__get('nom') . '</p>';
 
-                }
-
-                echo '</div></div></div>';
             }
-            ?>
 
-        </div>
+            echo '</div></div></div>';
+        }
+        ?>
 
-        <?php
-                echo '<div class="row">
-                <div class="card m-2">
+    </div>
+
+    <?php
+
+    if (count($avaluacions) === 0 && $_SESSION['admin'] !== true) {
+        echo '<div class="row">
+                <div class="col-xl-12">
+                <div class="card mt-2">
+                    <div class="card-body">
+                    <p class="card-title">There is no avaluations</p>
+                    </div>
+                </div></div></div>';
+    } else {
+        echo '<div class="row">
+                <div class="col-xl-12">
+                <div class="card mt-2">
                     <div class="card-body">
                         <table>
                             <tr>
@@ -277,71 +288,71 @@
                                 <th>Planificació</th>
                                 <th>Accions</th>
                                 <th>Estrategia</th>';
-                                
-                                if (isset($_SESSION['admin']) && $_SESSION['admin'] === true){
-                                    echo '<th>Edit</th>';
-                                }
-                           
-                            echo '</tr>
+
+        if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
+            echo '<th>Edit</th>';
+        }
+
+        echo '</tr>
                         </thead>
                         <tbody>';
 
-                        if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
-                            echo "<tr>";
-                            echo '<form action="?avaluacio/create" method="post">';
-                            echo '<input type="hidden" name="proces_id" id="proces_id" value="' . $proces->__get('id') . '">';
-                            echo "<td><input class='form-control input-sm' type='text' name='tipus' placeholder='Tipus' required/>";
-                            if (isset($error["tipus"])) {
-                                echo "<br><span class='error'>" . $error["tipus"] . "</span><br>";
-                            }
-                            echo "</td>";
+        if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
+            echo "<tr>";
+            echo '<form action="?avaluacio/create" method="post">';
+            echo '<input type="hidden" name="proces_id" id="proces_id" value="' . $proces->__get('id') . '">';
+            echo "<td><input class='form-control input-sm' type='text' name='tipus' placeholder='Tipus' required/>";
+            if (isset($error["tipus"])) {
+                echo "<br><span class='error'>" . $error["tipus"] . "</span><br>";
+            }
+            echo "</td>";
 
-                            echo "<td>
+            echo "<td>
                             <select class='form-select' id='nivell' name='nivell'>
                             <option value='Baix'>Baix</option>
                             <option value='Mig'>Mig</option>
                             <option value='Alt'>Alt</option>
                             </select></td>";
 
-                            echo "<td><input class='form-control input-sm' type='text' name='valoracio' placeholder='Valoracio' required/>";
-                            if (isset($error["valoracio"])) {
-                                echo "<br><span class='error'>" . $error["valoracio"] . "</span><br>";
-                            }
-                            echo "</td>";
-                            echo "<td><input class='form-control input-sm' type='text' name='planificacio' placeholder='Planificacio' required/>";
-                            if (isset($error["planificacio"])) {
-                                echo "<br><span class='error'>" . $error["planificacio"] . "</span><br>";
-                            }
-                            echo "</td>";
-                            echo "<td><input class='form-control input-sm' type='text' name='accions' placeholder='Accions' required/>";
-                            if (isset($error["accions"])) {
-                                echo "<br><span class='error'>" . $error["accions"] . "</span><br>";
-                            }
-                            echo "</td>";
+            echo "<td><input class='form-control input-sm' type='text' name='valoracio' placeholder='Valoracio' required/>";
+            if (isset($error["valoracio"])) {
+                echo "<br><span class='error'>" . $error["valoracio"] . "</span><br>";
+            }
+            echo "</td>";
+            echo "<td><input class='form-control input-sm' type='text' name='planificacio' placeholder='Planificacio' required/>";
+            if (isset($error["planificacio"])) {
+                echo "<br><span class='error'>" . $error["planificacio"] . "</span><br>";
+            }
+            echo "</td>";
+            echo "<td><input class='form-control input-sm' type='text' name='accions' placeholder='Accions' required/>";
+            if (isset($error["accions"])) {
+                echo "<br><span class='error'>" . $error["accions"] . "</span><br>";
+            }
+            echo "</td>";
 
-                            echo "<td>
+            echo "<td>
                             <select class='form-select' id='estrategia' name='estrategia'>
                             <option value='Preventiva'>Preventiva</option>
                             <option value='De millora'>De millora</option>
                             </select></td>";
 
-                            echo "<td><button type='submit' name='create' class='btn btn-success'>Add</button></td>";
-                            echo "</form>";
-                            echo "</tr>";
-                        }
+            echo "<td><button type='submit' name='create' class='btn btn-success'>Add</button></td>";
+            echo "</form>";
+            echo "</tr>";
+        }
 
-                        foreach($avaluacions as $avaluacio){
+        foreach ($avaluacions as $avaluacio) {
 
-                            echo '<tr>';
-                            echo '<td class="border-bottom">'. $avaluacio->__get('tipus') .'</td>';
-                            echo '<td class="border-bottom">'. $avaluacio->__get('nivell') .'</td>';
-                            echo '<td class="border-bottom">'. $avaluacio->__get('valoracio') .'</td>';
-                            echo '<td class="border-bottom">'. $avaluacio->__get('planificacio') .'</td>';
-                            echo '<td class="border-bottom">'. $avaluacio->__get('accions') .'</td>';
-                            echo '<td class="border-bottom">'. $avaluacio->__get('estrategia') .'</td>';
-                        
-                            if (isset($_SESSION['admin']) && $_SESSION['admin'] === true){
-                                echo '<td class="border-bottom">
+            echo '<tr>';
+            echo '<td class="border-bottom">' . $avaluacio->__get('tipus') . '</td>';
+            echo '<td class="border-bottom">' . $avaluacio->__get('nivell') . '</td>';
+            echo '<td class="border-bottom">' . $avaluacio->__get('valoracio') . '</td>';
+            echo '<td class="border-bottom">' . $avaluacio->__get('planificacio') . '</td>';
+            echo '<td class="border-bottom">' . $avaluacio->__get('accions') . '</td>';
+            echo '<td class="border-bottom">' . $avaluacio->__get('estrategia') . '</td>';
+
+            if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
+                echo '<td class="border-bottom">
                                 <div class="d-flex justify-content-start gap-1">
                                     <a href="#" data-bs-toggle="modal" data-bs-target="#deleteAv' . $avaluacio->__get('id') . '"
                                         class="text-danger ms-2">
@@ -349,12 +360,12 @@
                                     </a>
                                 </div>
                                 </td>';
-                            }
-                            
-                            echo '</tr>';
+            }
 
-                             // delete modal avaluacio
-                             echo '<div class="modal fade" id="deleteAv' . $avaluacio->__get('id') . '" tabindex="-1"
+            echo '</tr>';
+
+            // delete modal avaluacio
+            echo '<div class="modal fade" id="deleteAv' . $avaluacio->__get('id') . '" tabindex="-1"
                              aria-labelledby="deleteAv' . $avaluacio->__get('id') . 'Label" aria-hidden="true">
                              <div class="modal-dialog modal-dialog-centered modal-lg">
                                  <div class="modal-content">
@@ -376,12 +387,15 @@
                                  </div>
                              </div>
                          </div>';
-                        }
+        }
 
-                        echo '</tbody>
+        echo '</tbody>
                         </table>
                     </div>
+                    </div>
                 </div> </div>';
-        ?>
+    }
+
+    ?>
     </div>
 </main>

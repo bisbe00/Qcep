@@ -5,6 +5,11 @@ class FrontController extends Controlador
     const DEFAULT_ACTION = "show";
     const DEFAULT_CONTROLLER = "HomeController";
 
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function dispatch()
     {
         $params = null;

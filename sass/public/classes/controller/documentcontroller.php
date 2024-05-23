@@ -41,7 +41,7 @@ class DocumentController extends Controlador
 
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             if(isset($_POST['create'])){
-                $this->create(); // Process creation
+                $this->create(); 
             }
 
             if(isset($_POST['delete'])){
