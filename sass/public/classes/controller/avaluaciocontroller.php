@@ -25,4 +25,17 @@ class AvaluacioController extends Controlador
             }
         }
     }
+
+    public function delete()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $avaluacioModel = new AvaluacioModel();
+            $state = $avaluacioModel->deleteByID($_POST['id']);
+
+            if($state){
+                header("Location: ?document/documents&proces=".$_POST['proces_id']);
+            }
+        }
+    }
 }
